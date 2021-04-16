@@ -1,0 +1,56 @@
+.ind-login-box{
+    background-color:rgba(1, 1, 1, 0.3);
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 0.5%;
+    margin-bottom: 0.5%;
+    padding: 50px;
+    color: white;
+    border-radius: 15px;
+    align-content: center;
+    
+}
+
+.ind-login-box, .ind-login-text{
+    text-align: center;
+    align-content: center;
+    padding-bottom: 10px;
+}
+
+.ind-login-box, labelpass{
+    text-align: center;
+}
+
+.ind-login-box, .ind-lgoin-text{
+    padding-top: 20px;
+}
+
+.body-bcolor{
+    background-color: rgba(22,41,47,1);
+}
+
+.formbutton{
+    padding-bottom: 20px;
+}
+
+.logoIndra{
+    width: 200px;
+    text-align: left;
+}
+.logoIndra, h5{
+    text-align: center;
+}
+
+#IndraLoginText{
+    text-align: right;
+}
+#containBotones{
+    margin: 10px;
+}
+
+
+.buttonNav{
+    align-content: center;
+    align-items: center;
+    background-color: white;
+}
