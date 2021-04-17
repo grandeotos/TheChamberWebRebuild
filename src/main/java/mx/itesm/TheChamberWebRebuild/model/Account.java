@@ -1,8 +1,10 @@
 package mx.itesm.TheChamberWebRebuild.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Account implements Serializable {
+    private List<Test> testList;
     private int accountId;
     private int rolId;
     private String firstName;
