@@ -3,37 +3,27 @@ package mx.itesm.TheChamberWebRebuild.model;
 import java.io.Serializable;
 
 public class Checkpoint implements Serializable {
-    private int checkpointid;
     private int idprueba;
     private int score;
     private int maxScore;
-    private int idsoftSkill;
-    private int idlevel;
-    private int idPuzzle;
     private int timeElapsed;
+    private String levelName;
+    private String softSkillName;
+    private String puzzleName;
     private String timeStamp;
 
     public Checkpoint() {
     }
 
-    public Checkpoint(int checkpointid, int idprueba, int score, int maxScore, int idsoftSkill, int idlevel, int idPuzzle, int timeElapsed, String timeStamp) {
-        this.checkpointid = checkpointid;
+    public Checkpoint(int idprueba, int score, int maxScore, int timeElapsed, String levelName, String softSkillName, String puzzleName, String timeStamp) {
         this.idprueba = idprueba;
         this.score = score;
         this.maxScore = maxScore;
-        this.idsoftSkill = idsoftSkill;
-        this.idlevel = idlevel;
-        this.idPuzzle = idPuzzle;
         this.timeElapsed = timeElapsed;
+        this.levelName = levelName;
+        this.softSkillName = softSkillName;
+        this.puzzleName = puzzleName;
         this.timeStamp = timeStamp;
-    }
-
-    public int getCheckpointid() {
-        return checkpointid;
-    }
-
-    public void setCheckpointid(int checkpointid) {
-        this.checkpointid = checkpointid;
     }
 
     public int getIdprueba() {
@@ -60,36 +50,36 @@ public class Checkpoint implements Serializable {
         this.maxScore = maxScore;
     }
 
-    public int getIdsoftSkill() {
-        return idsoftSkill;
-    }
-
-    public void setIdsoftSkill(int idsoftSkill) {
-        this.idsoftSkill = idsoftSkill;
-    }
-
-    public int getIdlevel() {
-        return idlevel;
-    }
-
-    public void setIdlevel(int idlevel) {
-        this.idlevel = idlevel;
-    }
-
-    public int getIdPuzzle() {
-        return idPuzzle;
-    }
-
-    public void setIdPuzzle(int idPuzzle) {
-        this.idPuzzle = idPuzzle;
-    }
-
     public int getTimeElapsed() {
         return timeElapsed;
     }
 
     public void setTimeElapsed(int timeElapsed) {
         this.timeElapsed = timeElapsed;
+    }
+
+    public String getLevelName() {
+        return levelName;
+    }
+
+    public void setLevelName(String levelName) {
+        this.levelName = levelName;
+    }
+
+    public String getSoftSkillName() {
+        return softSkillName;
+    }
+
+    public void setSoftSkillName(String softSkillName) {
+        this.softSkillName = softSkillName;
+    }
+
+    public String getPuzzleName() {
+        return puzzleName;
+    }
+
+    public void setPuzzleName(String puzzleName) {
+        this.puzzleName = puzzleName;
     }
 
     public String getTimeStamp() {
@@ -103,14 +93,13 @@ public class Checkpoint implements Serializable {
     @Override
     public String toString() {
         return "Checkpoint{" +
-                "checkpointid=" + checkpointid +
-                ", idprueba=" + idprueba +
+                "idprueba=" + idprueba +
                 ", score=" + score +
                 ", maxScore=" + maxScore +
-                ", idsoftSkill=" + idsoftSkill +
-                ", idlevel=" + idlevel +
-                ", idPuzzle=" + idPuzzle +
                 ", timeElapsed=" + timeElapsed +
+                ", levelName='" + levelName + '\'' +
+                ", softSkillName='" + softSkillName + '\'' +
+                ", puzzleName='" + puzzleName + '\'' +
                 ", timeStamp='" + timeStamp + '\'' +
                 '}';
     }

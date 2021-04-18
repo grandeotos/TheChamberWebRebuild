@@ -19,7 +19,7 @@ public class AccountTablesDAO {
         List<Test> testList = new ArrayList<>();
         String accountQuery = "SELECT *  FROM account INNER JOIN roles ON account.rolid = roles.rolid WHERE account.rolId <= 1";
         String testQuery = "SELECT * FROM test where accountId = ?";
-        String checkpointId = "SELECT * FROM checkpoints where idprueba = ?";
+        String checkpointId = "SELECT checkpoints.idprueba, checkpoints.score, checkpoints.maxScore, checkpoints.timeElapsed, levelnames.levelName, softskill.softSkillName, puzzlename.puzzleName, checkpoints.timeStamp FROM checkpoints INNER JOIN softskill ON checkpoints.idsoftSkill = softskill.idsoftSkill INNER JOIN levelnames ON checkpoints.idlevel = levelnames.idlevel INNER JOIN puzzlename ON checkpoints.idPuzzle = puzzlename.idPuzzle WHERE checkpoints.idprueba = ?";
 
         try{
             Connection connection = MySQLConnection.getConnection();
@@ -40,14 +40,13 @@ public class AccountTablesDAO {
                             ResultSet chkRS = chkPS.executeQuery();
                             while (chkRS.next()){
                                 Checkpoint checkpoint = new Checkpoint(
-                                chkRS.getInt("checkpointid"),
                                 chkRS.getInt("idprueba"),
                                 chkRS.getInt("score"),
                                 chkRS.getInt("maxScore"),
-                                chkRS.getInt("idsoftSkill"),
-                                chkRS.getInt("idlevel"),
-                                chkRS.getInt("idPuzzle"),
                                 chkRS.getInt("timeElapsed"),
+                                chkRS.getString("levelName"),
+                                chkRS.getString("softSkillName"),
+                                chkRS.getString("puzzleName"),
                                 (chkRS.getTimestamp("timeStamp")).toString());
                                 checkpointList.add(checkpoint);
                             }
