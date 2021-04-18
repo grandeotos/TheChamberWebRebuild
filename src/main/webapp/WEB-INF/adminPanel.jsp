@@ -207,7 +207,9 @@
               <table class="table table-hover table-dark">
                 <thead>
                 <tr>
-                  <th scope="col">DATO</th>
+                  <th scope="col">NIVEL</th>
+                  <th scope="col">PUZZLE</th>
+                  <th scope="col">SOFT SKILL</th>
                   <th scope="col">Tiempo de juego</th>
                   <th scope="col">Resultado</th>
                   <th scope="col">Completado</th>
@@ -216,7 +218,9 @@
                 <tbody>
                 <c:forEach items="${test.checkpoints}" var="chkptTest" varStatus="b">
                 <tr>
-                  <th scope="row">${chkptTest.levelName} ${chkptTest.puzzleName} ${chkptTest.softSkillName}</th>
+                  <td>${chkptTest.levelName}</td>
+                  <td>${chkptTest.puzzleName}</td>
+                  <td>${chkptTest.softSkillName}</td>
                   <td>${chkptTest.timeElapsed} Segundos</td>
                   <td>${chkptTest.score} / ${chkptTest.maxScore}</td>
                   <td>${chkptTest.timeStamp}</td>
