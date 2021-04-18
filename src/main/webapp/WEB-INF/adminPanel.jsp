@@ -203,7 +203,7 @@
               </table>
               <c:catch var ="catchException">
               <c:forEach items="${cuenta.testList}" var="test" varStatus="testLista">
-              <h5>Resultados desglosados</h5>
+              <h5>Resultados desglosados - Test #${testLista.index+1}</h5>
               <table class="table table-hover table-dark">
                 <thead>
                 <tr>
@@ -216,12 +216,13 @@
                 <c:forEach items="${test.checkpoints}" var="chkptTest" varStatus="b">
                 <tr>
                   <th scope="row">${chkptTest.checkpointid}</th>
-                  <td>01:59:59</td>
+                  <td>${chkptTest.idprueba}</td>
                   <td>${chkptTest.score} / ${chkptTest.maxScore}</td>
                 </tr>
                 </c:forEach>
                 </tbody>
               </table>
+                <p>--- Fin del test --- </p>
               </c:forEach>
               </c:catch>
               <c:if test = "${catchException != null}">

@@ -26,8 +26,8 @@ public class AccountTablesDAO {
             PreparedStatement accPS = connection.prepareStatement(accountQuery);
             ResultSet accRSet = accPS.executeQuery();
             while (accRSet.next()){
+                List<Checkpoint> checkpointList = new ArrayList<>();
                 try {
-                    List<Checkpoint> checkpointList = new ArrayList<>();
                     PreparedStatement testPS = connection.prepareStatement(testQuery);
                     testPS.setInt(1,accRSet.getInt("accountId"));
                     ResultSet testRS = testPS.executeQuery();
@@ -35,6 +35,8 @@ public class AccountTablesDAO {
                         try {
                             PreparedStatement chkPS = connection.prepareStatement(checkpointId);
                             chkPS.setInt(1,testRS.getInt("idpruebas"));
+                            checkpointList = new ArrayList<>();
+                            System.out.println(chkPS);
                             ResultSet chkRS = chkPS.executeQuery();
                             while (chkRS.next()){
                                 Checkpoint checkpoint = new Checkpoint(
@@ -76,7 +78,7 @@ public class AccountTablesDAO {
                         accRSet.getString("curp"),
                         accRSet.getString("rolName")
                         );
-                System.out.println(cuenta);
+                //System.out.println(cuenta);
                 accounts.add(cuenta);
                 //System.out.println("SOUT ACTDAO:" + cuenta);
             }
