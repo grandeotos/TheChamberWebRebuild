@@ -41,6 +41,19 @@ public class Account implements Serializable {
         this.curp = curp;
     }
 
+    public Account(List<Test> testList, int accountId, int rolId, String firstName, String lastName, String username, String email, String password, String curp, String roleName) {
+        this.testList = testList;
+        this.accountId = accountId;
+        this.rolId = rolId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.curp = curp;
+        this.roleName = roleName;
+    }
+
     public int getAccountId() {
         return accountId;
     }
@@ -113,10 +126,19 @@ public class Account implements Serializable {
         this.roleName = roleName;
     }
 
+    public List<Test> getTestList() {
+        return testList;
+    }
+
+    public void setTestList(List<Test> testList) {
+        this.testList = testList;
+    }
+
     @Override
     public String toString() {
         return "Account{" +
-                "accountId=" + accountId +
+                "testList=" + testList +
+                ", accountId=" + accountId +
                 ", rolId=" + rolId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +

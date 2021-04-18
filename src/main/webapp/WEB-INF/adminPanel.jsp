@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -160,7 +161,7 @@
 
 
 
-    <c:forEach items="${accTable}" var="cuenta" varStatus="status">
+    <c:forEach items="${accTable}" var="cuenta" varStatus="j">
       <!-- Modal -->
       <div class="modal fade" id="Modal${cuenta.username}" role="dialog">
         <div class="modal-dialog modal-dialog modal-dialog-scrollable modal-lg">
@@ -200,6 +201,8 @@
                 </tr>
                 </tbody>
               </table>
+              <c:catch var ="catchException">
+              <c:forEach items="${cuenta.testList}" var="test" varStatus="testLista">
               <h5>Resultados desglosados</h5>
               <table class="table table-hover table-dark">
                 <thead>
@@ -210,78 +213,23 @@
                 </tr>
                 </thead>
                 <tbody>
+                <c:forEach items="${test.checkpoints}" var="chkptTest" varStatus="b">
                 <tr>
-                  <th scope="row">TUTORIAL (SIN VALOR)</th>
+                  <th scope="row">${chkptTest.checkpointid}</th>
                   <td>01:59:59</td>
-                  <td>100 / 100</td>
+                  <td>${chkptTest.score} / ${chkptTest.maxScore}</td>
                 </tr>
-                <tr>
-                  <th scope="row">Nivel 1 (PRESION)</th>
-                  <td>01:59:59</td>
-                  <td>100 / 100</td>
-                </tr>
-                <tr>
-                  <th scope="row">Nivel 1 (LÓGICA)</th>
-                  <td>01:59:59</td>
-                  <td>100 / 100</td>
-                </tr>
-                <tr>
-                  <th scope="row">Nivel 2 (PRESION)</th>
-                  <td>01:59:59</td>
-                  <td>100 / 100</td>
-                </tr>
-                <tr>
-                  <th scope="row">Nivel 2 (LÓGICA)</th>
-                  <td>01:59:59</td>
-                  <td>100 / 100</td>
-                </tr>
-                <tr>
-                  <th scope="row">Nivel 3 (PRESION)</th>
-                  <td>01:59:59</td>
-                  <td>100 / 100</td>
-                </tr>
-                <tr>
-                  <th scope="row">Nivel 3 (LÓGICA)</th>
-                  <td>01:59:59</td>
-                  <td>100 / 100</td>
-                </tr>
-                <tr>
-                  <th scope="row">Nivel 4 (PRESION)</th>
-                  <td>01:59:59</td>
-                  <td>100 / 100</td>
-                </tr>
-                <tr>
-                  <th scope="row">Nivel 4 (LÓGICA)</th>
-                  <td>01:59:59</td>
-                  <td>100 / 100</td>
-                </tr>
-                <tr>
-                  <th scope="row">Nivel 3 (LÓGICA)</th>
-                  <td>01:59:59</td>
-                  <td>100 / 100</td>
-                </tr>
-                <tr>
-                  <th scope="row">Nivel 5 (PRESION)</th>
-                  <td>01:59:59</td>
-                  <td>100 / 100</td>
-                </tr>
-                <tr>
-                  <th scope="row">Nivel 5 (LÓGICA)</th>
-                  <td>01:59:59</td>
-                  <td>100 / 100</td>
-                </tr>
-                <tr>
-                  <th scope="row">Nivel 5 (EMOCIONAL)</th>
-                  <td>01:59:59</td>
-                  <td>100 / 100</td>
-                </tr>
-                <tr>
-                  <th scope="row">TOTAL</th>
-                  <td>01:59:59</td>
-                  <td>100 (EXCELENTE)</td>
-                </tr>
+                </c:forEach>
                 </tbody>
               </table>
+              </c:forEach>
+              </c:catch>
+              <c:if test = "${catchException != null}">
+                <p>The exception is : ${catchException} <br />
+                  There is an exception: ${catchException.message}</p>
+              </c:if>
+
+
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-danger">
