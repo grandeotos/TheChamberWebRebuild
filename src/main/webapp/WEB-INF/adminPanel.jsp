@@ -164,7 +164,7 @@
     <c:forEach items="${accTable}" var="cuenta" varStatus="j">
       <!-- Modal -->
       <div class="modal fade" id="Modal${cuenta.username}" role="dialog">
-        <div class="modal-dialog modal-dialog modal-dialog-scrollable modal-lg">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="ModalLabel${cuenta.username}"><i class=" fas fa-info-circle"></i> Información del candidato
@@ -174,69 +174,129 @@
             <div class="modal-body">
               <h5>Informacion básica</h5>
               <table class="table table-hover table-dark">
-                <tbody>
+                <thead>
                 <tr>
                   <th scope="row">GamerID</th>
+                  <th scope="row">Nombre</th>
+                  <th scope="row">Rol del GamerID</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
                   <td>${cuenta.username}</td>
-                </tr>
-                <tr>
-                  <th scope="row">Nombre del candidato</th>
                   <td>${cuenta.firstName} ${cuenta.lastName}</td>
-                </tr>
-                <tr>
-                  <th scope="row">STATUS DE JUEGO</th>
                   <td>${cuenta.roleName}</td>
-                </tr>
-                <tr>
-                  <th scope="row">PUNTAJE</th>
-                  <td>EXCELENTE (100 / 100)</td>
-                </tr>
-                <tr>
-                  <th scope="row">FECHA DE INICIO</th>
-                  <td>11/03/2021 22:09 CDT</td>
-                </tr>
-                <tr>
-                  <th scope="row">FECHA DE FINAL</th>
-                  <td>12/03/2021 07:09 CDT</td>
                 </tr>
                 </tbody>
               </table>
               <c:catch var ="catchException">
-              <c:forEach items="${cuenta.testList}" var="test" varStatus="testLista">
-              <h5>Resultados desglosados - Test #${testLista.index+1}</h5>
-              <table class="table table-hover table-dark">
-                <thead>
-                <tr>
-                  <th scope="col">NIVEL</th>
-                  <th scope="col">PUZZLE</th>
-                  <th scope="col">SOFT SKILL</th>
-                  <th scope="col">Tiempo de juego</th>
-                  <th scope="col">Resultado</th>
-                  <th scope="col">Completado</th>
-                </tr>
-                </thead>
-                <tbody>
-                <c:forEach items="${test.checkpoints}" var="chkptTest" varStatus="b">
-                <tr>
-                  <td>${chkptTest.levelName}</td>
-                  <td>${chkptTest.puzzleName}</td>
-                  <td>${chkptTest.softSkillName}</td>
-                  <td>${chkptTest.timeElapsed} Segundos</td>
-                  <td>${chkptTest.score} / ${chkptTest.maxScore}</td>
-                  <td>${chkptTest.timeStamp}</td>
-                </tr>
+                <h5>Resultados Generales</h5>
+                <table class="table table-hover table-dark">
+                  <thead>
+                  <tr>
+                    <th scope="col">#Prueba (#ID General)</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Fecha de Inicio</th>
+                    <th scope="col">Fecha de Terminacion</th>
+                    <th scope="col">Tiempo tomado</th>
+                    <th scope="col">Puntaje general</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                <c:forEach items="${cuenta.testList}" var="test" varStatus="testLista">
+                    <tr>
+                      <td>${testLista.index+1} ( ${test.testId} )</td>
+                      <td>${test.testStatus}</td>
+                      <td>${test.beganAtTimeStamp}</td>
+                      <td>${test.finishedAtTimeStamp}</td>
+                      <td>${test.duration} Segundos</td>
+                      <td>${test.overallScore}</td>
+                    </tr>
                 </c:forEach>
-                </tbody>
-              </table>
-                <p>--- Fin del test --- </p>
-              </c:forEach>
+                  </tbody>
+                </table>
+                <p></p>
+                <h4>Puntajes por prueba</h4>
+                <c:forEach items="${cuenta.testList}" var="test" varStatus="testLista">
+              <div class="accordion" id="accordionScore${testLista.index}">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingaccordionScore${testLista.index}">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseScore${testLista.index}" aria-expanded="true" aria-controls="collapseOne">
+                      <strong>Test ${testLista.index+1}</strong>
+                    </button>
+                  </h2>
+                  <div id="collapseScore${testLista.index}" class="accordion-collapse collapse show" aria-labelledby="headingaccordionScore${testLista.index}" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <table class="table table-hover table-dark">
+                        <thead>
+                        <tr>
+                          <th scope="col">SCORE ID</th>
+                          <th scope="col">PRUEBA</th>
+                          <th scope="col">SOFT SKILL</th>
+                          <th scope="col">Resultado</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <c:forEach items="${test.scores}" var="score" varStatus="b">
+                        <tr>
+                          <td>${score.scoreId}</td>
+                          <td>${score.test_testId}</td>
+                          <td>${score.softSkillName}</td>
+                          <td>${score.softSkillScore} / 100</td>
+                        </tr>
+                        </c:forEach>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                </c:forEach>
+              <h4>Resultados desglosados</h4>
+                <c:forEach items="${cuenta.testList}" var="test" varStatus="testLista">
+                <div class="accordion" id="accordionTest${testLista.index}">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTest${testLista.index}" aria-expanded="true" aria-controls="collapseOne">
+                        <strong>Test ${testLista.index+1}</strong>
+                      </button>
+                    </h2>
+                    <div id="collapseTest${testLista.index}" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                      <div class="accordion-body">
+                        <table class="table table-hover table-dark">
+                          <thead>
+                          <tr>
+                            <th scope="col">NIVEL</th>
+                            <th scope="col">PUZZLE</th>
+                            <th scope="col">SOFT SKILL</th>
+                            <th scope="col">Tiempo de juego</th>
+                            <th scope="col">Resultado</th>
+                            <th scope="col">Completado</th>
+                          </tr>
+                          </thead>
+                          <tbody>
+                          <c:forEach items="${test.checkpoints}" var="chkptTest" varStatus="b">
+                            <tr>
+                              <td>${chkptTest.levelName}</td>
+                              <td>${chkptTest.puzzleName}</td>
+                              <td>${chkptTest.softSkillName}</td>
+                              <td>${chkptTest.timeElapsed} Segundos</td>
+                              <td>${chkptTest.score} / ${chkptTest.maxScore}</td>
+                              <td>${chkptTest.timeStamp}</td>
+                            </tr>
+                          </c:forEach>
+                          </tbody>
+                        </table>
+                      </div>
+                  </div>
+                </div>
+                </div>
+                </c:forEach>
               </c:catch>
               <c:if test = "${catchException != null}">
                 <p>The exception is : ${catchException} <br />
                   There is an exception: ${catchException.message}</p>
               </c:if>
-
-
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-danger">
