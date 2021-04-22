@@ -237,12 +237,12 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach items="${test.scores}" var="pts" varStatus="b">
+                        <c:forEach items="${test.scores}" var="score" varStatus="b">
                         <tr>
-                          <td>${pts.scoreId}</td>
-                          <td>${pts.test_testId}</td>
-                          <td>${pts.softSkillName}</td>
-                          <td>${pts.softSkillScore} / 100</td>
+                          <td>${score.scoreId}</td>
+                          <td>${score.test_testId}</td>
+                          <td>${score.softSkillName}</td>
+                          <td>${score.softSkillScore} / 100</td>
                         </tr>
                         </c:forEach>
                         </tbody>

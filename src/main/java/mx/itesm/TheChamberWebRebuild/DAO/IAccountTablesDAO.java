@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface IAccountTablesDAO {
     public List<Account> list();
-
+    public Account getAccountById();
 }

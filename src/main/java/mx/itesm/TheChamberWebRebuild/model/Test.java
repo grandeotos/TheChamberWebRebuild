@@ -18,6 +18,8 @@ public class Test implements Serializable {
     public Test() {
     }
 
+
+
     public Test(List<Checkpoint> checkpoints, List<Score> scores, int testId, int accountId, String testStatus, String beganAtTimeStamp, int duration, String finishedAtTimeStamp, int overallScore) {
         this.checkpoints = checkpoints;
         this.scores = scores;

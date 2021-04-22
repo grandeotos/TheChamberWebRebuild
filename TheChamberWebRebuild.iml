@@ -38,5 +38,7 @@
     <orderEntry type="library" name="Maven: mysql:mysql-connector-java:8.0.23" level="project" />
     <orderEntry type="library" name="Maven: com.google.protobuf:protobuf-java:3.11.4" level="project" />
     <orderEntry type="library" name="Maven: javax.servlet:jstl:1.2" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Tomcat 8.5.64" level="application_server_libraries" />
+    <orderEntry type="library" name="javax.servlet:jstl:1.2" level="project" />
   </component>
 </module>

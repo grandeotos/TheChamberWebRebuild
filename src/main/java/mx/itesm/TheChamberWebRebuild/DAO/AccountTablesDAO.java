@@ -12,64 +12,91 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AccountTablesDAO {
+public class AccountTablesDAO implements IAccountTablesDAO{
 
+    @Override
+    public Account getAccountById() {
+        return null;
+    }
+
+    @Override
     public List<Account> list() {
-        System.out.println("Account list enabled");
-        List<Account> accounts = new ArrayList<>();
-        List<Test> testList = new ArrayList<>();
         String accountQuery = "SELECT *  FROM account INNER JOIN roles ON account.rolid = roles.rolid/* WHERE account.rolId <= 1*/";
         String testQuery = "SELECT tests.testId, tests.accountId, teststatus.testStatusName, tests.beganAtTimeStamp, tests.duration, tests.finishedAtTimeStamp, tests.overallScore FROM tests INNER JOIN teststatus ON tests.testStatus_statusId = teststatus.statusId WHERE accountId = ?";
-        String scoresQuery = "SELECT  scores.scoreId, scores.test_testId, softskills.softSkillName, scores.softSkillScore FROM scores INNER JOIN softskills ON scores.softSkill_idsoftSkill = softskills.softskillId WHERE scores.test_testId = ?";
-        String checkpointQuery = "SELECT checkpoints.checkpointId, checkpoints.test_testId, checkpoints.checkpointScore, checkpoints.checkpointMaxScore, softskills.softSkillName, levelnames.levelName, puzzlenames.puzzleName, checkpoints.timeElapsed, checkpoints.timeStamp FROM checkpoints INNER JOIN levelnames ON checkpoints.levelId INNER JOIN puzzlenames ON checkpoints.puzzleId = puzzlenames.puzzleId INNER JOIN softskills ON checkpoints.softSkillId = softskills.softskillId WHERE checkpoints.test_testId = ?";
-
+        String scoreQuery = "SELECT  scores.scoreId, scores.test_testId, softskills.softSkillName, scores.softSkillScore FROM scores INNER JOIN softskills ON scores.softSkill_idsoftSkill = softskills.softskillId WHERE scores.test_testId = ?";
+        String checkpointQuery = "SELECT checkpoints.checkpointId, checkpoints.test_testId, checkpoints.checkpointScore, checkpoints.checkpointMaxScore, softskills.softSkillName, levelnames.levelName, puzzlenames.puzzleName, checkpoints.timeElapsed, checkpoints.timeStamp FROM checkpoints INNER JOIN levelnames ON checkpoints.levelId INNER JOIN puzzlenames ON checkpoints.puzzleId = puzzlenames.puzzleId INNER JOIN softskills ON checkpoints.softSkillId = softskills.softskillId WHERE checkpoints.test_testId = ?  GROUP BY checkpoints.checkpointId";
+        Connection connection = MySQLConnection.getConnection();
+        System.out.println("Lista de cuentas iniciada");
+        List<Account> accountList = new ArrayList<>(); // Lista Main de cuentas
         try{
-            Connection connection = MySQLConnection.getConnection();
-            PreparedStatement accPS = connection.prepareStatement(accountQuery);
-            ResultSet accRSet = accPS.executeQuery();
-            while (accRSet.next()){
-                List<Checkpoint> checkpointList = new ArrayList<>();
-                List<Score> scoreList = new ArrayList<>();
-                try {
+            System.out.println("Lista de cuentas creada");
+            PreparedStatement accountPS = connection.prepareStatement(accountQuery);
+            System.out.println("PreparedStatement de cuentas creado");
+            ResultSet accountRS = accountPS.executeQuery();
+            System.out.println("ResultSet de cuentas creado");
+            while (accountRS.next()){
+                List<Test> testList = new ArrayList<>();
+                System.out.println("Lista de Test creado para " + accountRS.getString("username"));
+                try{
                     PreparedStatement testPS = connection.prepareStatement(testQuery);
-                    testPS.setInt(1,accRSet.getInt("accountId"));
+                    System.out.println("PreparedStatement de Test creado para " + accountRS.getString("username"));
+                    testPS.setInt(1,accountRS.getInt("accountId"));
                     ResultSet testRS = testPS.executeQuery();
+                    System.out.println("ResultSet de Test creado para " + accountRS.getString("username"));
                     while (testRS.next()){
-                        try {
 
-                            PreparedStatement chkPS = connection.prepareStatement(checkpointQuery);
-                            PreparedStatement scorePS = connection.prepareStatement(scoresQuery);
-                            chkPS.setInt(1,testRS.getInt("testId"));
+                        List<Score> scoreList = new ArrayList<>();
+                        System.out.println("List de Score del Test " + testRS.getInt("testId") + " creado para " + accountRS.getString("username"));
+                        try{
+                            PreparedStatement scorePS = connection.prepareStatement(scoreQuery);
+                            System.out.println("PreparedStatement de Score del Test " + testRS.getInt("testId") + " creado para " + accountRS.getString("username"));
                             scorePS.setInt(1,testRS.getInt("testId"));
-                            scoreList = new ArrayList<>();
-                            checkpointList = new ArrayList<>();
-                            ResultSet chkRS = chkPS.executeQuery();
-                            while (chkRS.next()){
-                                Checkpoint checkpoint = new Checkpoint(
-                                chkRS.getInt("test_testId"),
-                                chkRS.getInt("checkpointScore"),
-                                chkRS.getInt("checkpointMaxScore"),
-                                chkRS.getInt("timeElapsed"),
-                                chkRS.getString("levelName"),
-                                chkRS.getString("softSkillName"),
-                                chkRS.getString("puzzleName"),
-                                (chkRS.getTimestamp("timeStamp")).toString());
-                                checkpointList.add(checkpoint);
-                            }
                             ResultSet scoreRS = scorePS.executeQuery();
+                            System.out.println("ResultSet de Score del Test " + testRS.getInt("testId") + " creado para " + accountRS.getString("username"));
                             while (scoreRS.next()){
-                                Score score = new Score(
+                                Score TempScore = new Score(
                                         scoreRS.getInt("scoreId"),
                                         scoreRS.getInt("test_testId"),
                                         scoreRS.getString("softSkillName"),
                                         scoreRS.getInt("softSkillScore")
                                 );
-                                scoreList.add(score);
+                                scoreList.add(TempScore);
+                                System.out.println("TempScore anadido a lista de Score del Test " + testRS.getInt("testId") + " creado para " + accountRS.getString("username"));
+
                             }
-                        } catch(Exception ex){
-                            System.out.println(ex.getMessage());
+                        } catch (Exception ex) {
+                            System.out.println("On no, una excepción en la seccion TempScore");
+                            System.out.println("La excepción es: " + ex.getCause() + " " + ex.getMessage());
                         }
-                        Test test = new Test(
+
+                        List<Checkpoint> checkpointList = new ArrayList<>();
+                        System.out.println("Lista de Checkpoint creado para " + accountRS.getString("username"));
+
+                        try {
+                            PreparedStatement checkpointPS = connection.prepareStatement(checkpointQuery);
+                            System.out.println("PreparedStatement de Checkpoint creado para " + accountRS.getString("username"));
+                            checkpointPS.setInt(1,testRS.getInt("testId"));
+                            ResultSet checkpointRS = checkpointPS.executeQuery();
+                            System.out.println("ResultSet de Checkpoint del Test " + testRS.getInt("testId") + " creado para " + accountRS.getString("username"));
+                            while (checkpointRS.next()){
+                                Checkpoint TempCheckpoint = new Checkpoint(
+                                        checkpointRS.getInt("test_testId"),
+                                        checkpointRS.getInt("checkpointScore"),
+                                        checkpointRS.getInt("checkpointMaxScore"),
+                                        checkpointRS.getInt("timeElapsed"),
+                                        checkpointRS.getString("levelName"),
+                                        checkpointRS.getString("softSkillName"),
+                                        checkpointRS.getString("puzzleName"),
+                                        (checkpointRS.getTimestamp("timeStamp")).toString()
+                                );
+                                checkpointList.add(TempCheckpoint);
+                                System.out.println("TempCheckpoint anadido a lista de Score del Test " + testRS.getInt("testId") + " creado para " + accountRS.getString("username"));
+                            }
+                        } catch (Exception ex) {
+                            System.out.println("On no, una excepción en la seccion TempCheckpoint");
+                            System.out.println("La excepción es: " + ex.getCause() + " " + ex.getMessage());
+                        }
+                        Test TempTest = new Test(
                                 checkpointList,
                                 scoreList,
                                 testRS.getInt("testId"),
@@ -77,35 +104,42 @@ public class AccountTablesDAO {
                                 testRS.getString("testStatusName"),
                                 (testRS.getTimestamp("beganAtTimeStamp")).toString(),
                                 testRS.getInt("duration"),
-                                testRS.getString("finishedAtTimeStamp"),
+                                (testRS.getTimestamp("finishedAtTimeStamp")).toString(),
                                 testRS.getInt("overallScore")
                         );
-                        testList.add(test);
+                        testList.add(TempTest);
+                        System.out.println("TempTest anadido a lista del Test " + testRS.getInt("testId") + " creado para " + accountRS.getString("username"));
                     }
-                } catch(Exception ex){
-                    System.out.println(ex.getMessage());
+
+                } catch (Exception ex) {
+                    System.out.println("On no, una excepción en la seccion TempTest");
+                    System.out.println("La excepción es: " + ex.getCause() + " " + ex.getMessage());
                 }
-                Account cuenta = new Account(
+                Account TempAccount = new Account(
                         testList,
-                        accRSet.getInt("accountId"),
-                        accRSet.getInt("rolId"),
-                        accRSet.getString("firstName"),
-                        accRSet.getString("lastName"),
-                        accRSet.getString("username"),
-                        accRSet.getString("email"),
-                        accRSet.getString("password"),
-                        accRSet.getString("curp"),
-                        accRSet.getString("rolName")
-                        );
-                //System.out.println(cuenta);
-                accounts.add(cuenta);
-                //System.out.println("SOUT ACTDAO:" + cuenta);
+                        accountRS.getInt("accountId"),
+                        accountRS.getInt("rolid"),
+                        accountRS.getString("firstName"),
+                        accountRS.getString("lastName"),
+                        accountRS.getString("username"),
+                        accountRS.getString("email"),
+                        accountRS.getString("password"),
+                        accountRS.getString("curp"),
+                        accountRS.getString("rolName")
+                );
+                accountList.add(TempAccount);
+                System.out.println("TempAccount de "+ accountRS.getString("username") + " anadido a lista de Account");
+
             }
-            connection.close();
-            return accounts;
-        } catch(Exception ex){
-            System.out.println(ex.getMessage());
+            System.out.println("Retornando lista de Account para " + accountRS.getString("username"));
+            System.out.println(accountList);
+
+        } catch (Exception ex) {
+            System.out.println("On no, una excepción en la seccion lista de Account");
+            System.out.println("La excepción es: " + ex.getCause() + " " + ex.getMessage());
         }
-        return null;
+        System.out.println(accountList);
+        return accountList;
+
     }
 }
