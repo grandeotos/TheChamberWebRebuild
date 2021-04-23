@@ -74,13 +74,13 @@
                                         <br>
                                         <label id="llastName" for="password">Apellido(s) </label>
                                         <input type="text" class="form-control" id="lastName"
-                                        name="lastName" placeholder="Ingrese su(s) Apellido(s)">
+                                        name="lastName" placeholder="Ingrese su(s) Apellido(s)" required="required">
                                     </div>
                                     <div class="form-group">
                                         <br>
                                         <label id="lcurp" for="password">CURP </label>
                                         <input type="text" class="form-control" id="curp"
-                                        name="curp" placeholder="Ingrese su CURP">
+                                        name="curp" placeholder="Ingrese su CURP" required="required">
                                     </div>
                                     <div class="form-group">
                                         <br>
@@ -97,13 +97,13 @@
                                         <br>
                                         <label id="passwordLabel" for="password">Contraseña</label>
                                         <input type="password" class="form-control" id="password" name="password"
-                                            placeholder="Ingrese su contraseña">
+                                            placeholder="Ingrese su contraseña" required="required">
                                     </div>
                                     <div class="form-group">
                                         <br>
                                         <label id="password2Label" for="password2">Confirmar contraseña</label>
                                         <input type="password" class="form-control" id="password2" name="password2"
-                                            placeholder="Repita su contraseña">
+                                            placeholder="Repita su contraseña" required="required">
                                     </div>
                                     <div class="form-group">
                                         <input type="hidden" id="usernameHidden" name="username" value="${username}">

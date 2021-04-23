@@ -1,7 +1,7 @@
 package mx.itesm.TheChamberWebRebuild.controller;
 
 import mx.itesm.TheChamberWebRebuild.DAO.AccountTablesDAO;
-import mx.itesm.TheChamberWebRebuild.model.Account;
+import mx.itesm.TheChamberWebRebuild.model.Applicant;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,11 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.Enumeration;
 import java.util.List;
 
-@WebServlet(name = "AdvancedViewController", value = "/advancedView")
-public class AdvancedViewController extends HttpServlet {
+@WebServlet(name = "OnQueueController", value = "/OnQueue")
+public class OnQueueController extends HttpServlet {
     private AccountTablesDAO accountTablesDAO;
     @Override
     public void init() {
@@ -23,21 +22,12 @@ public class AdvancedViewController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        System.out.println("Sesion:");
-        System.out.println(session.getAttributeNames());
-        Enumeration<String> attributes = request.getSession().getAttributeNames();
-        String Player = request.getParameter("username");
-        while (attributes.hasMoreElements()) {
-            String attribute = (String) attributes.nextElement();
-            System.out.println(attribute+" : "+request.getSession().getAttribute(attribute));
-        }
+        request.getParameter("id");
         try{
             if(session.getAttribute("administrador") != null){
-                Account accountId = accountTablesDAO.getAccountByUsername(Player);
-                request.setAttribute("cuenta", accountId); // Will be available as ${products} in JSP
-                //request.getRequestDispatcher("WEB-INF/adminPanel.jsp").forward(request, response);
-                request.getRequestDispatcher("/advancedView.jsp").forward(request, response);
-
+                List<Applicant> listaCuentas = accountTablesDAO.ApplicantList();
+                request.setAttribute("accTable", listaCuentas); // Will be available as ${products} in JSP
+                request.getRequestDispatcher("WEB-INF/OnQueue.jsp").forward(request, response);
             }else{
                 request.setAttribute("message", "ERROR: No tienes acceso a este portal.");
                 request.setAttribute("messageType", "WarningError");

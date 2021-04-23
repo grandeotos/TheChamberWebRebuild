@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="TheChamber@localhost" uuid="d14448ca-846d-464a-a739-856e2d771c1f">
-      <driver-ref>mariadb</driver-ref>
+    <data-source source="LOCAL" name="TheChamberAWS" uuid="6e5a8313-d86f-4276-8efd-6ee877dbbfeb">
+      <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
-      <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mariadb://localhost:3306/thechamber</jdbc-url>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://the-chamber-web.ckqbx0wdqtxo.us-east-1.rds.amazonaws.com :3306/thechamber</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
-      <auto-close enable="true" />
     </data-source>
   </component>
 </project>

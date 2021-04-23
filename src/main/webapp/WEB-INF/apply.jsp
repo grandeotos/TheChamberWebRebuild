@@ -74,31 +74,31 @@
                                         <br>
                                         <label id="nameLabel" for="firstName">Nombre(s)</label>
                                         <input type="text" class="form-control" id="firstName"
-                                            name="firstName" placeholder="Ingrese su(s) nombre(s)">
+                                            name="firstName" placeholder="Ingrese su(s) nombre(s)" required="required">
                                     </div>
                                     <div class="form-group">
                                         <br>
                                         <label id="lastNameLabel" for="lastName">Apellidos(s)</label>
                                         <input type="text" class="form-control" id="lastName"
-                                        name="lastName" placeholder="Ingrese su(s) Apellido(s)">
+                                        name="lastName" placeholder="Ingrese su(s) Apellido(s)" required="required">
                                     </div>
                                     <div class="form-group">
                                         <br>
                                         <label id="emailLabel" for="email">E-mail</label>
                                         <input type="email" class="form-control" id="email"
-                                            name="email" placeholder="Ingrese su e-mail">
+                                            name="email" placeholder="Ingrese su e-mail" required="required">
                                     </div>
                                     <div class="form-group">
                                         <br>
                                         <label id="telepLabel" for="telep">Telefono</label>
                                         <input type="tel" class="form-control" id="telep"
-                                        name="telep" placeholder="Ingrese su telefono">
+                                        name="telep" placeholder="Ingrese su telefono" required="required">
                                     </div>
                                     <div class="form-group">
                                         <br>
                                         <label id="experLabel" for="exper">Seleccione su experiencia</label>
                                         <br>
-                                        <select id="exper" name="exper" class="form-control">
+                                        <select id="exper" name="exper" class="form-control" required="required">
                                             <option value="1">Sin experiencia</option>
                                             <option value="2">Becas</option>
                                             <option value="3">Menos de 5 años</option>
@@ -110,7 +110,7 @@
                                         <br>
                                         <label id="profixLabel" for="profix">Seleccione su perfil</label>
                                         <br>
-                                        <select id="profix" name="profix" class="form-control">
+                                        <select id="profix" name="profix" class="form-control" required="required">
                                             <option value="1">Agencia digital</option>
                                             <option value="2">Arquitecturas</option>
                                             <option value="3">Big Data</option>
@@ -132,8 +132,7 @@
                                 </div>
                                 <br>
                                 <center>
-                                    <button type="submit" class="btn btn-primary" data-bs-toggle="modal"
-                                        data-bs-target="#registSuccessModal"><i class="fas fa-arrow-circle-up"></i>
+                                    <button type="submit" class="btn btn-primary"><i class="fas fa-arrow-circle-up"></i>
                                         Enviar solicitud
                                     </button>
                                     <p></p>

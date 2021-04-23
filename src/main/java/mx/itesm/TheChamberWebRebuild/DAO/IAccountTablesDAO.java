@@ -1,10 +1,12 @@
 package mx.itesm.TheChamberWebRebuild.DAO;
 
 import mx.itesm.TheChamberWebRebuild.model.Account;
+import mx.itesm.TheChamberWebRebuild.model.Applicant;
 
 import java.util.List;
 
 public interface IAccountTablesDAO {
+    public List<Applicant> ApplicantList();
     public List<Account> list();
-    public Account getAccountById();
+    public Account getAccountByUsername(String Username);
 }

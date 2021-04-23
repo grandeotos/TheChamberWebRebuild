@@ -38,6 +38,7 @@ public class AccountDAO implements IAccountDAO {
                 conexion.close();
                 return account;
             }else{
+                conexion.close();
                 return null;
             }
         }catch(Exception ex){
@@ -75,6 +76,7 @@ public class AccountDAO implements IAccountDAO {
                 }
                 if(sameAccount > 1){
                     System.out.println("Duplicado");
+                    conexion.close();
                     return 2;
                 } else {
                     int isRegistered  =  preparedStatement.executeUpdate();
@@ -86,6 +88,7 @@ public class AccountDAO implements IAccountDAO {
                     }
                     else{
                         System.out.println("No registrado");
+                        conexion.close();
                         return 0;
                     }
                 }
@@ -126,6 +129,7 @@ public class AccountDAO implements IAccountDAO {
                 }
                 if(sameAccount > 1){
                     System.out.println("Duplicado");
+                    conexion.close();
                     return 2;
                 } else {
                     if(isRegistered == 1){
@@ -135,6 +139,7 @@ public class AccountDAO implements IAccountDAO {
                     }
                     else{
                         System.out.println("No registrado");
+                        conexion.close();
                         return 0;
                     }
                 }

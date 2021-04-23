@@ -17,9 +17,11 @@
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css" />
   <script src="${pageContext.request.contextPath}/js/bootstrap.bundle.min.js"></script>
 
+
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
   <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript" src="${pageContext.request.contextPath}/js/OnQueue.js"></script>
 
 </head>
 <body class="body-bcolor">
@@ -32,6 +34,7 @@
             </div>
           </div>
           <div class="col-4">
+            <p>On Queue</p>
             <c:if test="${not empty message}">
               <c:choose>
                 <c:when test="${messageType == 'Success'}">
@@ -124,32 +127,35 @@
               <i class="fas fa-times-circle"></i> Quitar selección
             </button>
           </div>
-          <table id="TheChamber" class="table table-hover table-dark">
+          <table id="OnQueue" class="table table-hover table-dark">
             <thead>
             <tr>
-              <th scope="col">GamerID</th>
+              <th scope="col">ID</th>
               <th scope="col">Nombre(s)</th>
               <th scope="col">Apellido(s)</th>
               <th scope="col">Correo</th>
-              <th scope="col">Rol</th>
-              <th scope="col">Descargas</th>
+              <th scope="col">Teléfono</th>
+              <th scope="col">Experiencia</th>
+              <th scope="col">Perfil Tecnico</th>
+              <th scope="col">Status de revisión</th>
             </tr>
             </thead>
             <tbody>
             <c:forEach items="${accTable}" var="cuenta" varStatus="status">
               <tr>
-                <td>${cuenta.username}</td>
+                <td>${cuenta.applicantId}</td>
                 <td><c:out value="${cuenta.firstName}" /></td>
                 <td><c:out value="${cuenta.lastName}" /></td>
                 <td><c:out value="${cuenta.email}" /></td>
-                <td><c:out value="${cuenta.roleName}" /></td>
-                <td><button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
-                            data-bs-target="#Modal${cuenta.username}">
-                  <i class=" fas fa-info-circle"></i> VER
-                </button> <button type="button" class="btn btn-outline-danger">
-                  <i class="far fa-file-pdf"></i> PDF
+                <td><c:out value="${cuenta.phoneNumber}" /></td>
+                <td><c:out value="${cuenta.experienceName}" /></td>
+                <td><c:out value="${cuenta.profileName}" /></td>
+                <td>${cuenta.reviewStatusName}<br>
+                  <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal"
+                            data-bs-target="#Modal${cuenta.applicantId}">
+                  <i class=" fas fa-info-circle"></i> VER / ACCIONES
                 </button>
-              </tr>
+                </td>
             </c:forEach>
             </tbody>
           </table>
@@ -157,144 +163,6 @@
       <div class="formbutton">
       </div>
     </div>
-  </div>
-
-
-
-    <c:forEach items="${accTable}" var="cuenta" varStatus="j">
-      <!-- Modal -->
-      <div class="modal fade" id="Modal${cuenta.username}" role="dialog">
-        <div class="modal-dialog modal-dialog-scrollable modal-xl">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="ModalLabel${cuenta.username}"><i class=" fas fa-info-circle"></i> Información del candidato
-              </h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <h5>Informacion básica</h5>
-              <table class="table table-hover table-dark">
-                <thead>
-                <tr>
-                  <th scope="row">GamerID</th>
-                  <th scope="row">Nombre</th>
-                  <th scope="row">Rol del GamerID</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                  <td>${cuenta.username}</td>
-                  <td>${cuenta.firstName} ${cuenta.lastName}</td>
-                  <td>${cuenta.roleName}</td>
-                </tr>
-                </tbody>
-              </table>
-              <c:catch var ="catchException">
-                <c:if test="${not empty cuenta.testList}">
-                  <h5>Resultados Generales</h5>
-                  <table class="table table-hover table-dark">
-                  <thead>
-                  <tr>
-                    <th scope="col">#Prueba (#ID General)</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Fecha de Inicio</th>
-                    <th scope="col">Fecha de Terminacion</th>
-                    <th scope="col">Tiempo tomado</th>
-                    <th scope="col">Puntaje general</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                </c:if>
-
-                <c:forEach items="${cuenta.testList}" var="test" varStatus="testLista">
-                    <tr>
-                      <td>${testLista.index+1} ( ${test.testId} )</td>
-                      <td>${test.testStatus}</td>
-                      <td>${test.beganAtTimeStamp}</td>
-                      <td>${test.finishedAtTimeStamp}</td>
-                      <td>${test.duration} Segundos</td>
-                      <td>${test.overallScore}</td>
-                    </tr>
-                </c:forEach>
-                  </tbody>
-                </table>
-
-                <c:if test="${empty cuenta.testList}">
-                  <center>
-                    <p>Esta cuenta aún no tiene ningúna prueba hecha</p>
-                  </center>
-                </c:if>
-                <c:if test="${not empty cuenta.testList}">
-                  <h4>Puntajes por prueba</h4>
-                </c:if>
-                <c:forEach items="${cuenta.testList}" var="test" varStatus="testLista">
-              <div class="accordion" id="accordionScore${testLista.index}">
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="headingaccordionScore${testLista.index}">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseScore${testLista.index}" aria-expanded="true" aria-controls="collapseOne">
-                      <strong>Test ${testLista.index+1}</strong>
-                    </button>
-                  </h2>
-                  <div id="collapseScore${testLista.index}" class="accordion-collapse collapse show" aria-labelledby="headingaccordionScore${testLista.index}" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                      <table class="table table-hover table-dark">
-                        <thead>
-                        <tr>
-                          <th scope="col">SCORE ID</th>
-                          <th scope="col">PRUEBA</th>
-                          <th scope="col">SOFT SKILL</th>
-                          <th scope="col">Resultado</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <c:if test="${empty test.scores}">
-                          <tr>
-                            <td>Sin DATOS</td>
-                            <td>Sin DATOS</td>
-                            <td>Sin DATOS</td>
-                            <td>Sin DATOS</td>
-                          </tr>
-                        </c:if>
-                        <c:forEach items="${test.scores}" var="pts" varStatus="b">
-                        <tr>
-                          <td>${pts.scoreId}</td>
-                          <td>${pts.test_testId}</td>
-                          <td>${pts.softSkillName}</td>
-                          <td>${pts.softSkillScore} / 100</td>
-                        </tr>
-                        </c:forEach>
-                        </tbody>
-                      </table>
-                      <c:if test="${empty test.scores}">
-                        <p>Esta cuenta aún no tiene ningúna prueba hecha</p>
-                      </c:if>
-                    </div>
-                  </div>
-                </div>
-              </div>
-                </c:forEach>
-              </c:catch>
-              <c:if test = "${catchException != null}">
-                <p>The exception is : ${catchException} <br />
-                  There is an exception: ${catchException.message}</p>
-              </c:if>
-
-            </div>
-
-            <div class="modal-footer">
-              <button type="button" class="btn btn-success"
-                      onclick="javascript:window.location.href='${pageContext.request.contextPath}/advancedView?username=${cuenta.username}';">
-                <i class="fas fa-id-card"></i>
-                Ver reporte completo en WEB
-              </button>
-              <button type="button" class="btn btn-danger">
-                <i class="far fa-file-pdf"></i> Exportar reporte a PDF
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </c:forEach>
 
 
   <!-- Modal -->
@@ -326,6 +194,98 @@
       </div>
     </div>
   </div>
+
+
+      <c:forEach items="${accTable}" var="cuenta" varStatus="j">
+        <!-- Modal -->
+        <div class="modal fade" id="Modal${cuenta.applicantId}" role="dialog">
+          <div class="modal-dialog modal-dialog-scrollable modal-xl">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="ModalLabel${cuenta.applicantId}"><i class=" fas fa-info-circle"></i> Información del aplicante
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <h5>Informacion básica</h5>
+                <table class="table table-hover table-dark">
+                  <thead>
+                  <tr>
+                    <th>ID</th>
+                    <td>${cuenta.applicantId}</td>
+                  </tr>
+                  <tr>
+                    <th>Nombre(s)</th>
+                    <td>${cuenta.firstName}</td>
+                  </tr>
+                  <tr>
+                    <th>Apellido(s)</th>
+                    <td><c:out value="${cuenta.lastName}" /></td>
+                  </tr>
+                  <tr>
+                    <th>Correo</th>
+                    <td><c:out value="${cuenta.email}" /></td>
+                  </tr>
+                  <tr>
+                    <th>Teléfono</th>
+                    <td><c:out value="${cuenta.phoneNumber}" /></td>
+                  </tr>
+                  <tr>
+                    <th>Experiencia</th>
+                    <td><c:out value="${cuenta.experienceName}" /></td>
+                  </tr>
+                  <tr>
+                    <th>Perfil Tecnico</th>
+                    <td><c:out value="${cuenta.profileName}" /></td>
+                  </tr>
+                  <tr>
+                    <th>Status de revisión</th>
+                    <td><c:out value="${cuenta.reviewStatusName}" /></td>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                  <tr>
+
+
+
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="modal-footer">
+                <c:choose>
+                  <c:when test="${cuenta.reviewStatusName == 'SIN REVISAR'}">
+                    <button type="button" class="btn btn-success btn-sm">APROBAR</button>
+                    <button type="button" class="btn btn-danger btn-sm">RECHAZAR</button>
+                    <button type="button" class="btn btn-warning btn-sm">REVISADO</button>
+                  </c:when>
+                  <c:when test="${cuenta.reviewStatusName == 'APROBADO'}">
+                    <button type="button" class="btn btn-sm btn-success" disabled>APROBADO</button>
+                  </c:when>
+                  <c:when test="${cuenta.reviewStatusName == 'EN REVISION'}">
+                    <button type="button" class="btn btn-success btn-sm">APROBAR</button>
+                    <button type="button" class="btn btn-danger btn-sm">RECHAZAR</button>
+                    <button type="button" class="btn btn-secondary btn-sm">SIN REVISAR</button>
+                  </c:when>
+                  <c:when test="${cuenta.reviewStatusName == 'RECHAZADO'}">
+                    <button type="button" class="btn btn-sm btn-danger" disabled>RECHAZADO</button>
+                  </c:when>
+                  <c:otherwise>
+                    <button type="button" class="btn btn-success btn-sm">APROBAR</button>
+                    <button type="button" class="btn btn-danger btn-sm">RECHAZAR</button>
+                    <button type="button" class="btn btn-secondary btn-sm">SIN REVISAR</button>
+                    <button type="button" class="btn btn-warning btn-sm">REVISADO</button>
+                  </c:otherwise>
+                </c:choose>
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal" aria-label="Close"> <i class="fas fa-check-circle"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </c:forEach>
+
+
   <!-- Modal -->
   <div class="modal fade" id="logOut" role="dialog">
     <div class="modal-dialog">
@@ -385,9 +345,6 @@
     </div>
     <!-- Copyright -->
 </footer>
-
-
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/adminPanel.js"></script>
 </body>
 
 </html>

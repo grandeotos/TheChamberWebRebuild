@@ -119,22 +119,19 @@
               <i class="fas fa-file-csv"></i> Exportar Jugador a PDF
             </button>
           </div>
-
-          <c:forEach items="${accTable}" var="cuenta" varStatus="j">
             <h5>Informacion básica de ${cuenta.firstName} ${cuenta.lastName} </h5>
           <table class="table table-hover table-dark">
-            <thead>
-            <tr>
-              <th scope="row">GamerID</th>
-              <th scope="row">Nombre</th>
-              <th scope="row">Rol del GamerID</th>
-            </tr>
-            </thead>
             <tbody>
             <tr>
-              <td>${cuenta.username}</td>
-              <td>${cuenta.firstName} ${cuenta.lastName}</td>
-              <td>${cuenta.roleName}</td>
+              <th scope="row">GamerID</th>
+              <th scope="row">${cuenta.username}</th>
+            </tr>
+            <tr>
+              <th scope="row">Nombre</th>
+              <th scope="row">${cuenta.firstName} ${cuenta.lastName}</th>
+            <tr>
+              <th scope="row">Rol del GamerID</th>
+              <th scope="row">${cuenta.roleName}</th>
             </tr>
             </tbody>
           </table>
@@ -223,7 +220,6 @@
             <p>The exception is : ${catchException} <br />
               There is an exception: ${catchException.message}</p>
           </c:if>
-          </c:forEach>
       </div>
       </div>
       <div class="formbutton">
