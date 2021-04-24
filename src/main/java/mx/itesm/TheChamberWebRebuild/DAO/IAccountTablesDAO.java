@@ -9,4 +9,6 @@ public interface IAccountTablesDAO {
     public List<Applicant> ApplicantList();
     public List<Account> list();
     public Account getAccountByUsername(String Username);
+    public Account getRecentTestByUsername(String Username);
+    public Account getRecentScoresByUsername(String Username);
 }

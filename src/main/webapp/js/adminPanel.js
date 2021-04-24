@@ -1,4 +1,31 @@
 $(document).ready(function() {
+    console.log("Hola mundo");
+
+    $(".datos").click(function(){
+        console.log("Datos de " + $(this).attr("id"))
+        let usernameForm = $(this).attr("id");
+        $.ajax({
+            url: "getAccountInternal",
+            method: "POST",
+            data: {
+                username: usernameForm
+            },
+            success: function(data){
+                $("#username2").html(data.username);
+                $("#fullName").html(data.firstName + data.lastName);
+                $("#emailModal").html(data.email);
+                $("#curpModal").html(data.curp);
+                $("#roleNameModal").html(data.roleName);
+                let last_test = data.testList[data.testList.length]
+                console.log(data)
+                console.log(data.testList.length)
+            },
+            error: function(xhr, statusText){
+                console.log(statusText);
+            }
+
+        })
+    })
     //select the close by class and apply a click even listener
     /*if(sessionStorage.getItem('#modalAdminPanel') !== 'true'){
         $('#bienvenido').modal('show');
@@ -17,35 +44,19 @@ $(document).ready(function() {
         }
 
     } );
+
+
+
     $('.toast').toast({
         delay: 1500
     })
+
+    $("mostrartostados").click(function(){
+        console.log("Tostados de" + $(this).attr("id"))
+        let usernameForm = $(this).attr("id");
+        $('.toast').toast({
+            delay: 1500,
+            show: true
+        })
+    })
 } );
-
-function showToast() {
-    console.log("ShowToast");
-    //$('.').toast({delay:11, animation:true});
-    $('#tostados').toast('show');
-    console.log("ShowToaster");
-}
-function makeid(length) {
-    var result           = [];
-    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-    var charactersLength = characters.length;
-    for ( var i = 0; i < length; i++ ) {
-        result.push(characters.charAt(Math.floor(Math.random() *
-            charactersLength)));
-    }
-    return result.join('');
-}
-
-$(document).on("click", "#somebutton", function() {  // When HTML DOM "click" event is invoked on element with ID "somebutton", execute the following function...
-    $.post("someservlet", function(responseJson) {    // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
-        var $ul = $("<ul>").appendTo($("#somediv")); // Create HTML <ul> element and append it to HTML DOM element with ID "somediv".
-        $.each(responseJson, function(index, item) { // Iterate over the JSON array.
-            $("<li>").text(item).appendTo($ul);      // Create HTML <li> element, set its text content with currently iterated item and append it to the <ul>.
-        });
-    });
-});
-
-

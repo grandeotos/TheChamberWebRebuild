@@ -117,7 +117,7 @@
             <button type="button" class="btn btn-success">
               <i class="fas fa-file-csv"></i> Exportar selección a CSV
             </button>
-            <button id="modalGm" type="button" class="btn btn-success" onclick="showToast()">
+            <button id="modalGm" type="button" class="btn btn-success" id="mostrartostados">
               <i class="fas fa-check-square"></i> Seleccionar TODOS
             </button>
             <button type="button" class="btn btn-secondary">
@@ -143,8 +143,8 @@
                 <td><c:out value="${cuenta.lastName}" /></td>
                 <td><c:out value="${cuenta.email}" /></td>
                 <td><c:out value="${cuenta.roleName}" /></td>
-                <td><button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
-                            data-bs-target="#Modal${cuenta.username}">
+                <td><button type="button" id="${cuenta.username}" class="btn btn-outline-primary datos" data-bs-toggle="modal"
+                            data-bs-target="#ModalInfo" >
                   <i class=" fas fa-info-circle"></i> VER
                 </button> <button type="button" class="btn btn-outline-danger">
                   <i class="far fa-file-pdf"></i> PDF
@@ -161,9 +161,8 @@
 
 
 
-    <c:forEach items="${accTable}" var="cuenta" varStatus="j">
       <!-- Modal -->
-      <div class="modal fade" id="Modal${cuenta.username}" role="dialog">
+      <div class="modal fade" id="ModalInfo" role="dialog">
         <div class="modal-dialog modal-dialog-scrollable modal-xl">
           <div class="modal-content">
             <div class="modal-header">
@@ -175,112 +174,94 @@
               <h5>Informacion básica</h5>
               <table class="table table-hover table-dark">
                 <thead>
+                </thead>
+                <tbody>
                 <tr>
-                  <th scope="row">GamerID</th>
+                  <th>GamerID</th>
+                  <td id="username2"></td>
+                </tr>
+                <tr>
                   <th scope="row">Nombre</th>
+                  <td id="fullName"></td>
+                </tr>
+                <tr>
+                  <th scope="row">Correo</th>
+                  <td id="emailModal"></td>
+                </tr>
+                <tr>
+                  <th scope="row">CURP</th>
+                  <td id="curpModal"></td>
+                </tr>
+                <tr>
                   <th scope="row">Rol del GamerID</th>
+                  <td id="roleNameModal"></td>
+                </tr>
+                </tbody>
+              </table>
+              <h5>Test mas reciente</h5>
+              <table class="table table-hover table-dark">
+                <thead>
+                <tr>
+                  <th scope="col">#Prueba (#ID General)</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Fecha de Inicio</th>
+                  <th scope="col">Fecha de Terminacion</th>
+                  <th scope="col">Tiempo tomado</th>
+                  <th scope="col">Puntaje general</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
-                  <td>${cuenta.username}</td>
-                  <td>${cuenta.firstName} ${cuenta.lastName}</td>
-                  <td>${cuenta.roleName}</td>
+                  <td id="testId"></td>
+                  <td id="testStatus"></td>
+                  <td id="beginAt"></td>
+                  <td id="finishAt"></td>
+                  <td id="timeElapsed"></td>
+                  <td id="score"></td>
                 </tr>
                 </tbody>
               </table>
-              <c:catch var ="catchException">
-                <c:if test="${not empty cuenta.testList}">
-                  <h5>Resultados Generales</h5>
-                  <table class="table table-hover table-dark">
+              <h5>Puntajes por prueba</h5>
+                <table class="table table-hover table-dark">
                   <thead>
                   <tr>
-                    <th scope="col">#Prueba (#ID General)</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Fecha de Inicio</th>
-                    <th scope="col">Fecha de Terminacion</th>
-                    <th scope="col">Tiempo tomado</th>
-                    <th scope="col">Puntaje general</th>
+                    <th scope="col">SCORE ID</th>
+                    <th scope="col">PRUEBA</th>
+                    <th scope="col">SOFT SKILL</th>
+                    <th scope="col">Resultado</th>
                   </tr>
                   </thead>
                   <tbody>
-                </c:if>
-
-                <c:forEach items="${cuenta.testList}" var="test" varStatus="testLista">
-                    <tr>
-                      <td>${testLista.index+1} ( ${test.testId} )</td>
-                      <td>${test.testStatus}</td>
-                      <td>${test.beganAtTimeStamp}</td>
-                      <td>${test.finishedAtTimeStamp}</td>
-                      <td>${test.duration} Segundos</td>
-                      <td>${test.overallScore}</td>
-                    </tr>
-                </c:forEach>
+                  <tr>
+                    <td id="scoreIdOne"></td>
+                    <td id="testIdOne"></td>
+                    <td id="softSkillOne"></td>
+                    <td id="scoreOne"></td>
+                  </tr>
+                  <tr>
+                    <td id="scoreIdTwo"></td>
+                    <td id="testIdTwo"></td>
+                    <td id="softSkillTwo"></td>
+                    <td id="scoreTwo"></td>
+                  </tr>
+                  <tr>
+                    <td id="scoreIdThree"></td>
+                    <td id="testIdThree"></td>
+                    <td id="softSkillThree"></td>
+                    <td id="scoreThree"></td>
+                  </tr>
+                  <tr>
+                    <td id="scoreIdFour"></td>
+                    <td id="testId1Four"></td>
+                    <td id="softSkillFour"></td>
+                    <td id="scoreFour"></td>
+                  </tr>
                   </tbody>
                 </table>
-
-                <c:if test="${empty cuenta.testList}">
-                  <center>
-                    <p>Esta cuenta aún no tiene ningúna prueba hecha</p>
-                  </center>
-                </c:if>
-                <c:if test="${not empty cuenta.testList}">
-                  <h4>Puntajes por prueba</h4>
-                </c:if>
-                <c:forEach items="${cuenta.testList}" var="test" varStatus="testLista">
-              <div class="accordion" id="accordionScore${testLista.index}">
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="headingaccordionScore${testLista.index}">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseScore${testLista.index}" aria-expanded="true" aria-controls="collapseOne">
-                      <strong>Test ${testLista.index+1}</strong>
-                    </button>
-                  </h2>
-                  <div id="collapseScore${testLista.index}" class="accordion-collapse collapse show" aria-labelledby="headingaccordionScore${testLista.index}" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                      <table class="table table-hover table-dark">
-                        <thead>
-                        <tr>
-                          <th scope="col">SCORE ID</th>
-                          <th scope="col">PRUEBA</th>
-                          <th scope="col">SOFT SKILL</th>
-                          <th scope="col">Resultado</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <c:if test="${empty test.scores}">
-                          <tr>
-                            <td>Sin DATOS</td>
-                            <td>Sin DATOS</td>
-                            <td>Sin DATOS</td>
-                            <td>Sin DATOS</td>
-                          </tr>
-                        </c:if>
-                        <c:forEach items="${test.scores}" var="pts" varStatus="b">
-                        <tr>
-                          <td>${pts.scoreId}</td>
-                          <td>${pts.test_testId}</td>
-                          <td>${pts.softSkillName}</td>
-                          <td>${pts.softSkillScore} / 100</td>
-                        </tr>
-                        </c:forEach>
-                        </tbody>
-                      </table>
-                      <c:if test="${empty test.scores}">
-                        <p>Esta cuenta aún no tiene ningúna prueba hecha</p>
-                      </c:if>
-                    </div>
-                  </div>
-                </div>
-              </div>
-                </c:forEach>
-              </c:catch>
-              <c:if test = "${catchException != null}">
-                <p>The exception is : ${catchException} <br />
-                  There is an exception: ${catchException.message}</p>
-              </c:if>
-
             </div>
-
+            <center>
+              <p>Para consultar todas las pruebas y puntuaciones individuales en las que se ha encontrado este usuario, abra el reporte completo en WEB</p>
+            </center>
             <div class="modal-footer">
               <button type="button" class="btn btn-success"
                       onclick="javascript:window.location.href='${pageContext.request.contextPath}/advancedView?username=${cuenta.username}';">
@@ -294,10 +275,10 @@
           </div>
         </div>
       </div>
-    </c:forEach>
 
 
-  <!-- Modal -->
+
+      <!-- Modal -->
   <div class="modal fade" id="createNew" role="dialog">
     <div class="modal-dialog">
       <div class="modal-content">

@@ -3,6 +3,7 @@ package mx.itesm.TheChamberWebRebuild.model;
 import java.io.Serializable;
 
 public class Checkpoint implements Serializable {
+    private int checkpointId;
     private int testId;
     private int score;
     private int maxScore;
@@ -15,7 +16,8 @@ public class Checkpoint implements Serializable {
     public Checkpoint() {
     }
 
-    public Checkpoint(int testId, int score, int maxScore, int timeElapsed, String levelName, String softSkillName, String puzzleName, String timeStamp) {
+    public Checkpoint(int checkpointId, int testId, int score, int maxScore, int timeElapsed, String levelName, String softSkillName, String puzzleName, String timeStamp) {
+        this.checkpointId = checkpointId;
         this.testId = testId;
         this.score = score;
         this.maxScore = maxScore;
@@ -24,6 +26,14 @@ public class Checkpoint implements Serializable {
         this.softSkillName = softSkillName;
         this.puzzleName = puzzleName;
         this.timeStamp = timeStamp;
+    }
+
+    public int getCheckpointId() {
+        return checkpointId;
+    }
+
+    public void setCheckpointId(int checkpointId) {
+        this.checkpointId = checkpointId;
     }
 
     public int getTestId() {
@@ -93,7 +103,8 @@ public class Checkpoint implements Serializable {
     @Override
     public String toString() {
         return "Checkpoint{" +
-                "testId=" + testId +
+                "checkpointId=" + checkpointId +
+                ", testId=" + testId +
                 ", score=" + score +
                 ", maxScore=" + maxScore +
                 ", timeElapsed=" + timeElapsed +

@@ -18,7 +18,37 @@ public class Test implements Serializable {
     public Test() {
     }
 
+    public Test(int testId, int accountId, String testStatus, String beganAtTimeStamp, int duration, String finishedAtTimeStamp, int overallScore) {
+        this.testId = testId;
+        this.accountId = accountId;
+        this.testStatus = testStatus;
+        this.beganAtTimeStamp = beganAtTimeStamp;
+        this.duration = duration;
+        this.finishedAtTimeStamp = finishedAtTimeStamp;
+        this.overallScore = overallScore;
+    }
 
+    public Test(int testId, int accountId, String testStatus, String beganAtTimeStamp, int duration, String finishedAtTimeStamp, int overallScore, List<Checkpoint> checkpoints) {
+        this.checkpoints = checkpoints;
+        this.testId = testId;
+        this.accountId = accountId;
+        this.testStatus = testStatus;
+        this.beganAtTimeStamp = beganAtTimeStamp;
+        this.duration = duration;
+        this.finishedAtTimeStamp = finishedAtTimeStamp;
+        this.overallScore = overallScore;
+    }
+
+    public Test(List<Score> scores, int testId, int accountId, String testStatus, String beganAtTimeStamp, int duration, String finishedAtTimeStamp, int overallScore) {
+        this.scores = scores;
+        this.testId = testId;
+        this.accountId = accountId;
+        this.testStatus = testStatus;
+        this.beganAtTimeStamp = beganAtTimeStamp;
+        this.duration = duration;
+        this.finishedAtTimeStamp = finishedAtTimeStamp;
+        this.overallScore = overallScore;
+    }
 
     public Test(List<Checkpoint> checkpoints, List<Score> scores, int testId, int accountId, String testStatus, String beganAtTimeStamp, int duration, String finishedAtTimeStamp, int overallScore) {
         this.checkpoints = checkpoints;
@@ -31,6 +61,9 @@ public class Test implements Serializable {
         this.finishedAtTimeStamp = finishedAtTimeStamp;
         this.overallScore = overallScore;
     }
+
+
+
 
     public List<Checkpoint> getCheckpoints() {
         return checkpoints;
