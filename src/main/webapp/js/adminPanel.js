@@ -15,6 +15,8 @@ $(document).ready(function() {
                 username: usernameForm
             },
             success: function(data){
+                $("#advancedReport").id = (data.username);
+                document.getElementById('advancedReport').id = (data.username);
                 $("#username2").html(data.username);
                 $("#fullName").html(data.firstName + data.lastName);
                 $("#emailModal").html(data.email);
@@ -42,11 +44,8 @@ $(document).ready(function() {
                 $("#testId1Four").html(data.testList[(data.testList.length)-1].scores[3].test_testId);
                 $("#softSkillFour").html(data.testList[(data.testList.length)-1].scores[3].softSkillName);
                 $("#scoreFour").html(data.testList[(data.testList.length)-1].scores[3].softSkillScore);
-                $(".advanced").each(function(){
-                    $(this).attr("id",(data.username));
-                });
-                let last_test =(data.testList[(data.testList.length)-1].scores.length-1)
-
+                $("#advancedReport").id = (data.username);
+                document.getElementById('advancedReport').id = (data.username);
                 //data.testlist[pos_x].scores[posy]
             },
             error: function(xhr, statusText){

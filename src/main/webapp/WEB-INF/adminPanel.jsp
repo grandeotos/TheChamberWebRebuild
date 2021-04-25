@@ -227,7 +227,7 @@
           usuario, abra el reporte completo en WEB</p>
       </center>
       <div class="modal-footer">
-        <button type="button" class="btn btn-success advanced">
+        <button type="button" class="btn btn-success advanced" id="advancedReport">
           <i class="fas fa-id-card"></i>
           Ver reporte completo en WEB
         </button>
