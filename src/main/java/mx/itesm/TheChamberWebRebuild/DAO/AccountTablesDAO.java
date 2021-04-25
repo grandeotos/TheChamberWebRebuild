@@ -7,6 +7,7 @@ import mx.itesm.TheChamberWebRebuild.util.MySQLConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,30 +24,21 @@ public class AccountTablesDAO implements IAccountTablesDAO{
         Account TempAccount = new Account();
         try{
             PreparedStatement accountPS = connection.prepareStatement(accountQuery);
-            System.out.println("PreparedStatement de accountId creado para " + Username);
             accountPS.setString(1,Username);
             ResultSet accountRS = accountPS.executeQuery();
-            System.out.println("ResultSet de accountId creado para " + Username);
             if(accountRS.next()){
-                System.out.println("a");
                 try{
-                    List<Test> testList = new ArrayList<>();
-                    System.out.println("Lista de Test creado para " + Username);
+                    List<Test> testList = new ArrayList<Test>();
                     try{
                         PreparedStatement testPS = connection.prepareStatement(testQuery);
-                        System.out.println("PreparedStatement de Test creado para " + accountRS.getString("username"));
                         testPS.setInt(1,accountRS.getInt("accountId"));
                         ResultSet testRS = testPS.executeQuery();
-                        System.out.println("ResultSet de Test creado para " + accountRS.getString("username"));
                         while (testRS.next()){
-                            List<Score> scoreList = new ArrayList<>();
-                            System.out.println("List de Score del Test " + testRS.getInt("testId") + " creado para " + accountRS.getString("username"));
+                            List<Score> scoreList = new ArrayList<Score>();
                             try{
                                 PreparedStatement scorePS = connection.prepareStatement(scoreQuery);
-                                System.out.println("PreparedStatement de Score del Test " + testRS.getInt("testId") + " creado para " + accountRS.getString("username"));
                                 scorePS.setInt(1,testRS.getInt("testId"));
                                 ResultSet scoreRS = scorePS.executeQuery();
-                                System.out.println("ResultSet de Score del Test " + testRS.getInt("testId") + " creado para " + accountRS.getString("username"));
                                 while (scoreRS.next()){
                                     Score TempScore = new Score(
                                             scoreRS.getInt("scoreId"),
@@ -54,22 +46,23 @@ public class AccountTablesDAO implements IAccountTablesDAO{
                                             scoreRS.getString("softSkillName"),
                                             scoreRS.getInt("softSkillScore")
                                     );
+                                    System.out.println("GSON Score");
+                                    Gson gson = new Gson();
+                                    System.out.println(gson.toJson(TempScore));
                                     scoreList.add(TempScore);
-                                    System.out.println("TempScore anadido a lista de Score del Test " + testRS.getInt("testId") + " creado para " + accountRS.getString("username"));
                                 }
-                            } catch (Exception ex) {
-                                System.out.println("On no, una excepción en la seccion TempScore");
-                                System.out.println("La excepción es: " + ex.getCause() + " " + ex.getMessage());
-                            }
+                            } catch (SQLException e1) {
+                                System.out.println("Could not retrieve database metadata " + e1.getMessage());
 
-                            List<Checkpoint> checkpointList = new ArrayList<>();
-                            System.out.println("Lista de Checkpoint creado para " + accountRS.getString("username"));
+                            } catch(Exception ex){
+                                System.out.println("Linea a");
+                                System.out.println(ex.getClass().getCanonicalName() + " " + ex.getMessage());
+                            }
+                            List<Checkpoint> checkpointList = new ArrayList<Checkpoint>();
                             try {
                                 PreparedStatement checkpointPS = connection.prepareStatement(checkpointQuery);
-                                System.out.println("PreparedStatement de Checkpoint creado para " + accountRS.getString("username"));
                                 checkpointPS.setInt(1,testRS.getInt("testId"));
                                 ResultSet checkpointRS = checkpointPS.executeQuery();
-                                System.out.println("ResultSet de Checkpoint del Test " + testRS.getInt("testId") + " creado para " + accountRS.getString("username"));
                                 while (checkpointRS.next()){
                                     Checkpoint TempCheckpoint = new Checkpoint(
                                             checkpointRS.getInt("checkpointId"),
@@ -80,14 +73,18 @@ public class AccountTablesDAO implements IAccountTablesDAO{
                                             checkpointRS.getString("levelName"),
                                             checkpointRS.getString("softSkillName"),
                                             checkpointRS.getString("puzzleName"),
-                                            (checkpointRS.getTimestamp("timeStamp")).toString()
-                                    );
+                                            checkpointRS.getString("timeStamp")
+                                            );
+                                    System.out.println("GSON Checkpoint");
+                                    Gson gson = new Gson();
+                                    System.out.println(gson.toJson(TempCheckpoint));
                                     checkpointList.add(TempCheckpoint);
-                                    System.out.println("TempCheckpoint anadido a lista de Score del Test " + testRS.getInt("testId") + " creado para " + accountRS.getString("username"));
                                 }
-                            } catch (Exception ex) {
-                                System.out.println("On no, una excepción en la seccion TempCheckpoint");
-                                System.out.println("La excepción es: " + ex.getCause() + " " + ex.getMessage());
+                            } catch (SQLException e1) {
+                                System.out.println("Could not retrieve database metadata " + e1.getMessage());
+                            } catch(Exception ex){
+                                System.out.println("Linea b");
+                                System.out.println(ex.getClass().getCanonicalName() + " " + ex.getMessage());
                             }
                             Test TempTest = new Test(
                                     checkpointList,
@@ -95,17 +92,21 @@ public class AccountTablesDAO implements IAccountTablesDAO{
                                     testRS.getInt("testId"),
                                     testRS.getInt("accountId"),
                                     testRS.getString("testStatusName"),
-                                    (testRS.getTimestamp("beganAtTimeStamp")).toString(),
+                                    testRS.getString("beganAtTimeStamp"),
                                     testRS.getInt("duration"),
-                                    (testRS.getTimestamp("finishedAtTimeStamp")).toString(),
+                                    testRS.getString("finishedAtTimeStamp"),
                                     testRS.getInt("overallScore")
                             );
+                            System.out.println("GSON Test");
+                            Gson gson = new Gson();
+                            System.out.println(gson.toJson(TempTest));
                             testList.add(TempTest);
-                            System.out.println("TempTest anadido a lista del Test " + testRS.getInt("testId") + " creado para " + accountRS.getString("username"));
                         }
-                    } catch (Exception ex) {
-                        System.out.println("On no, una excepción en la seccion TempTest");
-                        System.out.println("La excepción es: " + ex.getCause() + " " + ex.getMessage());
+                    } catch (SQLException e1) {
+                        System.out.println("Could not retrieve database metadata " + e1.getMessage());
+                    } catch(Exception ex){
+                        System.out.println("Linea c");
+                        System.out.println(ex.getClass().getCanonicalName() + " " + ex.getMessage());
                     }
                      TempAccount = new Account(
                             testList,
@@ -119,22 +120,23 @@ public class AccountTablesDAO implements IAccountTablesDAO{
                             accountRS.getString("curp"),
                             accountRS.getString("rolName")
                     );
-                    System.out.println("TempAccount de "+ accountRS.getString("username") + " anadido a lista de Account");
-                } catch (Exception ex) {
-                    System.out.println("On no, una excepción en la seccion lista de Account");
-                    System.out.println("La excepción es: " + ex.getCause() + " " + ex.getMessage());
+                } catch (SQLException e1) {
+                    System.out.println("Could not retrieve database metadata " + e1.getMessage());
+                } catch(Exception ex){
+                    System.out.println("Linea d");
+                    System.out.println(ex.getClass().getCanonicalName() + " " + ex.getMessage());
                 }
             }
-        } catch (Exception ex) {
-            System.out.println("On no, una excepción en la seccion AccountId");
-            System.out.println("La excepción es: " + ex.getCause() + " " + ex.getMessage());
+        } catch (SQLException e1) {
+            System.out.println("Could not retrieve database metadata " + e1.getMessage());
+        } catch(Exception ex){
+            System.out.println("Linea e");
+            System.out.println(ex.getClass().getCanonicalName() + " " + ex.getMessage());
         }
-        //System.out.println(TempAccount);
+        System.out.println("GSON Account");
         Gson gson = new Gson();
         System.out.println(gson.toJson(TempAccount));
         return TempAccount;
-
-
     }
 
     @Override
@@ -152,13 +154,10 @@ public class AccountTablesDAO implements IAccountTablesDAO{
         String applicantQuery = "SELECT  applicant.applicantId, applicant.firstName, applicant.lastName, applicant.email, applicant.phoneNumber, experience.experienceName, profile.profileName, reviewStatus.reviewStatusName from applicant INNER JOIN experience ON experience.experienceId = applicant.experienceId INNER JOIN profile ON profile.profileId  = applicant.profileId INNER JOIN reviewStatus on applicant.reviewStatusId = reviewStatus.reviewStatusId";
         Connection connection = MySQLConnection.getConnection();
         System.out.println("Lista de cuentas iniciada");
-        List<Applicant> applicantList = new ArrayList<>(); // Lista Main de cuentas
+        List<Applicant> applicantList = new ArrayList<Applicant>(); // Lista Main de cuentas
         try{
-            System.out.println("Lista de aplicantes creada");
             PreparedStatement applicantsPS = connection.prepareStatement(applicantQuery);
-            System.out.println("PreparedStatement de Applicants creado");
             ResultSet applicantsRS = applicantsPS.executeQuery();
-            System.out.println("ResultSet de cuentas creado");
             while (applicantsRS.next()){
                 Applicant TempApplicant = new Applicant(
                         applicantsRS.getInt("applicantId"),
@@ -171,21 +170,18 @@ public class AccountTablesDAO implements IAccountTablesDAO{
                         applicantsRS.getString("reviewStatusName")
                 );
                 applicantList.add(TempApplicant);
-                System.out.println("TempAccount de "+ applicantsRS.getInt("applicantId") + " anadido a lista de Account");
 
             }
-            System.out.println("Retornando lista de Account para " + applicantsRS.getInt("applicantId"));
-            System.out.println(applicantList);
 
-        } catch (Exception ex) {
-            System.out.println("On no, una excepción en la seccion lista de Account");
-            System.out.println("La excepción es: " + ex.getCause() + " " + ex.getMessage());
+        } catch (SQLException e1) {
+            System.out.println("Could not retrieve database metadata " + e1.getMessage());
+        } catch(Exception ex){
+            System.out.println("Linea f");
+            System.out.println(ex.getClass().getCanonicalName() + " " + ex.getMessage());
         }
-        //System.out.println(applicantList);
         Gson gson = new Gson();
         System.out.println(gson.toJson(applicantList));
         return applicantList;
-
     }
 
     @Override
@@ -193,35 +189,25 @@ public class AccountTablesDAO implements IAccountTablesDAO{
         String accountQuery = "SELECT *  FROM account INNER JOIN roles ON account.rolid = roles.rolid/* WHERE account.rolId <= 1*/";
         String testQuery = "SELECT tests.testId, tests.accountId, testStatus.testStatusName, tests.beganAtTimeStamp, tests.duration, tests.finishedAtTimeStamp, tests.overallScore FROM tests INNER JOIN testStatus ON tests.testStatus_statusId = testStatus.statusId WHERE accountId = ?";
         String scoreQuery = "SELECT  scores.scoreId, scores.test_testId, softSkills.softSkillName, scores.softSkillScore FROM scores INNER JOIN softSkills ON scores.softSkill_idsoftSkill = softSkills.softskillId WHERE scores.test_testId = ? ORDER BY scores.scoreId ASC";
-        String checkpointQuery = "SELECT checkpoints.checkpointId, checkpoints.test_testId,  checkpoints.test_testId AS testIdd ,checkpoints.checkpointScore, checkpoints.checkpointMaxScore, softSkills.softSkillName, levelNames.levelName, puzzleNames.puzzleName, checkpoints.timeElapsed, checkpoints.timeStamp FROM checkpoints INNER JOIN levelNames ON checkpoints.levelId = levelNames.levelId INNER JOIN puzzleNames ON checkpoints.puzzleId = puzzleNames.puzzleId INNER JOIN softSkills ON checkpoints.softSkillId = softSkills.softskillId WHERE checkpoints.test_testId = 1 ORDER BY testIdd DESC, checkpoints.checkpointId ASC";
+        String checkpointQuery = "SELECT checkpoints.checkpointId, checkpoints.test_testId,  checkpoints.test_testId AS testIdd ,checkpoints.checkpointScore, checkpoints.checkpointMaxScore, softSkills.softSkillName, levelNames.levelName, puzzleNames.puzzleName, checkpoints.timeElapsed, checkpoints.timeStamp FROM checkpoints INNER JOIN levelNames ON checkpoints.levelId = levelNames.levelId INNER JOIN puzzleNames ON checkpoints.puzzleId = puzzleNames.puzzleId INNER JOIN softSkills ON checkpoints.softSkillId = softSkills.softskillId WHERE checkpoints.test_testId = ? ORDER BY testIdd DESC, checkpoints.checkpointId ASC";
         Connection connection = MySQLConnection.getConnection();
         System.out.println("Lista de cuentas iniciada");
-        List<Account> accountList = new ArrayList<>(); // Lista Main de cuentas
+        List<Account> accountList = new ArrayList<Account>(); // Lista Main de cuentas
         try{
-            System.out.println("Lista de cuentas creada");
             PreparedStatement accountPS = connection.prepareStatement(accountQuery);
-            System.out.println("PreparedStatement de cuentas creado");
             ResultSet accountRS = accountPS.executeQuery();
-            System.out.println("ResultSet de cuentas creado");
             while (accountRS.next()){
-                List<Test> testList = new ArrayList<>();
-                System.out.println("Lista de Test creado para " + accountRS.getString("username"));
+                List<Test> testList = new ArrayList<Test>();
                 try{
                     PreparedStatement testPS = connection.prepareStatement(testQuery);
-                    System.out.println("PreparedStatement de Test creado para " + accountRS.getString("username"));
                     testPS.setInt(1,accountRS.getInt("accountId"));
                     ResultSet testRS = testPS.executeQuery();
-                    System.out.println("ResultSet de Test creado para " + accountRS.getString("username"));
                     while (testRS.next()){
-
-                        List<Score> scoreList = new ArrayList<>();
-                        System.out.println("List de Score del Test " + testRS.getInt("testId") + " creado para " + accountRS.getString("username"));
+                        List<Score> scoreList = new ArrayList<Score>();
                         try{
                             PreparedStatement scorePS = connection.prepareStatement(scoreQuery);
-                            System.out.println("PreparedStatement de Score del Test " + testRS.getInt("testId") + " creado para " + accountRS.getString("username"));
                             scorePS.setInt(1,testRS.getInt("testId"));
                             ResultSet scoreRS = scorePS.executeQuery();
-                            System.out.println("ResultSet de Score del Test " + testRS.getInt("testId") + " creado para " + accountRS.getString("username"));
                             while (scoreRS.next()){
                                 Score TempScore = new Score(
                                         scoreRS.getInt("scoreId"),
@@ -230,23 +216,18 @@ public class AccountTablesDAO implements IAccountTablesDAO{
                                         scoreRS.getInt("softSkillScore")
                                 );
                                 scoreList.add(TempScore);
-                                System.out.println("TempScore anadido a lista de Score del Test " + testRS.getInt("testId") + " creado para " + accountRS.getString("username"));
-
                             }
-                        } catch (Exception ex) {
-                            System.out.println("On no, una excepción en la seccion TempScore");
-                            System.out.println("La excepción es: " + ex.getCause() + " " + ex.getMessage());
+                        } catch (SQLException e1) {
+                            System.out.println("Could not retrieve database metadata " + e1.getMessage());
+                        } catch(Exception ex){
+                            System.out.println("Linea g");
+                            System.out.println(ex.getClass().getCanonicalName() + " " + ex.getMessage());
                         }
-
-                        List<Checkpoint> checkpointList = new ArrayList<>();
-                        System.out.println("Lista de Checkpoint creado para " + accountRS.getString("username"));
-
+                        List<Checkpoint> checkpointList = new ArrayList<Checkpoint>();
                         try {
                             PreparedStatement checkpointPS = connection.prepareStatement(checkpointQuery);
-                            System.out.println("PreparedStatement de Checkpoint creado para " + accountRS.getString("username"));
                             checkpointPS.setInt(1,testRS.getInt("testId"));
                             ResultSet checkpointRS = checkpointPS.executeQuery();
-                            System.out.println("ResultSet de Checkpoint del Test " + testRS.getInt("testId") + " creado para " + accountRS.getString("username"));
                             while (checkpointRS.next()){
                                 Checkpoint TempCheckpoint = new Checkpoint(
                                         checkpointRS.getInt("checkpointId"),
@@ -257,14 +238,15 @@ public class AccountTablesDAO implements IAccountTablesDAO{
                                         checkpointRS.getString("levelName"),
                                         checkpointRS.getString("softSkillName"),
                                         checkpointRS.getString("puzzleName"),
-                                        (checkpointRS.getTimestamp("timeStamp")).toString()
+                                        checkpointRS.getString("timeStamp")
                                 );
                                 checkpointList.add(TempCheckpoint);
-                                System.out.println("TempCheckpoint anadido a lista de Score del Test " + testRS.getInt("testId") + " creado para " + accountRS.getString("username"));
                             }
-                        } catch (Exception ex) {
-                            System.out.println("On no, una excepción en la seccion TempCheckpoint");
-                            System.out.println("La excepción es: " + ex.getCause() + " " + ex.getMessage());
+                        } catch (SQLException e1) {
+                            System.out.println("Could not retrieve database metadata " + e1.getMessage());
+                        } catch(Exception ex){
+                            System.out.println("Linea h");
+                            System.out.println(ex.getClass().getCanonicalName() + " " + ex.getMessage());
                         }
                         Test TempTest = new Test(
                                 checkpointList,
@@ -272,18 +254,18 @@ public class AccountTablesDAO implements IAccountTablesDAO{
                                 testRS.getInt("testId"),
                                 testRS.getInt("accountId"),
                                 testRS.getString("testStatusName"),
-                                (testRS.getTimestamp("beganAtTimeStamp")).toString(),
+                                testRS.getString("beganAtTimeStamp"),
                                 testRS.getInt("duration"),
-                                (testRS.getTimestamp("finishedAtTimeStamp")).toString(),
+                                testRS.getString("finishedAtTimeStamp"),
                                 testRS.getInt("overallScore")
                         );
                         testList.add(TempTest);
-                        System.out.println("TempTest anadido a lista del Test " + testRS.getInt("testId") + " creado para " + accountRS.getString("username"));
                     }
-
-                } catch (Exception ex) {
-                    System.out.println("On no, una excepción en la seccion TempTest");
-                    System.out.println("La excepción es: " + ex.getCause() + " " + ex.getMessage());
+                } catch (SQLException e1) {
+                    System.out.println("Could not retrieve database metadata " + e1.getMessage());
+                } catch(Exception ex){
+                    System.out.println("Linea i");
+                    System.out.println(ex.getClass().getCanonicalName() + " " + ex.getMessage());
                 }
                 Account TempAccount = new Account(
                         testList,
@@ -298,20 +280,18 @@ public class AccountTablesDAO implements IAccountTablesDAO{
                         accountRS.getString("rolName")
                 );
                 accountList.add(TempAccount);
-                System.out.println("TempAccount de "+ accountRS.getString("username") + " anadido a lista de Account");
 
             }
-            System.out.println("Retornando lista de Account para " + accountRS.getString("username"));
-            System.out.println(accountList);
+            Gson gson = new Gson();
+            System.out.println(gson.toJson(accountList));
+            return accountList;
 
-        } catch (Exception ex) {
-            System.out.println("On no, una excepción en la seccion lista de Account");
-            System.out.println("La excepción es: " + ex.getCause() + " " + ex.getMessage());
+        } catch (SQLException e1) {
+            System.out.println("Could not retrieve database metadata " + e1.getMessage());
+        } catch(Exception ex){
+            System.out.println("Linea j");
+            System.out.println(ex.getClass().getCanonicalName() + " " + ex.getMessage());
         }
-        //System.out.println(accountList);
-        Gson gson = new Gson();
-        System.out.println(gson.toJson(accountList));
-        return accountList;
-
+        return null;
     }
 }

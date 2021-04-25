@@ -190,6 +190,7 @@
             </c:forEach>
             <h4>Resultados desglosados</h4>
             <c:forEach items="${cuenta.testList}" var="test" varStatus="testLista">
+                      <strong>Test ${testLista.index+1}</strong>
                       <table class="table table-hover table-dark">
                         <thead>
                         <tr>

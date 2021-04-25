@@ -11,4 +11,5 @@ public interface IAccountTablesDAO {
     public Account getAccountByUsername(String Username);
     public Account getRecentTestByUsername(String Username);
     public Account getRecentScoresByUsername(String Username);
+
 }

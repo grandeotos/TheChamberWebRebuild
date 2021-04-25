@@ -2,6 +2,7 @@ package mx.itesm.TheChamberWebRebuild.DAO;
 
 import mx.itesm.TheChamberWebRebuild.model.Account;
 import mx.itesm.TheChamberWebRebuild.util.MySQLConnection;
+import org.apache.commons.lang3.RandomStringUtils;
 
 
 import java.sql.Connection;
@@ -201,6 +202,38 @@ public class AccountDAO implements IAccountDAO {
             System.out.println(ex.getMessage());
         }
         return 0;
+    }
+
+    @Override
+    public String getNewGamerID() {
+        String generatedString = null;
+        String sql = "SELECT COUNT(username) AS cuentaUsuario FROM account WHERE username = ?";
+        try{
+            int sameAccount = 1;
+            while (sameAccount > 0){
+                int length = 3;
+                generatedString = (RandomStringUtils.random(length, true, false) + RandomStringUtils.random(length, false, true)).toUpperCase();
+                System.out.println(generatedString);
+                try {
+                    Connection conexion = MySQLConnection.getConnection();
+                    PreparedStatement preparedStatement = conexion.prepareStatement(sql);
+                    preparedStatement.setString(1,generatedString);
+                    ResultSet usernameRS =  preparedStatement.executeQuery();
+                    System.out.println(preparedStatement);
+                    if(usernameRS.next()){
+                        sameAccount = usernameRS.getInt("cuentaUsuario");
+                    }
+                    conexion.close();
+                } catch(Exception ex){
+                    System.out.println(ex.getMessage());
+                }
+
+            }
+            return generatedString;
+        }  catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
+        return null;
     }
 
 }
