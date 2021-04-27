@@ -29,7 +29,7 @@
                         <div class="ind-login-text">
                             <img src="${pageContext.request.contextPath}/img/indra2.png " class="img-fluid" alt="Logo Indra">
                             <br>
-                            <h2>Alta de aplicantes</h2>
+                            <h2>Alta de Administradores</h2>
                             <br>
                             <c:if test="${not empty message}">
                                 <c:choose>
@@ -62,7 +62,7 @@
                             <br>
                         </div>
                         <div class="formbutton">
-                            <form role="form" action="gamerRegist" method="POST">
+                            <form role="form" action="admReg" method="POST">
                                 <div>
                                     <div class="form-group">
                                         <br>
@@ -108,6 +108,12 @@
                                     <div class="form-group">
                                         <input type="hidden" id="usernameHidden" name="username" value="${username}">
                                         <input type="hidden" id="emailHidden" name="email" value="${email}">
+                                        <input type="hidden" id="roleIdHidden" name="roleId" value="${roleId}">
+                                    </div>
+                                    <div class="form-group">
+                                        <br>
+                                        <label id="roleIdLabel" for="rolIdForm">RoleId</label>
+                                        <input type="text" class="form-control" id="rolIdForm" placeholder="Hay un problema, deberia estar prellenado" value="${roleId}" disabled>
                                     </div>
                                     <div class="checkbox">
                                         <br>

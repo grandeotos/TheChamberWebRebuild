@@ -7,21 +7,28 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.io.PrintWriter;
 
-@WebServlet(name = "GamerRegistrationController", value = "/gidReg")
-public class GamerRegistrationController extends HttpServlet {
+@WebServlet(name = "GamerIdReg", value = "/gamerRegist")
+public class GamerIdRegCtrller extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+        out.println("<h1>" + "Hola mundo" + "</h1>");
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("posteame esta");
+        System.out.println("gidredg");
         HttpSession session = request.getSession();
         session.removeAttribute("aplicante");
         session.removeAttribute("jugador");
+        session.removeAttribute("completado");
+        session.removeAttribute("newAdministrador");
+        session.removeAttribute("newSuperAdministrador");
         session.removeAttribute("administrador");
+        session.removeAttribute("superAdministrator");
         String gamerID = request.getParameter("username");
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
@@ -36,8 +43,14 @@ public class GamerRegistrationController extends HttpServlet {
             int isRegistered = accountDao.registerGamer(firstName,  lastName,  gamerID,  email,  password,  curp);
             System.out.println(isRegistered);
             System.out.println("Sale boolean");
-            Account cuenta = (Account) session.getAttribute("aplicante");
+            Account cuenta;
+            if(session.getAttribute("aplicante") != null){
+                cuenta = (Account) session.getAttribute("aplicante");
+            }else{
+                cuenta = (Account) session.getAttribute("candidatoAceptado");
+            }
             try {
+
                 switch (isRegistered){
                     case 1:
                         request.setAttribute("message", "Registrado correctamente. Favor de entrar en este portal");
@@ -47,7 +60,7 @@ public class GamerRegistrationController extends HttpServlet {
                     case 2:
                         request.setAttribute("message", "Tu registro ha fallado, Este GamerId ya está en uso.");
                         request.setAttribute("messageType", "WarningError");
-                        request.setAttribute("username", cuenta.getUsername());
+                        request.setAttribute("username",  cuenta.getUsername());
                         request.setAttribute("email", cuenta.getEmail());
                         request.getRequestDispatcher("WEB-INF/register.jsp").forward(request, response);
                         break;

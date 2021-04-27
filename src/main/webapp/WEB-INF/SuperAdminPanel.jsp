@@ -49,11 +49,11 @@
     <div class="col-4" style="text-align: right">
       <div class="row">
         <div class="col-10" style="text-align: right">
-          <b>Bienvenido: ${administrador.firstName} ${administrador.lastName}</b>
+          <b>Bienvenido: ${superAdministrador.firstName} ${superAdministrador.lastName}</b>
           <br>
-          <b>Usuario: ${administrador.username}</b>
+          <b>Usuario: ${superAdministrador.username}</b>
           <br>
-          <b> Rol: ${administrador.roleName}</b>
+          <b> Rol: ${superAdministrador.roleName}</b>
         </div>
         <div class="col-2" style="text-align: right">
           <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#logOut">
@@ -67,6 +67,10 @@
       <button type="button" class="btn btn-primary createNewGamer" data-bs-toggle="modal"
               data-bs-target="#createNew">
         <i class="fas fa-user-plus"></i> Crear nuevo GID
+      </button>
+      <button type="button" class="btn btn-danger createNewAdmin" data-bs-toggle="modal"
+              data-bs-target="#createNewAdminModal">
+        <i class="fas fa-user-plus"></i> Crear nuevo Administrador
       </button>
     </div>
     <table id="TheChamber" class="table table-hover table-dark">
@@ -96,17 +100,19 @@
           <td>
             <c:out value="${cuenta.roleName}" />
           </td>
-          <form role="form" action="advancedView" method="POST">
-            <button type="button" id="${cuenta.username}" class="btn btn-outline-primary datos"
-                    data-bs-toggle="modal" data-bs-target="#ModalInfo">
-              <i class=" fas fa-info-circle"></i> VER
-            </button>
-            <input type="hidden" id="accountIdHidden" name="username" value="${cuenta.username}">
-            <input type="hidden" id="generatedByHidden" name="generatedBy" value="${administrador.username} ${administrador.firstName} ${administrador.lastName}">
-            <button type="submit" class="btn btn-outline-danger">
+          <td>
+            <form role="form" action="advancedView" method="POST">
+              <button type="button" id="${cuenta.username}" class="btn btn-outline-primary datos"
+                      data-bs-toggle="modal" data-bs-target="#ModalInfo">
+                <i class=" fas fa-info-circle"></i> VER
+              </button>
+              <input type="hidden" id="accountIdHidden" name="username" value="${cuenta.username}">
+              <input type="hidden" id="generatedByHidden" name="generatedBy" value="${superAdministrador.username} ${superAdministrador.firstName} ${superAdministrador.lastName}">
+              <button type="submit" class="btn btn-outline-danger">
               <i class="far fa-file-pdf"></i> PDF
             </button>
-          </form>
+            </form>
+        </tr>
       </c:forEach>
       </tbody>
     </table>
@@ -270,6 +276,50 @@
     </div>
   </div>
 </div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="createNewAdminModal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="createNewAdminModalLabel"><i class="fas fa-user-plus"></i> Crear nuevo Administrador
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form role="form" action="admMake" method="POST" id="formNewAdm">
+          <div class="mb-3">
+            <label for="emailInputNewGID" class="form-label">E-mail del administrador a enviar el
+              Username</label>
+            <input type="email" name="email" class="form-control" id="emailInputNewAdm"
+                   aria-describedby="emailHelp" value="example@example.com">
+            <div id="emailHelpAdm" class="form-text">Por favor, verifique la direccion de correo antes de
+              enviar.</div>
+          </div>
+          <div class="mb-3">
+            <label for="randomAdmShow" class="form-label">Username a enviar</label>
+            <input type="text" class="form-control" id="randomAdmShow" disabled>
+            <input type="hidden" name="username" class="form-control" id="randomAdmHidden">
+          </div>
+          <div class="mb-3">
+            <label for="accountTypeAdm">Crear cuenta como:</label>
+            <select id="accountTypeAdm" name="accountTypeAdm" form="formNewAdm">
+              <option value="adm">Administrador - Solo crea candidatos</option>
+              <option value="super">Super-Administrador - Creacion de administradores y candidatos</option>
+            </select>
+          </div>
+          <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck2">
+            <label class="form-check-label" for="exampleCheck1">Enviar copia a correo Minsait</label>
+          </div>
+          <button type="submit" name="submitCreateNewAdmin" class="btn btn-success">Enviar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- Modal -->
 <div class="modal fade" id="logOut" role="dialog">
   <div class="modal-dialog">
@@ -302,14 +352,14 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-info-circle"></i> Bienvenido:
-          ${administrador.firstName}</h5>
+          ${superAdministrador.firstName}</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <p>Bienvenido a The Chamber WEB<br>En este portal podrás realizar diversas actividades
           administrativas, relacionadas al juego The Chamber
           <br>Dependiendo de tus permisos asignados a la cuenta, algunas actividades estarán
-          restringidas<br>Actualmente eres un <b>${administrador.roleName}</b>
+          restringidas<br>Actualmente eres un <b>${superAdministrador.roleName}</b>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-success" data-bs-dismiss="modal">
@@ -334,7 +384,7 @@
 </footer>
 
 
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/adminPanel.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/superAdminPanel.js"></script>
 </body>
 
 </html>

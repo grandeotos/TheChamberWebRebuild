@@ -30,6 +30,7 @@
                             <img src="${pageContext.request.contextPath}/img/indra2.png " class="img-fluid" alt="Logo Indra">
                             <br>
                             <h2>Alta de aplicantes</h2>
+                            <h6>Datos candidato</h6>
                             <br>
                             <c:if test="${not empty message}">
                                 <c:choose>
@@ -66,25 +67,25 @@
                                 <div>
                                     <div class="form-group">
                                         <br>
-                                        <label id="lfirstName" for="password">Nombre(s): </label>
+                                        <label id="lfirstName" for="firstName">Nombre(s): </label>
                                         <input type="text" class="form-control" id="firstName"
-                                        name="firstName" placeholder="Ingrese su(s) Nombre(s)">
+                                        name="firstName" placeholder="Ingrese su(s) Nombre(s)" value="${firstName}">
                                     </div>
                                     <div class="form-group">
                                         <br>
-                                        <label id="llastName" for="password">Apellido(s) </label>
+                                        <label id="llastName" for="lastName">Apellido(s) </label>
                                         <input type="text" class="form-control" id="lastName"
-                                        name="lastName" placeholder="Ingrese su(s) Apellido(s)" required="required">
+                                        name="lastName" placeholder="Ingrese su(s) Apellido(s)" required="required" value="${lastName}">
                                     </div>
                                     <div class="form-group">
                                         <br>
                                         <label id="lcurp" for="password">CURP </label>
                                         <input type="text" class="form-control" id="curp"
-                                        name="curp" placeholder="Ingrese su CURP" required="required">
+                                        name="curp" placeholder="Ingrese su CURP" required="required" value="${curp}">
                                     </div>
                                     <div class="form-group">
                                         <br>
-                                        <label id="lusername" for="usernameForm">Codigo GamerID</label>
+                                        <label id="lusername" for="usernameForm">Username</label>
                                         <input type="text" class="form-control" id="usernameForm" placeholder="Hay un problema, deberia estar prellenado" value="${username}" disabled>
                                     </div>
                                     <div class="form-group">

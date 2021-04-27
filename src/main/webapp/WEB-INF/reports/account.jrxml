@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TheChamberReport" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Error" uuid="69220e8d-79de-4812-88dd-23e42e4d07be">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="TheChamberAmazon"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="247"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="742"/>
+	<parameter name="accountUsername" class="java.lang.String"/>
+	<parameter name="WORK_DIRECTORY" class="java.lang.String"/>
+	<parameter name="madeBy" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT account.username, account.firstName, account.lastName, account.email, account.curp, account.create_time, tests.testId, tests.accountId, testStatus.testStatusName, tests.beganAtTimeStamp, tests.duration, tests.finishedAtTimeStamp, tests.overallScore, roles.rolName FROM tests 
+LEFT  JOIN testStatus ON tests.testStatus_statusId = testStatus.statusId
+LEFT  JOIN account ON account.accountId = tests.accountId 
+LEFT  JOIN roles ON account.rolid = roles.rolid WHERE account.username = $P{accountUsername}]]>
+	</queryString>
+	<field name="username" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="username"/>
+		<property name="com.jaspersoft.studio.field.label" value="username"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="account"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="firstName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="firstName"/>
+		<property name="com.jaspersoft.studio.field.label" value="firstName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="account"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="lastName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="lastName"/>
+		<property name="com.jaspersoft.studio.field.label" value="lastName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="account"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="email" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="email"/>
+		<property name="com.jaspersoft.studio.field.label" value="email"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="account"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="curp" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="curp"/>
+		<property name="com.jaspersoft.studio.field.label" value="curp"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="account"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="create_time" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.name" value="create_time"/>
+		<property name="com.jaspersoft.studio.field.label" value="create_time"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="account"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="testId" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="testId"/>
+		<property name="com.jaspersoft.studio.field.label" value="testId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="tests"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="accountId" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="accountId"/>
+		<property name="com.jaspersoft.studio.field.label" value="accountId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="tests"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="testStatusName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="testStatusName"/>
+		<property name="com.jaspersoft.studio.field.label" value="testStatusName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="testStatus"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="beganAtTimeStamp" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.name" value="beganAtTimeStamp"/>
+		<property name="com.jaspersoft.studio.field.label" value="beganAtTimeStamp"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="tests"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="duration" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="duration"/>
+		<property name="com.jaspersoft.studio.field.label" value="duration"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="tests"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="finishedAtTimeStamp" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.name" value="finishedAtTimeStamp"/>
+		<property name="com.jaspersoft.studio.field.label" value="finishedAtTimeStamp"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="tests"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="overallScore" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="overallScore"/>
+		<property name="com.jaspersoft.studio.field.label" value="overallScore"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="tests"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="rolName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="rolName"/>
+		<property name="com.jaspersoft.studio.field.label" value="rolName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="roles"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="144" splitType="Stretch">
+			<rectangle radius="6">
+				<reportElement x="235" y="20" width="335" height="20" backcolor="#CCCCCC" uuid="cb98c601-f02f-46bc-817a-d02126538b52"/>
+			</rectangle>
+			<textField>
+				<reportElement x="365" y="20" width="74" height="20" uuid="08027716-1785-4fa8-b76c-f8ef68145b6c"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{firstName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="450" y="20" width="110" height="20" uuid="91f5893b-60ac-4861-94c0-9cf50b36d257"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{lastName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="240" y="20" width="114" height="20" uuid="64e09340-c370-485b-b397-368ea9d7bbd0"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Nombre del candidato:]]></text>
+			</staticText>
+			<rectangle radius="6">
+				<reportElement x="235" y="40" width="335" height="20" backcolor="#CCCCCC" uuid="b71b516c-3a40-43df-9133-cef6ee76463e"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="240" y="40" width="114" height="20" uuid="c03c2fa3-8437-45d4-a0ae-ae9a61ec22a0"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Correo electrónico]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="366" y="40" width="204" height="20" uuid="48ea2bf3-9277-4585-a316-e1ae5e4523a9"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
+			</textField>
+			<rectangle radius="6">
+				<reportElement x="235" y="60" width="335" height="20" backcolor="#CCCCCC" uuid="bda578e9-a0e3-4918-8fb3-f83b7959cfc4"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="240" y="60" width="114" height="20" uuid="f0e15e94-71f3-4045-9386-e459f0acdebc"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[CURP]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="366" y="60" width="204" height="20" uuid="b7bf8242-11c4-49e9-bd2b-cef30bb5d74c"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{curp}]]></textFieldExpression>
+			</textField>
+			<rectangle radius="6">
+				<reportElement x="235" y="80" width="335" height="20" backcolor="#CCCCCC" uuid="156005d6-5c5e-48ab-932f-3a28f8866a2e"/>
+			</rectangle>
+			<textField>
+				<reportElement x="365" y="80" width="205" height="20" uuid="b1b103c6-c311-49a1-905a-0a4144b0f275"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{rolName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="240" y="80" width="114" height="20" uuid="170975f7-30e8-4502-9d53-9ad1d4040c33"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Rol del GamerID/Usuario]]></text>
+			</staticText>
+			<rectangle radius="6">
+				<reportElement x="235" y="0" width="335" height="20" backcolor="#CCCCCC" uuid="c448e528-ab9e-45a4-be12-9d777975666f"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="240" y="0" width="114" height="20" uuid="fc14c60f-ef60-4b44-b27d-b6e3b8b37d66"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[GamerID / Usuario]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="366" y="0" width="204" height="20" uuid="ee2decaf-d6ef-499d-8516-1a796f5462a3"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{username}]]></textFieldExpression>
+			</textField>
+			<rectangle radius="6">
+				<reportElement x="-1" y="62" width="222" height="18" backcolor="#CCCCCC" uuid="84854842-3c41-4907-ac69-0bafd46c77b2"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="62" width="222" height="18" uuid="75006e4b-335f-4edc-81fc-b128832edb0b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Reporte avanzado de jugador]]></text>
+			</staticText>
+			<rectangle radius="6">
+				<reportElement x="-1" y="100" width="222" height="20" backcolor="#CCCCCC" uuid="3dbd8bfb-f1e6-4bdc-bf38-4a5db291b51a"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="-1" y="100" width="41" height="20" uuid="3fcb646f-7faa-4dc5-9423-0cd3e8b121ea"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Fecha:]]></text>
+			</staticText>
+			<rectangle radius="6">
+				<reportElement x="235" y="100" width="335" height="20" backcolor="#CCCCCC" uuid="f72fbdfb-8a4d-40ea-ad5e-542ca9cce5cc"/>
+			</rectangle>
+			<textField>
+				<reportElement x="365" y="100" width="205" height="20" uuid="83104ff3-253e-4f66-a0cd-0500d9ec68a8"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{create_time}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="240" y="100" width="114" height="20" uuid="e64206c8-7c21-44b7-bd10-7c82f77e2cc0"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Usuario registrdo el:]]></text>
+			</staticText>
+			<image isLazy="true" onErrorType="Icon">
+				<reportElement x="40" y="0" width="181" height="70" uuid="bacdc5fd-9733-4e91-bd58-0400f5340a98"/>
+				<imageExpression><![CDATA[$P{WORK_DIRECTORY}.toString() + "indra1.png"]]></imageExpression>
+			</image>
+			<image isLazy="true" onErrorType="Icon">
+				<reportElement x="0" y="5" width="50" height="50" uuid="254fc47b-5406-4e3b-b42b-a764a3f04b2d"/>
+				<imageExpression><![CDATA[$P{WORK_DIRECTORY}.toString() + "clipart2025236.png"]]></imageExpression>
+			</image>
+			<textField pattern="EEEEE dd &apos;de&apos; MMMMM &apos;de&apos; yyyy">
+				<reportElement x="40" y="100" width="179" height="20" uuid="a253dbaa-751a-4800-8e89-d8c361365d93"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[(new java.text.SimpleDateFormat("EEEEE  dd 'de' MMMMM 'de' yyyy hh:mm aaa",new Locale("es", "ES"))).format(new Date())]]></textFieldExpression>
+			</textField>
+			<rectangle radius="6">
+				<reportElement x="-1" y="80" width="222" height="20" backcolor="#CCCCCC" uuid="3120e234-704b-4d71-afda-e9abd2575f10"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="-2" y="80" width="71" height="20" uuid="73d5b749-5178-4bcc-89c1-6934b7def9bb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Generado por:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="69" y="80" width="152" height="20" uuid="7dd28cc9-a9b2-4940-8e03-d551a6b02552"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{madeBy}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="78" splitType="Stretch">
+			<printWhenExpression><![CDATA[new Boolean( $V{PAGE_NUMBER}.intValue() != 1 )]]></printWhenExpression>
+			<rectangle radius="6">
+				<reportElement x="235" y="20" width="335" height="20" backcolor="#CCCCCC" uuid="de9f5efc-0a15-4e1d-ad77-b73ec38a33bd"/>
+			</rectangle>
+			<textField>
+				<reportElement x="365" y="20" width="74" height="20" uuid="00e1a1fe-25e4-429f-8765-29c70d9d6f81"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{firstName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="450" y="20" width="110" height="20" uuid="34a9a01b-fecd-49fe-b138-96cc704918f1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{lastName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="240" y="20" width="114" height="20" uuid="5c3806ab-3adb-4c89-be30-008ea11987b2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Nombre del candidato:]]></text>
+			</staticText>
+			<rectangle radius="6">
+				<reportElement x="235" y="0" width="335" height="20" backcolor="#CCCCCC" uuid="4d077f99-cbc9-4072-b37f-58d371204a72"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="240" y="0" width="114" height="20" uuid="b6f7c506-e70a-40d2-aa7d-221c387038b4"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[GamerID / Usuario]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="366" y="0" width="204" height="20" uuid="3e88ee80-390b-4e07-a973-af6c10b7a968"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{username}]]></textFieldExpression>
+			</textField>
+			<rectangle radius="6">
+				<reportElement x="236" y="40" width="334" height="20" backcolor="#CCCCCC" uuid="bf1fc7a5-6c36-4fbf-92e8-d9124f8d37d5"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="236" y="40" width="70" height="20" uuid="a7cb1499-d3ae-4a0d-8751-5279ff33a140"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Generado el:]]></text>
+			</staticText>
+			<textField pattern="dd &apos;de&apos; MMMM &apos;de&apos; YYY h:mm:ss a z">
+				<reportElement x="306" y="40" width="264" height="20" uuid="710249e3-44e4-45fb-8e54-48aadf7b2275"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<image isLazy="true" onErrorType="Icon">
+				<reportElement x="40" y="0" width="181" height="70" uuid="2d44b125-2a50-4c6e-a4f6-cf21b08f2683"/>
+				<imageExpression><![CDATA[$P{WORK_DIRECTORY}.toString() + "indra1.png"]]></imageExpression>
+			</image>
+			<image isLazy="true" onErrorType="Icon">
+				<reportElement x="0" y="5" width="50" height="50" uuid="14496794-8fa5-423b-9c41-b1140017539d"/>
+				<imageExpression><![CDATA[$P{WORK_DIRECTORY}.toString() + "clipart2025236.png"]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="14" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="260" splitType="Stretch">
+			<rectangle radius="6">
+				<reportElement x="0" y="20" width="49" height="20" backcolor="#CCCCCC" uuid="102c207f-b2f5-4f32-97f4-050d33e982c7"/>
+			</rectangle>
+			<rectangle radius="6">
+				<reportElement x="49" y="20" width="121" height="20" backcolor="#CCCCCC" uuid="a8d77b17-8a40-45cc-8c81-5d644cfa6ef7"/>
+			</rectangle>
+			<rectangle radius="6">
+				<reportElement x="170" y="20" width="80" height="20" backcolor="#CCCCCC" uuid="40373eeb-65c4-4a6e-89bb-b5f081198aa4"/>
+			</rectangle>
+			<rectangle radius="6">
+				<reportElement x="355" y="20" width="106" height="20" backcolor="#CCCCCC" uuid="1d59d76f-6f38-4384-b9af-89597b82b4c0"/>
+			</rectangle>
+			<rectangle radius="6">
+				<reportElement x="250" y="20" width="105" height="20" backcolor="#CCCCCC" uuid="7c8f02b2-d0b8-4291-a143-349c3576d6b1"/>
+			</rectangle>
+			<rectangle radius="6">
+				<reportElement x="461" y="20" width="103" height="20" backcolor="#CCCCCC" uuid="a7ee9b7c-55bf-482c-94d9-2081ecbc41d8"/>
+			</rectangle>
+			<subreport>
+				<reportElement x="-16" y="50" width="570" height="58" uuid="baf88851-0f8f-4d8f-8973-d7b76131996b"/>
+				<subreportParameter name="test_testId">
+					<subreportParameterExpression><![CDATA[$F{testId}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{WORK_DIRECTORY} + "scores.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="-16" y="190" width="570" height="70" uuid="eaebb18c-6590-46ba-af50-c4e23988b915"/>
+				<subreportParameter name="testId">
+					<subreportParameterExpression><![CDATA[$F{testId}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{WORK_DIRECTORY} + "checkpoints.jasper"]]></subreportExpression>
+			</subreport>
+			<textField>
+				<reportElement x="0" y="20" width="50" height="20" uuid="e9d8ac47-32bb-49c6-aa91-a9fe918d5499">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="da89abd2-fdf5-4b37-bead-2ea6f2944a1f"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{testId}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="50" y="20" width="120" height="20" uuid="e3ff0803-0f0e-43a4-877e-fabab84377fa">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="67e2e4b2-de77-4f17-9509-6e49e608e935"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{testStatusName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="250" y="20" width="104" height="20" uuid="4ba74418-6295-4536-bbab-eadd177dd7fd">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b45c1d0b-fcfb-4a86-bf0e-d0bde090ef7d"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{beganAtTimeStamp}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="354" y="20" width="106" height="20" uuid="e382ff70-435f-4245-926a-3e35f46bd614">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2033db57-d82d-4471-a25a-1f41c2e41f53"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[String.format("%d:%02d:%02d", $F{duration}/3600, ($F{duration}%3600)/60, ($F{duration}%60))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="460" y="20" width="104" height="20" uuid="f38667bd-97ba-4785-9100-b39f2e4be4b1">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4fd2c690-3cc5-4de5-9862-93b4c8127e71"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{finishedAtTimeStamp}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="170" y="20" width="80" height="20" uuid="4f8d53dc-3959-4517-8754-31cf49dac290">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a8a6eee7-644f-4182-857d-ac8bd55dbc10"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{overallScore}]]></textFieldExpression>
+			</textField>
+			<rectangle radius="6">
+				<reportElement x="0" y="0" width="49" height="20" backcolor="#CCCCCC" uuid="a46b1e81-2102-4167-9113-af64f866f6a4"/>
+			</rectangle>
+			<rectangle radius="6">
+				<reportElement x="49" y="0" width="121" height="20" backcolor="#CCCCCC" uuid="3ca88e18-4db5-4824-99b6-e0cc501af10a"/>
+			</rectangle>
+			<rectangle radius="6">
+				<reportElement x="170" y="0" width="80" height="20" backcolor="#CCCCCC" uuid="cffcc9e5-d285-4448-aa52-74189807f53d"/>
+			</rectangle>
+			<rectangle radius="6">
+				<reportElement x="355" y="0" width="106" height="20" backcolor="#CCCCCC" uuid="acc76605-9cae-42d6-bd7b-d33824e46c70"/>
+			</rectangle>
+			<rectangle radius="6">
+				<reportElement x="250" y="0" width="105" height="20" backcolor="#CCCCCC" uuid="75c0ad22-dde8-4ac6-b040-9e3606012729"/>
+			</rectangle>
+			<rectangle radius="6">
+				<reportElement x="461" y="0" width="103" height="20" backcolor="#CCCCCC" uuid="1a72664d-11bd-4789-bfad-8bf98ae47629"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="0" width="50" height="20" uuid="f9146941-29e4-4be5-acb0-e32d15d84a28">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="da89abd2-fdf5-4b37-bead-2ea6f2944a1f"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[TestID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="50" y="0" width="120" height="20" uuid="240ffc52-31f9-4227-a793-48c687b0a0b0">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="67e2e4b2-de77-4f17-9509-6e49e608e935"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Estado actual de la prueba]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="250" y="0" width="105" height="20" uuid="4f62edad-a0f5-4121-9291-62b2d97157b9">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b45c1d0b-fcfb-4a86-bf0e-d0bde090ef7d"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Prueba iniciada el:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="354" y="0" width="106" height="20" uuid="831e2798-0550-4b44-a0d9-e53bb8e794cf">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2033db57-d82d-4471-a25a-1f41c2e41f53"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Duración de la prueba]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="460" y="0" width="103" height="20" uuid="a14d1180-8df5-4f1c-9c1c-01cdecb0a9de">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4fd2c690-3cc5-4de5-9862-93b4c8127e71"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Prueba finalizada el:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="170" y="0" width="80" height="20" uuid="f04423f4-b40d-455c-94ef-366e7989fb32">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a8a6eee7-644f-4182-857d-ac8bd55dbc10"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Puntaje Total]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="100">
+			<staticText>
+				<reportElement x="6" y="30" width="560" height="66" uuid="fb04c0f1-32e8-4d9e-8b4a-5780894dce88"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[El contenido de este mensaje de datos es confidencial y se entiende dirigido y para uso exclusivo del destinatario o usuarios autorizados, por lo que no podrá distribuirse y/o difundirse por ningún medio sin la previa autorización de minsait®. Si usted no es el usuario generador del reporte o un usuario autorizado por minsait® o Chayomix Studios, se le prohíbe su utilización total o parcial para cualquier fin.
+The content of this data transmission is confidential and is intended for the exclusive use of the recipient or authorized users, so it may not be distributed and/or disseminated by any means without the prior authorization of minsait®. If you are not the report generator user or a user authorized by minsait® or Chayomix Studios, you are forbidden from using it, either totally or partially, for any purpose.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="206" y="0" width="160" height="19" uuid="0f8cda04-4c91-4aeb-b013-4813106db122"/>
+				<text><![CDATA[The Chamber © Chayomix Studios ]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>

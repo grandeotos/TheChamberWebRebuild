@@ -25,6 +25,9 @@
 
 </head>
 <body class="body-bcolor">
+<c:if test="${not empty superAdministrador}">
+
+</c:if>
       <div class="ind-login-box">
         <div class="row" style="padding: 1%">
           <div class="col-4">
@@ -99,11 +102,29 @@
           <div class="col-4" style="text-align: right">
             <div class="row">
             <div class="col-10" style="text-align: right">
-              <b>Bienvenido: ${administrador.firstName} ${administrador.lastName}</b>
-              <br>
-              <b>Usuario: ${administrador.username}</b>
-              <br>
-              <b> Rol: ${administrador.roleName}</b>
+                <c:choose>
+                  <c:when test="${not empty administrador}">
+                    <b>Bienvenido: ${administrador.firstName} ${administrador.lastName}</b>
+                    <br>
+                    <b>Usuario: ${administrador.username}</b>
+                    <br>
+                    <b> Rol: ${administrador.roleName}</b>
+                  </c:when>
+                  <c:when test="${not empty superAdministrador}">
+                    <b>Bienvenido: ${superAdministrador.firstName} ${administrador.lastName}</b>
+                    <br>
+                    <b>Usuario: ${superAdministrador.username}</b>
+                    <br>
+                    <b> Rol: ${superAdministrador.roleName}</b>
+                  </c:when>
+                  <c:otherwise>
+                    <b>Bienvenido: ${administrador.firstName} ${administrador.lastName}</b>
+                    <br>
+                    <b>Usuario: ${administrador.username}</b>
+                    <br>
+                    <b> Rol: ${administrador.roleName}</b>
+                  </c:otherwise>
+                </c:choose>
             </div>
             <div class="col-2" style="text-align: right">
               <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#logOut">
@@ -123,7 +144,7 @@
             <button id="modalGm" type="button" class="btn btn-success" onclick="showToast()">
               <i class="fas fa-check-square"></i> Seleccionar TODOS
             </button>
-            <button type="button" class="btn btn-secondary">
+            <button type="button" class="btn btn-secondary"  data-bs-toggle="modal" data-bs-target="#Actualizado">
               <i class="fas fa-times-circle"></i> Quitar selección
             </button>
           </div>
@@ -151,8 +172,8 @@
                 <td><c:out value="${cuenta.experienceName}" /></td>
                 <td><c:out value="${cuenta.profileName}" /></td>
                 <td>${cuenta.reviewStatusName}<br>
-                  <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal"
-                            data-bs-target="#Modal${cuenta.applicantId}">
+                  <button id="${cuenta.applicantId}" type="button" class="btn btn-outline-primary btn-sm aplicante" data-bs-toggle="modal"
+                            data-bs-target="#ModalCuenta">
                   <i class=" fas fa-info-circle"></i> VER / ACCIONES
                 </button>
                 </td>
@@ -195,95 +216,103 @@
     </div>
   </div>
 
-
-      <c:forEach items="${accTable}" var="cuenta" varStatus="j">
-        <!-- Modal -->
-        <div class="modal fade" id="Modal${cuenta.applicantId}" role="dialog">
-          <div class="modal-dialog modal-dialog-scrollable modal-xl">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="ModalLabel${cuenta.applicantId}"><i class=" fas fa-info-circle"></i> Información del aplicante
-                </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <h5>Informacion básica</h5>
-                <table class="table table-hover table-dark">
-                  <thead>
-                  <tr>
-                    <th>ID</th>
-                    <td>${cuenta.applicantId}</td>
-                  </tr>
-                  <tr>
-                    <th>Nombre(s)</th>
-                    <td>${cuenta.firstName}</td>
-                  </tr>
-                  <tr>
-                    <th>Apellido(s)</th>
-                    <td><c:out value="${cuenta.lastName}" /></td>
-                  </tr>
-                  <tr>
-                    <th>Correo</th>
-                    <td><c:out value="${cuenta.email}" /></td>
-                  </tr>
-                  <tr>
-                    <th>Teléfono</th>
-                    <td><c:out value="${cuenta.phoneNumber}" /></td>
-                  </tr>
-                  <tr>
-                    <th>Experiencia</th>
-                    <td><c:out value="${cuenta.experienceName}" /></td>
-                  </tr>
-                  <tr>
-                    <th>Perfil Tecnico</th>
-                    <td><c:out value="${cuenta.profileName}" /></td>
-                  </tr>
-                  <tr>
-                    <th>Status de revisión</th>
-                    <td><c:out value="${cuenta.reviewStatusName}" /></td>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <tr>
-                  <tr>
-
-
-
-                  </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div class="modal-footer">
-                <c:choose>
-                  <c:when test="${cuenta.reviewStatusName == 'SIN REVISAR'}">
-                    <button type="button" class="btn btn-success btn-sm">APROBAR</button>
-                    <button type="button" class="btn btn-danger btn-sm">RECHAZAR</button>
-                    <button type="button" class="btn btn-warning btn-sm">REVISADO</button>
-                  </c:when>
-                  <c:when test="${cuenta.reviewStatusName == 'APROBADO'}">
-                    <button type="button" class="btn btn-sm btn-success" disabled>APROBADO</button>
-                  </c:when>
-                  <c:when test="${cuenta.reviewStatusName == 'EN REVISION'}">
-                    <button type="button" class="btn btn-success btn-sm">APROBAR</button>
-                    <button type="button" class="btn btn-danger btn-sm">RECHAZAR</button>
-                    <button type="button" class="btn btn-secondary btn-sm">SIN REVISAR</button>
-                  </c:when>
-                  <c:when test="${cuenta.reviewStatusName == 'RECHAZADO'}">
-                    <button type="button" class="btn btn-sm btn-danger" disabled>RECHAZADO</button>
-                  </c:when>
-                  <c:otherwise>
-                    <button type="button" class="btn btn-success btn-sm">APROBAR</button>
-                    <button type="button" class="btn btn-danger btn-sm">RECHAZAR</button>
-                    <button type="button" class="btn btn-secondary btn-sm">SIN REVISAR</button>
-                    <button type="button" class="btn btn-warning btn-sm">REVISADO</button>
-                  </c:otherwise>
-                </c:choose>
-                <button type="button" class="btn btn-success" data-bs-dismiss="modal" aria-label="Close"> <i class="fas fa-check-circle"></i></button>
-              </div>
-            </div>
+<!-- Modal -->
+<div class="modal fade" id="Actualizado" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ActualizadoModalLabel"><i class="fas fa-user-plus"></i> Candidato Actualizado</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form role="form" action="gidMake" method="POST">
+          <div class="mb-3">
+            <h3>Mensaje del servidor:</h3>
+            <h4 id="serverMessage">Ninguno por el momento</h4>
           </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">GamerID a generado (En caso de que la accion lo requiera)</label>
+            <input type="text" name="gIdUsername" class="form-control" id="gamerIdGenerado" placeholder="La accion no requirio creacion de GamerID" disabled>
+          </div>
+          <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Enviar copia a correo Minsait</label>
+          </div>
+          <button type="submit" name="submitCreateNew" class="btn btn-success">Enviar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="ModalCuenta" role="dialog">
+    <div class="modal-dialog modal-dialog-scrollable modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ModalLabelCuenta"><i class=" fas fa-info-circle"></i> Información del aplicante
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-      </c:forEach>
+        <div class="modal-body">
+          <h5>Informacion básica</h5>
+          <table class="table table-hover table-dark">
+            <thead>
+            <tr>
+              <th>ID</th>
+              <td id="appId"></td>
+            </tr>
+            <tr>
+              <th>Nombre(s)</th>
+              <td id="appFisrtName"></td>
+            </tr>
+            <tr>
+              <th>Apellido(s)</th>
+              <td id="appLastName"></td>
+            </tr>
+            <tr>
+              <th>Correo</th>
+              <td id="appEmail"></td>
+            </tr>
+            <tr>
+              <th>Teléfono</th>
+              <td id="appTel"></td>
+            </tr>
+            <tr>
+              <th>Experiencia</th>
+              <td id="appXp"></td>
+            </tr>
+            <tr>
+              <th>Perfil Tecnico</th>
+              <td id="appTecProf"></td>
+            </tr>
+            <tr>
+              <th>Status de revisión</th>
+              <td id="appRevStatus"></td>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <center>
+            <h6>Marcar aplicante como:</h6>
+            <button type="button" class="btn btn-success btn-xl doAction" id="dAaccept"><i class="fas fa-check-circle"></i> APROBAR</button>
+            <button type="button" class="btn btn-danger btn-xl doAction" id="dAReject"><i class="fas fa-times-circle"></i>  RECHAZAR</button>
+            <button type="button" class="btn btn-secondary btn-xl doAction" id="dAasNotViewed"><i class="fas fa-clipboard"></i> SIN REVISAR</button>
+            <button type="button" class="btn btn-warning btn-xl doAction" id="dAasViewed"><i class="fas fa-clipboard-check"></i> REVISADO</button>
+            <p></p>
+          </center>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal" aria-label="Close"> <i class="fas fa-check-circle"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
 
   <!-- Modal -->
@@ -313,6 +342,7 @@
       </div>
     </div>
   </div>
+
   <div class="modal" id="bienvenido" role="dialog">
     <div class="modal-dialog">
       <div class="modal-content">

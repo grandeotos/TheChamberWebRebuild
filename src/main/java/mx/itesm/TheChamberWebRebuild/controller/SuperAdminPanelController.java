@@ -1,7 +1,7 @@
 package mx.itesm.TheChamberWebRebuild.controller;
 
 import mx.itesm.TheChamberWebRebuild.DAO.AccountTablesDAO;
-import mx.itesm.TheChamberWebRebuild.model.Applicant;
+import mx.itesm.TheChamberWebRebuild.model.Account;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,8 +12,8 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "OnQueueController", value = "/OnQueue")
-public class OnQueueController extends HttpServlet {
+@WebServlet(name = "SuperAdminPanel", value = "/superAdminPanel")
+public class SuperAdminPanelController extends HttpServlet {
     private AccountTablesDAO accountTablesDAO;
     @Override
     public void init() {
@@ -22,13 +22,15 @@ public class OnQueueController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        request.getParameter("id");
+        System.out.println("super admin panel");
         try{
-            if(session.getAttribute("administrador") != null || session.getAttribute("superAdministrador") != null){
-                List<Applicant> listaCuentas = accountTablesDAO.ApplicantList();
+            if(session.getAttribute("administrador") != null){
+                response.sendRedirect("adminPanel");
+            }else if(session.getAttribute("superAdministrador") != null ){
+                List<Account> listaCuentas = accountTablesDAO.listAll();
                 request.setAttribute("accTable", listaCuentas); // Will be available as ${products} in JSP
-                request.getRequestDispatcher("WEB-INF/OnQueue.jsp").forward(request, response);
-            } else{
+                request.getRequestDispatcher("WEB-INF/SuperAdminPanel.jsp").forward(request, response);
+            }else{
                 request.setAttribute("message", "ERROR: No tienes acceso a este portal.");
                 request.setAttribute("messageType", "WarningError");
                 request.getRequestDispatcher("WEB-INF/index.jsp").forward(request,response);

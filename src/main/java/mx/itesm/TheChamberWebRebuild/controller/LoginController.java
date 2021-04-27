@@ -57,19 +57,35 @@ public class LoginController extends HttpServlet {
                             break;
                         case 2:
                             System.out.println("Case: 2");
-                            sesion.setAttribute("administrador", account);
-                            response.sendRedirect("adminPanel");
+                            sesion.setAttribute("completado", account);
+                            response.sendRedirect("finished");
                             break;
                         case 3:
                             System.out.println("Case: 3");
-                            sesion.setAttribute("administrador", account);
-                            response.sendRedirect("adminPanel");
+                            sesion.setAttribute("candidatoAceptado", account);
+                            response.sendRedirect("registerMinstait");
                             break;
                         case 4:
                             System.out.println("Case: 4");
+                            sesion.setAttribute("newAdministrator", account);
+                            response.sendRedirect("newAdminRegistration");
+                            break;
+                        case 5:
+                            System.out.println("Case: 5");
+                            sesion.setAttribute("newAdministrator", account);
+                            response.sendRedirect("newAdminRegistration");
+                            break;
+                        case 6:
+                            System.out.println("Case: 6");
                             sesion.setAttribute("administrador", account);
                             response.sendRedirect("adminPanel");
                             break;
+                        case 7:
+                            System.out.println("Case: 7");
+                            sesion.setAttribute("superAdministrador", account);
+                            response.sendRedirect("superAdminPanel");
+                            break;
+
                         default:
                             System.out.println("Case: DEF");
                             request.setAttribute("message", "Un ERROR desconocido ha sucedido, contacte al equipo del sitio web");

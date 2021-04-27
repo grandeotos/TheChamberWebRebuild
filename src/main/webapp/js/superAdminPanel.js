@@ -1,5 +1,6 @@
 $(document).ready(function() {
     console.log("Hola mundo");
+    var oldUsername = "advancedReport"
     var toastHTMLEelement = document.getElementById("tostados")
     var toastElement = new bootstrap.Toast(toastHTMLEelement, {
         animation: true,
@@ -7,6 +8,7 @@ $(document).ready(function() {
     })
 
     $(".datos").click(function(){
+        console.log("click en aplicante")
         let usernameForm = $(this).attr("id");
         $.ajax({
             url: "getAccountInternal",
@@ -47,8 +49,9 @@ $(document).ready(function() {
                 $("#testId1Four").html(data.testList[(data.testList.length)-1].scores[3].test_testId);
                 $("#softSkillFour").html(data.testList[(data.testList.length)-1].scores[3].softSkillName);
                 $("#scoreFour").html(data.testList[(data.testList.length)-1].scores[3].softSkillScore);
-                $("#advancedReport").id = (data.username);
                 //data.testlist[pos_x].scores[posy]
+                oldUsername = data.username;
+                console.log(oldUsername);
             },
             error: function(xhr, statusText){
                 console.log(statusText);
@@ -62,8 +65,8 @@ $(document).ready(function() {
 
     $(".advanced").click(function(){
         let usernameForm = $(this).attr("id");
-        let actualurl = (window.location.href)
-        actualurl = actualurl.replace("adminPanel","")
+        let actualurl = (window.location.href);
+        actualurl = actualurl.replace("superAdminPanel","");
         window.location.href=actualurl+'advancedView?username='+usernameForm
     })
 
@@ -79,6 +82,25 @@ $(document).ready(function() {
                 console.log(data)
                 $("#randomGamerIdShow").val(data);
                 $("#randomGamerIdHidden").val(data);
+            },
+            error: function(xhr, statusText){
+                console.log(statusText);
+            }
+
+        })
+    })
+
+    $(".createNewAdmin").click(function(){
+        console.log("Click en create new admin")
+        $.ajax({
+            url: "getAccountInternal",
+            method: "get",
+            data: {
+            },
+            success: function(data){
+                console.log(data)
+                $("#randomAdmShow").val(data);
+                $("#randomAdmHidden").val(data);
             },
             error: function(xhr, statusText){
                 console.log(statusText);
@@ -104,6 +126,35 @@ $(document).ready(function() {
             success: function(data){
                 console.log(data)
                 $("#createNew").modal('hide');
+                alert('El registro del gamerId ha sido exitoso');
+                toastElement.show()
+                $("#tostadosMensaje").html('Hemos creado al usuario ' +$('#randomGamerIdHidden').val() + 'correctamente');
+                setTimeout("location.reload();",3000)
+            },
+            error: function(xhr, statusText){
+                console.log(statusText);
+                alert('El registro del gamerId ha fallado');
+            }
+        });
+    });
+
+    /* attach a submit handler to the form */
+    $("#formNewAdm").submit(function(event) {
+
+        /* stop form from submitting normally */
+        event.preventDefault();
+        console.log('Gid: ' + $('#randomAdmShow').val() + ' email: ' + $('#emailInputNewAdms').val())
+        $.ajax({
+            url: "admMake",
+            method: "post",
+            data: {
+                username: $('#randomAdmHidden').val(),
+                email: $('#emailInputNewAdm').val(),
+                role: $('#accountTypeAdm').val()
+            },
+            success: function(data){
+                console.log(data)
+                $("#createNewAdminModal").modal('hide');
                 alert('El registro del gamerId ha sido exitoso');
                 toastElement.show()
                 $("#tostadosMensaje").html('Hemos creado al usuario ' +$('#randomGamerIdHidden').val() + 'correctamente');

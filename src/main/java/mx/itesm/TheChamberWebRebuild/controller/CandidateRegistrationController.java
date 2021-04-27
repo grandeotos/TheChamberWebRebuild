@@ -37,22 +37,22 @@ public class CandidateRegistrationController extends HttpServlet {
         int exper = Integer.parseInt(request.getParameter("exper"));
         int profix = Integer.parseInt(request.getParameter("profix"));
         AccountDAO accountDao = new AccountDAO();
-        int isRegistered = accountDao.registerAplicant(firstName,  lastName,  email,  telp,  exper,  profix);
+        int isRegistered = accountDao.registerApplicant(firstName,  lastName,  email,  telp,  exper,  profix);
         System.out.println(isRegistered);
         try {
             switch (isRegistered){
                 case 1:
-                    request.setAttribute("mensaje", "Registrado correctamente.");
+                    request.setAttribute("message", "Registrado correctamente. Te contactaremos en caso de tener vacantes disponibles");
                     request.setAttribute("messageType", "Success");
-                    request.getRequestDispatcher("WEB-INF/apply.jsp").forward(request, response);
+                    request.getRequestDispatcher("WEB-INF/index.jsp").forward(request, response);
                     break;
                 case 2:
-                    request.setAttribute("mensaje", "Tu registro ha fallado, Este correo ya está en uso.");
+                    request.setAttribute("message", "Tu registro ha fallado, Este correo ya está en uso.");
                     request.setAttribute("messageType", "WarningError");
                     request.getRequestDispatcher("WEB-INF/apply.jsp").forward(request, response);
                     break;
                 default:
-                    request.setAttribute("mensaje", "Tu registro ha fallado, favor de contactar a Chayomix Studios (A01751038@itesm.mx) para reportar este incidente.");
+                    request.setAttribute("message", "Tu registro ha fallado, favor de contactar a Chayomix Studios (A01751038@itesm.mx) para reportar este incidente.");
                     request.setAttribute("messageType", "FatalError");
                     request.getRequestDispatcher("WEB-INF/apply.jsp").forward(request, response);
                     break;

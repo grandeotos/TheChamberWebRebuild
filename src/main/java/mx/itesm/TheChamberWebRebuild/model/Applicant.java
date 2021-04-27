@@ -11,12 +11,13 @@ public class Applicant implements Serializable {
     private String experienceName;
     private String profileName;
     private String reviewStatusName;
+    private int reviewStatus;
 
     public Applicant() {
 
     }
 
-    public Applicant(int applicantId, String firstName, String lastName, String email, String phoneNumber, String experienceName, String profileName, String reviewStatusName) {
+    public Applicant(int applicantId, String firstName, String lastName, String email, String phoneNumber, String experienceName, String profileName, String reviewStatusName, int reviewStatus) {
         this.applicantId = applicantId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -25,6 +26,7 @@ public class Applicant implements Serializable {
         this.experienceName = experienceName;
         this.profileName = profileName;
         this.reviewStatusName = reviewStatusName;
+        this.reviewStatus = reviewStatus;
     }
 
     public int getApplicantId() {
@@ -91,6 +93,14 @@ public class Applicant implements Serializable {
         this.reviewStatusName = reviewStatusName;
     }
 
+    public int getReviewStatus() {
+        return reviewStatus;
+    }
+
+    public void setReviewStatus(int reviewStatus) {
+        this.reviewStatus = reviewStatus;
+    }
+
     @Override
     public String toString() {
         return "Applicant{" +
@@ -102,6 +112,7 @@ public class Applicant implements Serializable {
                 ", experienceName='" + experienceName + '\'' +
                 ", profileName='" + profileName + '\'' +
                 ", reviewStatusName='" + reviewStatusName + '\'' +
+                ", reviewStatus=" + reviewStatus +
                 '}';
     }
 }
