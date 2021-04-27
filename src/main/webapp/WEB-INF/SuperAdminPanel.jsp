@@ -72,6 +72,10 @@
               data-bs-target="#createNewAdminModal">
         <i class="fas fa-user-plus"></i> Crear nuevo Administrador
       </button>
+      <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+              onclick="javascript:window.location.href='${pageContext.request.contextPath}/OnQueue';">
+        <i class="fas fa-list-ol"></i> Ver nuevos candidatos
+      </button>
     </div>
     <table id="TheChamber" class="table table-hover table-dark">
       <thead>

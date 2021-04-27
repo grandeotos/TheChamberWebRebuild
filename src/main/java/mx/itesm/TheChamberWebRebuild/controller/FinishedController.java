@@ -14,7 +14,7 @@ public class FinishedController extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         if(session.getAttribute("completado") != null){
-            request.getRequestDispatcher("WEB-INF/play.jsp").forward(request,response);
+            request.getRequestDispatcher("WEB-INF/finish.jsp").forward(request,response);
         }else{
             request.setAttribute("mensaje", "No tienes acceso a este portal.\nPor favor ingrese en el siguiente portal.");
             request.getRequestDispatcher("WEB-INF/index.jsp").forward(request,response);

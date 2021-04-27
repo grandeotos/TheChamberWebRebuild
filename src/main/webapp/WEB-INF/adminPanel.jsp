@@ -68,6 +68,10 @@
               data-bs-target="#createNew">
         <i class="fas fa-user-plus"></i> Crear nuevo GID
       </button>
+      <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+              onclick="javascript:window.location.href='${pageContext.request.contextPath}/OnQueue';">
+        <i class="fas fa-list-ol"></i> Ver nuevos candidatos
+      </button>
     </div>
     <table id="TheChamber" class="table table-hover table-dark">
       <thead>
@@ -96,17 +100,20 @@
           <td>
             <c:out value="${cuenta.roleName}" />
           </td>
-          <form role="form" action="advancedView" method="POST">
-            <button type="button" id="${cuenta.username}" class="btn btn-outline-primary datos"
-                    data-bs-toggle="modal" data-bs-target="#ModalInfo">
-              <i class=" fas fa-info-circle"></i> VER
-            </button>
-            <input type="hidden" id="accountIdHidden" name="username" value="${cuenta.username}">
-            <input type="hidden" id="generatedByHidden" name="generatedBy" value="${administrador.username} ${administrador.firstName} ${administrador.lastName}">
-            <button type="submit" class="btn btn-outline-danger">
-              <i class="far fa-file-pdf"></i> PDF
-            </button>
-          </form>
+          <td>
+            <form role="form" action="advancedView" method="POST">
+              <button type="button" id="${cuenta.username}" class="btn btn-outline-primary datos"
+                      data-bs-toggle="modal" data-bs-target="#ModalInfo">
+                <i class=" fas fa-info-circle"></i> VER
+              </button>
+              <input type="hidden" id="accountIdHidden" name="username" value="${cuenta.username}">
+              <input type="hidden" id="generatedByHidden" name="generatedBy" value="${administrador.username} ${administrador.firstName} ${administrador.lastName}">
+              <button type="submit" class="btn btn-outline-danger">
+                <i class="far fa-file-pdf"></i> PDF
+              </button>
+            </form>
+          </td>
+
       </c:forEach>
       </tbody>
     </table>

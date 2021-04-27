@@ -37,7 +37,7 @@
             </div>
           </div>
           <div class="col-4">
-            <p>On Queue</p>
+            <h2>Candidatos en espera</h2>
             <c:if test="${not empty message}">
               <c:choose>
                 <c:when test="${messageType == 'Success'}">
@@ -135,17 +135,9 @@
         </div>
         <div class="container" style="background: rgba(255, 255, 255, 1); padding: 10px;border-radius: 5px;">
           <div class="container-fluid" id="containBotones">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createNew">
-              <i class="fas fa-user-plus"></i> Crear nuevo GID
-            </button>
-            <button type="button" class="btn btn-success">
-              <i class="fas fa-file-csv"></i> Exportar selección a CSV
-            </button>
-            <button id="modalGm" type="button" class="btn btn-success" onclick="showToast()">
-              <i class="fas fa-check-square"></i> Seleccionar TODOS
-            </button>
-            <button type="button" class="btn btn-secondary"  data-bs-toggle="modal" data-bs-target="#Actualizado">
-              <i class="fas fa-times-circle"></i> Quitar selección
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                    onclick="javascript:window.location.href='${pageContext.request.contextPath}/adminPanel';">
+              <i class="fas fa-user-plus"></i> Volver al adminPanel
             </button>
           </div>
           <table id="OnQueue" class="table table-hover table-dark">
