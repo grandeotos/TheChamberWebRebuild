@@ -43,51 +43,38 @@ public class LoginController extends HttpServlet {
             } else {
                 try {
                     System.out.println(account.getRolId());
-                    System.out.println("Case!");
                     switch (account.getRolId()){
                         case 0:
-                            System.out.println("Case: 0");
                             sesion.setAttribute("aplicante", account);
                             response.sendRedirect("register");
                             break;
                         case 1:
-                            System.out.println("Case: 1");
                             sesion.setAttribute("jugador", account);
                             response.sendRedirect("play");
                             break;
                         case 2:
-                            System.out.println("Case: 2");
                             sesion.setAttribute("completado", account);
                             response.sendRedirect("finished");
                             break;
                         case 3:
-                            System.out.println("Case: 3");
                             sesion.setAttribute("candidatoAceptado", account);
                             response.sendRedirect("registerMinstait");
                             break;
                         case 4:
-                            System.out.println("Case: 4");
-                            sesion.setAttribute("newAdministrator", account);
-                            response.sendRedirect("newAdminRegistration");
-                            break;
                         case 5:
-                            System.out.println("Case: 5");
                             sesion.setAttribute("newAdministrator", account);
                             response.sendRedirect("newAdminRegistration");
                             break;
                         case 6:
-                            System.out.println("Case: 6");
                             sesion.setAttribute("administrador", account);
                             response.sendRedirect("adminPanel");
                             break;
                         case 7:
-                            System.out.println("Case: 7");
                             sesion.setAttribute("superAdministrador", account);
                             response.sendRedirect("superAdminPanel");
                             break;
 
                         default:
-                            System.out.println("Case: DEF");
                             request.setAttribute("message", "Un ERROR desconocido ha sucedido, contacte al equipo del sitio web");
                             request.setAttribute("messageType", "FatalError");
                             request.getRequestDispatcher("WEB-INF/index.jsp").forward(request, response);

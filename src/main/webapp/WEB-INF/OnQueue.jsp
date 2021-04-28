@@ -187,7 +187,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form role="form" action="gidMake" method="POST">
+          <form role="form" action="gidCMake" method="POST">
             <div class="mb-3">
               <label for="exampleInputEmail1" class="form-label">E-mail del candidato a enviar el GamerID</label>
               <input type="email" name="gIdEmail" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="example@example.com">
@@ -217,7 +217,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form role="form" action="gidMake" method="POST">
+        <form role="form" action="gidCMake" method="POST">
           <div class="mb-3">
             <h3>Mensaje del servidor:</h3>
             <h4 id="serverMessage">Ninguno por el momento</h4>
@@ -339,12 +339,35 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-info-circle"></i> Bienvenido: ${administrador.firstName}</h5>
+          <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-info-circle"></i>
+            <c:choose>
+              <c:when test="${not empty administrador}">
+                <b>Bienvenido: ${administrador.firstName} ${administrador.lastName}</b>
+              </c:when>
+              <c:when test="${not empty superAdministrador}">
+                <b>Bienvenido: ${superAdministrador.firstName} ${administrador.lastName}</b>
+              </c:when>
+              <c:otherwise>
+                <b>Bienvenido: ${administrador.firstName} ${administrador.lastName}</b>
+              </c:otherwise>
+            </c:choose>
+          </h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <p>Bienvenido a The Chamber WEB<br>En este portal podrás realizar diversas actividades administrativas, relacionadas al juego The Chamber
-            <br>Dependiendo de tus permisos asignados a la cuenta, algunas actividades estarán restringidas<br>Actualmente eres un <b>${administrador.roleName}</b>
+            <br>Dependiendo de tus permisos asignados a la cuenta, algunas actividades estarán restringidas<br>Actualmente eres un
+            <b><c:choose>
+              <c:when test="${not empty administrador}">
+                <b>${administrador.roleName}</b>
+              </c:when>
+              <c:when test="${not empty superAdministrador}">
+                <b>${superAdministrador.roleName}</b>
+              </c:when>
+              <c:otherwise>
+                <b>${administrador.roleName}</b>
+              </c:otherwise>
+            </c:choose></b>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-success" data-bs-dismiss="modal">

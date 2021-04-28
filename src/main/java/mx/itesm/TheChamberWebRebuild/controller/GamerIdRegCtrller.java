@@ -37,12 +37,8 @@ public class GamerIdRegCtrller extends HttpServlet {
         String email = request.getParameter("email");
         String curp = request.getParameter("curp");
         if(password.equals(password2)){
-            System.out.println("Contras conciden");
             AccountDAO accountDao = new AccountDAO();
-            System.out.println("Entra boolean");
             int isRegistered = accountDao.registerGamer(firstName,  lastName,  gamerID,  email,  password,  curp);
-            System.out.println(isRegistered);
-            System.out.println("Sale boolean");
             Account cuenta;
             if(session.getAttribute("aplicante") != null){
                 cuenta = (Account) session.getAttribute("aplicante");
@@ -58,7 +54,7 @@ public class GamerIdRegCtrller extends HttpServlet {
                         request.getRequestDispatcher("WEB-INF/index.jsp").forward(request, response);
                         break;
                     case 2:
-                        request.setAttribute("message", "Tu registro ha fallado, Este GamerId ya está en uso.");
+                        request.setAttribute("message", "Tu registro ha fallado, Este GamerId/usuario ya está en uso.");
                         request.setAttribute("messageType", "WarningError");
                         request.setAttribute("username",  cuenta.getUsername());
                         request.setAttribute("email", cuenta.getEmail());
@@ -76,7 +72,6 @@ public class GamerIdRegCtrller extends HttpServlet {
                 System.out.println(ex.getMessage());
             }
         }else{
-            System.out.println("PASSWORD MISMATCH");
             try{
                 request.setAttribute("messageType", "WarningError");
                 request.setAttribute("message", "ERROR: Las contraseñas no coinciden. Imposible registrar.");

@@ -2,23 +2,23 @@ package mx.itesm.TheChamberWebRebuild.controller;
 
 import com.google.gson.Gson;
 import mx.itesm.TheChamberWebRebuild.DAO.AccountDAO;
-import mx.itesm.TheChamberWebRebuild.model.Account;
-import mx.itesm.TheChamberWebRebuild.DAO.AccountTablesDAO;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.*;
+import javax.servlet.http.*;
+import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 
-@WebServlet(name = "NewGamerRegistrationController", value = "/gidMake")
-public class GamerCreationController extends HttpServlet {
+@WebServlet(name = "GamerCreationCntroller", value = "/gidCMake")
+public class GamerCreationCntroller extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Set response content type
+        response.setContentType("text/html");
+
+        // Actual logic goes here.
+        PrintWriter out = response.getWriter();
+        out.println("<h1>Hola Mundo</h1>");
 
     }
     /*
@@ -34,7 +34,7 @@ public class GamerCreationController extends HttpServlet {
         HttpSession sesion = request.getSession();
         String gamerID = request.getParameter("username");
         String email = request.getParameter("email");
-        System.out.println("Formularios de GIDMAKE" + gamerID + " " + email);
+        System.out.println("Formularios de gidCMake" + gamerID + " " + email);
         AccountDAO accountDao = new AccountDAO();
         System.out.println("Entra boolean");
         int isRegistered = accountDao.registerGamer(gamerID,  email);
@@ -43,7 +43,7 @@ public class GamerCreationController extends HttpServlet {
         try {
             //List<Account> listaCuentas = accountTablesDAO.list();
             //request.setAttribute("accTable", listaCuentas); // Will be available as ${products} in JSP
-            System.out.println("Case de gidMake: " + isRegistered);
+            System.out.println("Case de gidCMake: " + isRegistered);
             Gson gson = new Gson();
             String mensaje;
             response.setContentType("application/json");

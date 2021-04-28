@@ -253,7 +253,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form role="form" action="gidMake" method="POST" id="formNewGID">
+        <form role="form" action="gidCMake" method="POST" id="formNewGID">
           <div class="mb-3">
             <label for="emailInputNewGID" class="form-label">E-mail del candidato a enviar el
               GamerID</label>

@@ -456,7 +456,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form role="form" action="gidMake" method="POST">
+          <form role="form" action="gidCMake" method="POST">
             <div class="mb-3">
               <label for="exampleInputEmail1" class="form-label">E-mail del candidato a enviar el GamerID</label>
               <input type="email" name="gIdEmail" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="example@example.com">

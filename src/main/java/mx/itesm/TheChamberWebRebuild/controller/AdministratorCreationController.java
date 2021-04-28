@@ -27,21 +27,16 @@ public class AdministratorCreationController extends HttpServlet {
 */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("post2");
         HttpSession sesion = request.getSession();
         String gamerID = request.getParameter("username");
         String email = request.getParameter("email");
         String role = request.getParameter("role");
-        System.out.println("Formularios de ADMMAKE" + gamerID + " " + email + " " + role);
         AccountDAO accountDao = new AccountDAO();
-        System.out.println("Entra boolean");
         int isRegistered = accountDao.registerAdmin(gamerID,  email, role);
         System.out.println(isRegistered);
-        System.out.println("Sale boolean");
         try {
             //List<Account> listaCuentas = accountTablesDAO.list();
             //request.setAttribute("accTable", listaCuentas); // Will be available as ${products} in JSP
-            System.out.println("Case de ADMMAKE: " + isRegistered);
             Gson gson = new Gson();
             String mensaje;
             response.setContentType("application/json");
@@ -52,14 +47,14 @@ public class AdministratorCreationController extends HttpServlet {
                     request.setAttribute("messageType", "Success");
                     //request.getRequestDispatcher("adminPanel").forward(request, response);
                     //response.sendRedirect("adminPanel");
-                    mensaje = "Registrado correctamente.";
+                    mensaje = "Registrado administrador correctamente.";
                     out.print(gson.toJson(mensaje));
                     break;
                 case 2:
-                    request.setAttribute("message", "Tu registro ha fallado, Este GamerId ya está en uso.");
+                    request.setAttribute("message", "Tu registro ha fallado, Este usuario ya está en uso.");
                     request.setAttribute("messageType", "WarningError");
                     //request.getRequestDispatcher("adminPanel").forward(request, response);
-                    mensaje = "Tu registro ha fallado, Este GamerId ya está en uso.";
+                    mensaje = "Tu registro ha fallado, Este usuario ya está en uso.";
                     out.print(gson.toJson(mensaje));
                     break;
                 default:

@@ -38,12 +38,8 @@ public class AdminRegistrationController extends HttpServlet {
         String curp = request.getParameter("curp");
         String roleId = request.getParameter("roleId");
         if(password.equals(password2)){
-            System.out.println("Contras conciden");
             AccountDAO accountDao = new AccountDAO();
-            System.out.println("Entra boolean");
             int isRegistered = accountDao.registerAdmin(firstName,  lastName,  gamerID,  email,  password,  curp, roleId);
-            System.out.println(isRegistered);
-            System.out.println("Sale boolean");
             Account cuenta = (Account) session.getAttribute("newAdmin");
             try {
                 switch (isRegistered){
@@ -72,7 +68,6 @@ public class AdminRegistrationController extends HttpServlet {
                 System.out.println(ex.getMessage());
             }
         }else{
-            System.out.println("PASSWORD MISMATCH");
             try{
                 request.setAttribute("messageType", "WarningError");
                 request.setAttribute("message", "ERROR: Las contraseñas no coinciden. Imposible registrar.");

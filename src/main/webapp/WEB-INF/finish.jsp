@@ -48,104 +48,10 @@
                 </div>
             </div>
         </div>
-
-    </div>
-    <div class="col-md-2 col-xs-12">
-    </div>
-    </div>
-
-
-
-    <!-- Modal -->
-    <div class="modal fade" id="registSuccessModal" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Registro completado</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p>Este panel es para aplicantes de "The Chamber", probablemente estes aquí por error</p>
-                    <p>Da click al botón de <b>"Ir al panel de empleados"</b> para poder ingresar al portal
-                        correspondiente para tí</p>
-                    <p>Si eres aplicante de "The Chamber", estas en el portal correcto, y solo da clic al botón de
-                        <b>"Seguir en este portal</b>"</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
-                        <i class="fas fa-download"></i>
-                        Descargar "The Chamber"
-                    </button>
-                    <button type="button" class="btn btn-success" data-bs-dismiss="modal"
-                        onclick="javascript:window.location.href='LoginPanel.html';">
-                        <i class="fas fa-check-circle"></i>
-                        Listo
-                    </button>
-                </div>
-            </div>
+        <div class="col-md-2 col-xs-12">
         </div>
     </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="aplicanteModal" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">¡ATENCIÓN EMPLEADO!</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p>Este panel es para aplicantes de "The Chamber", probablemente estes aquí por error</p>
-                    <p>Da click al botón de <b>"Ir al panel de empleados"</b> para poder ingresar al portal
-                        correspondiente para tí</p>
-                    <p>Si eres aplicante de "The Chamber", estas en el portal correcto, y solo da clic al botón de
-                        <b>"Seguir en este portal</b>"</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-warning" data-bs-dismiss="modal"
-                        onclick="javascript:window.location.href='LoginPanel.html';">
-                        <i class="fas fa-sign-out-alt"></i>
-                        Ir al panel de empleados
-                    </button>
-                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">
-                        <i class="fas fa-check-circle"></i>
-                        Seguir en este portal
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal" id="bienvenido" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-info-circle"></i> Bienvenido</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p>Bienvenido a The Chamber WEB<br>En este portal podrás realizar diversas actividades relacionadas al Portal de The Chamber
-                        <br>Para entrar, ingresa tus credenciales correspondientes<br>En este portal Solamente pueden entrar
-                    <ul>
-                        <li>Empleado de Minsait</li>
-                        <li>Candidatos que se les haya asignado un GamerID</li>
-                    </ul>
-                    Si eres un aplicante, revisa el botón <b>"Aplicar a Minsait"</b>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                            onclick="javascript:window.location.href='${pageContext.request.contextPath}/apply';">
-                        <i class="fas fa-arrow-circle-up"></i>
-                        Aplicar a Minsait
-                    </button>
-                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">
-                        <i class="fas fa-check-circle"></i>
-                        Seguir en este portal
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="modal fade" id="logOut" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">

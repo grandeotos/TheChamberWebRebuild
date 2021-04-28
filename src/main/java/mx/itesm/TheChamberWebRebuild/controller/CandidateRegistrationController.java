@@ -38,7 +38,6 @@ public class CandidateRegistrationController extends HttpServlet {
         int profix = Integer.parseInt(request.getParameter("profix"));
         AccountDAO accountDao = new AccountDAO();
         int isRegistered = accountDao.registerApplicant(firstName,  lastName,  email,  telp,  exper,  profix);
-        System.out.println(isRegistered);
         try {
             switch (isRegistered){
                 case 1:

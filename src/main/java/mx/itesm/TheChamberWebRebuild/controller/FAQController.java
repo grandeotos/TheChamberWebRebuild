@@ -11,7 +11,6 @@ import java.io.IOException;
 public class FAQController extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("FAAAAAAQ");
         try {
             request.getRequestDispatcher("WEB-INF/faq.jsp").forward(request, response);
         } catch (Exception ex) {

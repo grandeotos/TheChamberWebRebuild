@@ -53,9 +53,9 @@ public class updateCandidateController extends HttpServlet {
                             System.out.println(appRegistered);
                             if(appRegistered == 1){
                                 jsonResponse.addProperty("gamerId", newGid);
-                                jsonResponse.addProperty("message", "Candidato APROBADO Y REGISTRADO correctamente - GID ASIGNADO(" + newGid + ")");
+                                jsonResponse.addProperty("message", "Candidato APROBADO Y REGISTRADO correctamente - GID ASIGNADO (" + newGid + ")");
                             }else {
-                                jsonResponse.addProperty("message", "ERROR Candidato probablemente registrado, pero no update");
+                                jsonResponse.addProperty("message", "ERROR Candidato probablemente registrado, sin actualizar, contacte a Chayomix Studios");
                             }
                             break;
                         case 2:

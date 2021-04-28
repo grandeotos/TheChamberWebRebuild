@@ -117,7 +117,7 @@ $(document).ready(function() {
         event.preventDefault();
         console.log('Gid: ' + $('#randomGamerIdHidden').val() + ' email: ' + $('#emailInputNewGID').val())
         $.ajax({
-            url: "gidMake",
+            url: "gidCMake",
             method: "post",
             data: {
                 username: $('#randomGamerIdHidden').val(),
@@ -128,8 +128,8 @@ $(document).ready(function() {
                 $("#createNew").modal('hide');
                 alert('El registro del gamerId ha sido exitoso');
                 toastElement.show()
-                $("#tostadosMensaje").html('Hemos creado al usuario ' +$('#randomGamerIdHidden').val() + 'correctamente');
-                setTimeout("location.reload();",3000)
+                $("#tostadosMensaje").html('Hemos creado al usuario ' +$('#randomGamerIdHidden').val() + ' correctamente');
+                setTimeout("location.reload();",1500)
             },
             error: function(xhr, statusText){
                 console.log(statusText);

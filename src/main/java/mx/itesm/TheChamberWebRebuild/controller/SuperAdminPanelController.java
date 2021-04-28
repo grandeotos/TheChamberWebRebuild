@@ -30,6 +30,10 @@ public class SuperAdminPanelController extends HttpServlet {
                 List<Account> listaCuentas = accountTablesDAO.listAll();
                 request.setAttribute("accTable", listaCuentas); // Will be available as ${products} in JSP
                 request.getRequestDispatcher("WEB-INF/SuperAdminPanel.jsp").forward(request, response);
+            } else if(session.getAttribute("jugador") != null){
+                request.setAttribute("message", "ERROR: Eres un jugador, no deberías estar en este portal, para poder jugar, inicia sesión en el siguiente portal.");
+                request.setAttribute("messageType", "WarningError");
+                request.getRequestDispatcher("WEB-INF/index.jsp").forward(request, response);
             }else{
                 request.setAttribute("message", "ERROR: No tienes acceso a este portal.");
                 request.setAttribute("messageType", "WarningError");

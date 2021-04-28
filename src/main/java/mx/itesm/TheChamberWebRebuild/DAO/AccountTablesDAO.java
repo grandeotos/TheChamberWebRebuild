@@ -140,16 +140,6 @@ public class AccountTablesDAO implements IAccountTablesDAO{
     }
 
     @Override
-    public Account getRecentTestByUsername(String Username) {
-        return null;
-    }
-
-    @Override
-    public Account getRecentScoresByUsername(String Username) {
-        return null;
-    }
-
-    @Override
     public Applicant getApplicantById(int appId) {
         String applicantQuery = "SELECT  applicant.applicantId, applicant.firstName, applicant.lastName, applicant.email, applicant.phoneNumber, applicant.reviewStatusId, experience.experienceName, profile.profileName, reviewStatus.reviewStatusName from applicant INNER JOIN experience ON experience.experienceId = applicant.experienceId INNER JOIN profile ON profile.profileId  = applicant.profileId INNER JOIN reviewStatus on applicant.reviewStatusId = reviewStatus.reviewStatusId WHERE applicant.applicantId = ?";
         Connection connection = MySQLConnection.getConnection();

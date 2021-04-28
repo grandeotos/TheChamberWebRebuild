@@ -27,7 +27,6 @@ public class NewAdminRegistrarionComtroller extends HttpServlet {
                 request.setAttribute("email", cuenta.getEmail());
                 request.setAttribute("roleId", cuenta.getRolId());
                 request.getRequestDispatcher("WEB-INF/registerAdmin.jsp").forward(request, response);
-
             } else if(session.getAttribute("jugador") != null){
                 request.setAttribute("message", "ERROR: Eres un jugador, no deberías estar en este portal, para poder jugar, inicia sesión en el siguiente portal.");
                 request.setAttribute("messageType", "WarningError");
