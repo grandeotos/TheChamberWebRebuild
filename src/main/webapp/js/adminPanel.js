@@ -20,6 +20,7 @@ $(document).ready(function() {
                     console.log(x[i])
                     x[i].id = data.username;
                 }
+                $("#accountIdHiddenModal").val(data.username)
                 $("#username2").html(data.username);
                 $("#fullName").html(data.firstName + data.lastName);
                 $("#emailModal").html(data.email);

@@ -31,6 +31,9 @@
                             <br>
                             <h2>Alta de aplicantes</h2>
                             <br>
+                            <br>
+                            <p>Bienvenido <strong>aplicante</strong>, favor de llenar tus datos en el siguiente formulario:</p>
+                            <br>
                             <c:if test="${not empty message}">
                                 <c:choose>
                                     <c:when test="${messageType == 'Success'}">
@@ -59,7 +62,6 @@
                                     </c:otherwise>
                                 </c:choose>
                             </c:if>
-                            <br>
                         </div>
                         <div class="formbutton">
                             <form role="form" action="gamerRegist" method="POST">
@@ -68,7 +70,7 @@
                                         <br>
                                         <label id="lfirstName" for="password">Nombre(s): </label>
                                         <input type="text" class="form-control" id="firstName"
-                                        name="firstName" placeholder="Ingrese su(s) Nombre(s)">
+                                        name="firstName" placeholder="Ingrese su(s) Nombre(s)" required="required">
                                     </div>
                                     <div class="form-group">
                                         <br>
@@ -109,18 +111,10 @@
                                         <input type="hidden" id="usernameHidden" name="username" value="${username}">
                                         <input type="hidden" id="emailHidden" name="email" value="${email}">
                                     </div>
-                                    <div class="checkbox">
-                                        <br>
-                                        <label>
-                                            <input type="checkbox"> Recordar contraseña (No recomendar en dispositivos
-                                            compartidos)
-                                        </label>
-                                        <p></p>
-                                    </div>
+                                    <br>
                                 </div>
                                 <center>
-                                    <button type="submit" class="btn btn-primary" data-bs-toggle="modal"
-                                        data-bs-target="#registSuccessModal"><i class="fas fa-sign-in-alt"></i>
+                                    <button type="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i>
                                         Registrar cuenta
                                     </button>
                                 </center>

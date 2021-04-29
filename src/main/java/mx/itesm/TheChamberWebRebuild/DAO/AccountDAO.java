@@ -52,52 +52,55 @@ public class AccountDAO implements IAccountDAO {
     public int registerGamer(String firstName, String lastName, String username, String email, String password, String curp) {
         String sql = "UPDATE  `account` SET `rolid` = 1, `firstName`= ?, `lastName`= ?, `email`= ?, `password`= sha2(?,224), `curp`= ?, `create_time` = current_timestamp() WHERE username = ? AND password = sha2(?,224)";
         String sql2 = "SELECT COUNT(username) AS cuentas FROM account WHERE username = ?";
-        try{
-            Connection conexion = MySQLConnection.getConnection();
-            PreparedStatement preparedStatement = conexion.prepareStatement(sql);
-            PreparedStatement userdet = conexion.prepareStatement(sql2);
-            userdet.setString(1, username);
-            preparedStatement.setString(1, firstName);
-            preparedStatement.setString(2, lastName);
-            preparedStatement.setString(3, email);
-            preparedStatement.setString(4, password);
-            preparedStatement.setString(5, curp);
-            preparedStatement.setString(6, username);
-            preparedStatement.setString(7, email);
-            System.out.println("Preparados: ");
-            System.out.println(userdet);
-            System.out.println(preparedStatement);
-            int sameAccount = 0;
-            try{
-                System.out.println("Se ejecuta cuentas");
-                ResultSet cuentas =  userdet.executeQuery();
-                if(cuentas.next()){
-                    sameAccount = cuentas.getInt("cuentas");
-                    System.out.println(sameAccount);
-                }
-                if(sameAccount > 1){
-                    System.out.println("Duplicado");
-                    conexion.close();
-                    return 2;
-                } else {
-                    int isRegistered  =  preparedStatement.executeUpdate();
-                    System.out.println("isRegistered: " + isRegistered);
-                    if(isRegistered > 0){
-                        System.out.println("registrado");
-                        conexion.close();
-                        return 1;
+        if(firstName.isBlank() || lastName.isBlank() || username.isBlank() || email.isBlank() || password.isBlank() || curp.isBlank()){
+            return 3;
+        }else {
+            try {
+                Connection conexion = MySQLConnection.getConnection();
+                PreparedStatement preparedStatement = conexion.prepareStatement(sql);
+                PreparedStatement userdet = conexion.prepareStatement(sql2);
+                userdet.setString(1, username);
+                preparedStatement.setString(1, firstName);
+                preparedStatement.setString(2, lastName);
+                preparedStatement.setString(3, email);
+                preparedStatement.setString(4, password);
+                preparedStatement.setString(5, curp);
+                preparedStatement.setString(6, username);
+                preparedStatement.setString(7, email);
+                System.out.println("Preparados: ");
+                System.out.println(userdet);
+                System.out.println(preparedStatement);
+                int sameAccount = 0;
+                try {
+                    System.out.println("Se ejecuta cuentas");
+                    ResultSet cuentas = userdet.executeQuery();
+                    if (cuentas.next()) {
+                        sameAccount = cuentas.getInt("cuentas");
+                        System.out.println(sameAccount);
                     }
-                    else{
-                        System.out.println("No registrado");
+                    if (sameAccount > 1) {
+                        System.out.println("Duplicado");
                         conexion.close();
-                        return 0;
+                        return 2;
+                    } else {
+                        int isRegistered = preparedStatement.executeUpdate();
+                        System.out.println("isRegistered: " + isRegistered);
+                        if (isRegistered > 0) {
+                            System.out.println("registrado");
+                            conexion.close();
+                            return 1;
+                        } else {
+                            System.out.println("No registrado");
+                            conexion.close();
+                            return 0;
+                        }
                     }
+                } catch (Exception ex) {
+                    System.out.println(ex.getMessage());
                 }
-            }catch(Exception ex){
+            } catch (Exception ex) {
                 System.out.println(ex.getMessage());
             }
-        }catch(Exception ex){
-            System.out.println(ex.getMessage());
         }
         return 0;
     }
@@ -106,49 +109,58 @@ public class AccountDAO implements IAccountDAO {
     public int registerApplicant(String firstName, String lastName, String email, String telp, int exper, int profix) {
         String sql = "INSERT INTO `applicant` (`applicantId`, `firstName`, `lastName`, `email`, `phoneNumber`, `experienceId`, `profileId`, `reviewStatusId`) VALUES (NULL, ?, ?, ?, ?, ?, ?, '0')";
         String sql2 = "SELECT COUNT(email) AS cuentas FROM applicant WHERE email = ?";
-
-        try{
-            Connection conexion = MySQLConnection.getConnection();
-            PreparedStatement preparedStatement = conexion.prepareStatement(sql);
-            PreparedStatement userdet = conexion.prepareStatement(sql2);
-            userdet.setString(1, email);
-            preparedStatement.setString(1, firstName);
-            preparedStatement.setString(2, lastName);
-            preparedStatement.setString(3, email);
-            preparedStatement.setString(4, telp);
-            preparedStatement.setInt(5, exper);
-            preparedStatement.setInt(6, profix);
-            System.out.println(preparedStatement);
-            int sameAccount = 0;
-
-            int isRegistered  =  preparedStatement.executeUpdate();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        if(firstName.isBlank() || lastName.isBlank() || email.isBlank() || telp.isBlank()){
+            return 3;
+        }else {
             try{
-                System.out.println("Se ejecuta cuentas");
-                ResultSet cuentas =  userdet.executeQuery();
-                if(cuentas.next()){
-                    sameAccount = cuentas.getInt("cuentas");
-                }
-                if(sameAccount > 1){
-                    System.out.println("Duplicado");
-                    conexion.close();
-                    return 2;
-                } else {
-                    if(isRegistered == 1){
-                        System.out.println("registrado");
-                        conexion.close();
-                        return 1;
+                Connection conexion = MySQLConnection.getConnection();
+                PreparedStatement preparedStatement = conexion.prepareStatement(sql);
+                PreparedStatement userdet = conexion.prepareStatement(sql2);
+                userdet.setString(1, email);
+                preparedStatement.setString(1, firstName);
+                preparedStatement.setString(2, lastName);
+                preparedStatement.setString(3, email);
+                preparedStatement.setString(4, telp);
+                preparedStatement.setInt(5, exper);
+                preparedStatement.setInt(6, profix);
+                System.out.println(preparedStatement);
+                int sameAccount = 0;
+
+                int isRegistered  =  preparedStatement.executeUpdate();
+                try{
+                    System.out.println("Se ejecuta cuentas");
+                    ResultSet cuentas =  userdet.executeQuery();
+                    if(cuentas.next()){
+                        sameAccount = cuentas.getInt("cuentas");
                     }
-                    else{
-                        System.out.println("No registrado");
+                    if(sameAccount > 1){
+                        System.out.println("Duplicado");
                         conexion.close();
-                        return 0;
+                        return 2;
+                    } else {
+                        if(isRegistered == 1){
+                            System.out.println("registrado");
+                            conexion.close();
+                            return 1;
+                        }
+                        else{
+                            System.out.println("No registrado");
+                            conexion.close();
+                            return 0;
+                        }
                     }
+                }catch(Exception ex){
+                    System.out.println(ex.getMessage());
                 }
             }catch(Exception ex){
                 System.out.println(ex.getMessage());
             }
-        }catch(Exception ex){
-            System.out.println(ex.getMessage());
         }
         return 0;
     }
@@ -313,55 +325,59 @@ public class AccountDAO implements IAccountDAO {
     public int registerAdmin(String firstName, String lastName, String username, String email, String password, String curp, String roleName) {
         String sql = "UPDATE  `account` SET `rolid` = ?, `firstName`= ?, `lastName`= ?, `email`= ?, `password`= sha2(?,224), `curp`= ?, `create_time` = current_timestamp() WHERE username = ? AND password = sha2(?,224)";
         String sql2 = "SELECT COUNT(username) AS cuentas FROM account WHERE username = ?";
-        try{
-            Connection conexion = MySQLConnection.getConnection();
-            PreparedStatement preparedStatement = conexion.prepareStatement(sql);
-            PreparedStatement userdet = conexion.prepareStatement(sql2);
-            userdet.setString(1, username);
-            int rolid = (roleName.equals("5")) ? 7 : 6;
-            System.out.println(rolid);
-            preparedStatement.setInt(1,rolid);
-            preparedStatement.setString(2, firstName);
-            preparedStatement.setString(3, lastName);
-            preparedStatement.setString(4, email);
-            preparedStatement.setString(5, password);
-            preparedStatement.setString(6, curp);
-            preparedStatement.setString(7, username);
-            preparedStatement.setString(8, email);
-            System.out.println("Preparados: ");
-            System.out.println(userdet);
-            System.out.println(preparedStatement);
-            int sameAccount = 0;
+        if(firstName.isBlank() || lastName.isBlank() || username.isBlank() || email.isBlank() || password.isBlank() || curp.isBlank()){
+            return 3;
+        } else {
             try{
-                System.out.println("Se ejecuta cuentas");
-                ResultSet cuentas =  userdet.executeQuery();
-                if(cuentas.next()){
-                    sameAccount = cuentas.getInt("cuentas");
-                    System.out.println(sameAccount);
-                }
-                if(sameAccount > 1){
-                    System.out.println("Duplicado");
-                    conexion.close();
-                    return 2;
-                } else {
-                    int isRegistered  =  preparedStatement.executeUpdate();
-                    System.out.println("isRegistered: " + isRegistered);
-                    if(isRegistered > 0){
-                        System.out.println("registrado");
-                        conexion.close();
-                        return 1;
+                Connection conexion = MySQLConnection.getConnection();
+                PreparedStatement preparedStatement = conexion.prepareStatement(sql);
+                PreparedStatement userdet = conexion.prepareStatement(sql2);
+                userdet.setString(1, username);
+                int rolid = (roleName.equals("5")) ? 7 : 6;
+                System.out.println(rolid);
+                preparedStatement.setInt(1,rolid);
+                preparedStatement.setString(2, firstName);
+                preparedStatement.setString(3, lastName);
+                preparedStatement.setString(4, email);
+                preparedStatement.setString(5, password);
+                preparedStatement.setString(6, curp);
+                preparedStatement.setString(7, username);
+                preparedStatement.setString(8, email);
+                System.out.println("Preparados: ");
+                System.out.println(userdet);
+                System.out.println(preparedStatement);
+                int sameAccount = 0;
+                try{
+                    System.out.println("Se ejecuta cuentas");
+                    ResultSet cuentas =  userdet.executeQuery();
+                    if(cuentas.next()){
+                        sameAccount = cuentas.getInt("cuentas");
+                        System.out.println(sameAccount);
                     }
-                    else{
-                        System.out.println("No registrado");
+                    if(sameAccount > 1){
+                        System.out.println("Duplicado");
                         conexion.close();
-                        return 0;
+                        return 2;
+                    } else {
+                        int isRegistered  =  preparedStatement.executeUpdate();
+                        System.out.println("isRegistered: " + isRegistered);
+                        if(isRegistered > 0){
+                            System.out.println("registrado");
+                            conexion.close();
+                            return 1;
+                        }
+                        else{
+                            System.out.println("No registrado");
+                            conexion.close();
+                            return 0;
+                        }
                     }
+                }catch(Exception ex){
+                    System.out.println(ex.getMessage());
                 }
             }catch(Exception ex){
                 System.out.println(ex.getMessage());
             }
-        }catch(Exception ex){
-            System.out.println(ex.getMessage());
         }
         return 0;
     }

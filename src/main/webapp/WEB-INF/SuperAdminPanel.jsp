@@ -110,8 +110,8 @@
                       data-bs-toggle="modal" data-bs-target="#ModalInfo">
                 <i class=" fas fa-info-circle"></i> VER
               </button>
-              <input type="hidden" id="accountIdHidden" name="username" value="${cuenta.username}">
-              <input type="hidden" id="generatedByHidden" name="generatedBy" value="${superAdministrador.username} ${superAdministrador.firstName} ${superAdministrador.lastName}">
+              <input type="hidden" id="accountIdHidden${status.index}" name="username" value="${cuenta.username}">
+              <input type="hidden" id="generatedByHidden${status.index}" name="generatedBy" value="${superAdministrador.username} ${superAdministrador.firstName} ${superAdministrador.lastName}">
               <button type="submit" class="btn btn-outline-danger">
               <i class="far fa-file-pdf"></i> PDF
             </button>
@@ -232,13 +232,17 @@
           usuario, abra el reporte completo en WEB</p>
       </center>
       <div class="modal-footer">
-        <button type="button" class="btn btn-success advanced" id="advancedReport">
-          <i class="fas fa-id-card"></i>
-          Ver reporte completo en WEB
-        </button>
-        <button type="button" class="btn btn-danger">
-          <i class="far fa-file-pdf"></i> Exportar reporte a PDF
-        </button>
+        <form role="form" action="advancedView" method="POST">
+          <button type="button" class="btn btn-success advanced" id="advancedReport">
+            <i class="fas fa-id-card"></i>
+            Ver reporte completo en WEB
+          </button>
+          <input type="hidden" class="accountIdHiddenModal" id="accountIdHiddenModal" name="username">
+          <input type="hidden" id="generatedByHiddenModal" name="generatedBy" value="${superAdministrador.username} - ${superAdministrador.firstName} ${superAdministrador.lastName}">
+          <button type="submit" class="btn btn-danger export">
+            <i class="far fa-file-pdf"></i> Exportar reporte a PDF
+          </button>
+        </form>
       </div>
     </div>
   </div>

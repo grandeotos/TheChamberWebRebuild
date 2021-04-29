@@ -39,6 +39,12 @@ public class updateCandidateController extends HttpServlet {
             switch (action){
                 case "dAasNotViewed":
                     actionInt = 0;
+                    appRegistered = accountDAO.updateApplicant(appId, actionInt);
+                    if(appRegistered == 1){
+                        jsonResponse.addProperty("message", "Candidato MARCADO SIN REVISAR con exito");
+                    }else {
+                        jsonResponse.addProperty("message", "ERROR no update");
+                    }
                     break;
                 case "dAaccept":
                     String newGid = accountDAO.getNewGamerID();
@@ -60,6 +66,11 @@ public class updateCandidateController extends HttpServlet {
                             break;
                         case 2:
                             jsonResponse.addProperty("message", "ERROR El candidato ha sido aprobado anteriormente");
+                            jsonResponse.remove("error");
+                            jsonResponse.addProperty("error", 1);
+                            break;
+                        case 3:
+                            jsonResponse.addProperty("message", "ERROR Tu registro ha fallado, Te olvidaste de llenar algún campo.");
                             jsonResponse.remove("error");
                             jsonResponse.addProperty("error", 1);
                             break;

@@ -147,9 +147,21 @@
               onclick="javascript:window.location.href='${pageContext.request.contextPath}/adminPanel';">
         <i class="fas fa-user-plus"></i> Volver al adminPanel
       </button>
-        <input type="hidden" id="accountIdHidden" name="accountId" value="${cuenta.accountId}">
-      <button type="submit" class="btn btn-danger exportPDF" id="PDFexport">
-        <i class="fas fa-file-csv"></i> Exportar reporte
+      <input type="hidden" id="accountIdHidden" name="username" value="${cuenta.username}">
+      <input type="hidden" id="generatedByHidden" name="generatedBy" value="
+      <c:choose>
+            <c:when test="${not empty administrador}">
+              ${administrador.username} - ${administrador.firstName} ${administrador.lastName}
+            </c:when>
+            <c:when test="${not empty superAdministrador}">
+              ${superAdministrador.username} - ${superAdministrador.firstName} ${superAdministrador.lastName}
+            </c:when>
+            <c:otherwise>
+            ${administrador.username} - ${administrador.firstName} ${administrador.lastName}
+            </c:otherwise>
+      </c:choose>">
+      <button type="submit" class="btn btn-danger">
+        <i class="far fa-file-pdf"></i> Obtener reporte en PDF
       </button>
     </form>
 

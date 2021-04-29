@@ -251,14 +251,14 @@
                     </div>
                     <div class="modal-body">
                         <p>Si deseas aplicar para un trabajo en Minsait, puedes registrarte en este portal, para
-                            poder ser elegible para realizar un test psicometrico<br><br>Personal de Minsait se pondrá en
-                            contacto contigo en caso de haber vacantes disponibles y se te dará un nombre de usuario (GamerID) e instrucciones para poder jugar a "The Chamber"<br><br>Si ya tienes un GamerID asignado, da clic en el botón <b>"Aplicar con GamerID"</b><br><br>En caso contrario por favor, llena tus datos en el siguiente formulario, dando clic en el botón <b>"Aplicar"</b></p>
+                            poder ser elegible para jugar a "The Chamber"<br><br>Personal de Minsait se pondrá en
+                            contacto contigo en caso de haber vacantes disponibles y se te dará un nombre de usuario (GamerID) e instrucciones para poder jugar a "The Chamber"<br><br>Si ya tienes un GamerID/Usuario asignado, da clic en el botón <b>"Volver al portal de inicio"</b><br><br>En caso contrario por favor, llena tus datos en el siguiente formulario, dando clic en el botón <b>"Aplicar"</b></p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-warning" data-bs-dismiss="modal"
-                            onclick="javascript:window.location.href='${pageContext.request.contextPath}/register';">
-                            <i class="fas fa-gamepad"></i> 
-                            Aplicar con GamerID
+                            onclick="javascript:window.location.href='${pageContext.request.contextPath}/';">
+                            <i class="fas fa-home"></i>
+                            Volver al portal de inicio
                         </button>
                         <button type="button" class="btn btn-success" data-bs-dismiss="modal">
                             <i class="fas fa-check-circle"></i>

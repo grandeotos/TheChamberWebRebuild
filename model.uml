@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>mx.itesm.TheChamberWebRebuild.model</OriginalElement>
+  <nodes>
+    <node x="0.0" y="55.0">mx.itesm.TheChamberWebRebuild.model.Score</node>
+    <node x="40.25" y="350.0">mx.itesm.TheChamberWebRebuild.model.Test</node>
+    <node x="28.25" y="700.0">mx.itesm.TheChamberWebRebuild.model.Account</node>
+    <node x="601.0" y="0.0">mx.itesm.TheChamberWebRebuild.model.Applicant</node>
+    <node x="199.0" y="0.0">mx.itesm.TheChamberWebRebuild.model.Checkpoint</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="mx.itesm.TheChamberWebRebuild.model.Test" target="mx.itesm.TheChamberWebRebuild.model.Score" relationship="DEPENDENCY">
+      <point x="-53.875" y="-150.0" />
+      <point x="201.875" y="325.0" />
+      <point x="134.25" y="325.0" />
+      <point x="44.75" y="95.0" />
+    </edge>
+    <edge source="mx.itesm.TheChamberWebRebuild.model.Test" target="mx.itesm.TheChamberWebRebuild.model.Checkpoint" relationship="TO_MANY">
+      <point x="161.625" y="-150.0" />
+      <point x="417.375" y="325.0" />
+      <point x="466.75" y="325.0" />
+      <point x="89.25" y="150.0" />
+    </edge>
+    <edge source="mx.itesm.TheChamberWebRebuild.model.Account" target="mx.itesm.TheChamberWebRebuild.model.Test" relationship="DEPENDENCY">
+      <point x="113.75" y="-205.0" />
+      <point x="369.5" y="675.0" />
+      <point x="363.5" y="675.0" />
+      <point x="107.75" y="150.0" />
+    </edge>
+    <edge source="mx.itesm.TheChamberWebRebuild.model.Test" target="mx.itesm.TheChamberWebRebuild.model.Score" relationship="TO_MANY">
+      <point x="-161.625" y="-150.0" />
+      <point x="94.125" y="325.0" />
+      <point x="44.75" y="325.0" />
+      <point x="-44.75" y="95.0" />
+    </edge>
+    <edge source="mx.itesm.TheChamberWebRebuild.model.Test" target="mx.itesm.TheChamberWebRebuild.model.Checkpoint" relationship="DEPENDENCY">
+      <point x="53.875" y="-150.0" />
+      <point x="309.625" y="325.0" />
+      <point x="288.25" y="325.0" />
+      <point x="-89.25" y="150.0" />
+    </edge>
+    <edge source="mx.itesm.TheChamberWebRebuild.model.Account" target="mx.itesm.TheChamberWebRebuild.model.Test" relationship="TO_MANY">
+      <point x="-113.75" y="-205.0" />
+      <point x="142.0" y="675.0" />
+      <point x="148.0" y="675.0" />
+      <point x="-107.75" y="150.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.5929203539823009" showDependencies="true" x="501.5" y="555.0" />
+  <SelectedNodes>
+    <node>mx.itesm.TheChamberWebRebuild.model.Checkpoint</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

@@ -63,7 +63,7 @@
                                 <div>
                                     <div class="form-group">
                                         <br>
-                                        <label for="username">Usuario</label>
+                                        <label for="username">GamerID / Usuario</label>
                                         <input type="text" class="form-control" id="username" name="username"
                                             placeholder="Ingrese su usuario" required>
                                     </div>
@@ -120,14 +120,8 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p>Bienvenido a The Chamber, un juego psicometrico para probar tus habilidades
+                    <p>Bienvenido a The Chamber WEB
                    <br>Si deseas aplicar para trabajar para minsait, por favor revisa el botón <b>"Aplicar a Minsait"</b> para ser redirigido al portal correspondiente y subir tu solicitud</p>
-                    Si eres...
-                    <ul>
-                        <li>Empleado de Minsait, solamente entra con tus credenciales correspondientes, y serás redirigido al panel de control</li>
-                        <li>Un candidato con un gamerID asignado, puedes entrar al portal con tu GamerID y la contraseña es tu correo, esto te llevará al portal de registro<br>O puedes dar clic al botón <b>"Registrar (GamerID)"</b> para ir al portal de registro</li>
-                    </ul>
-
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-warning" data-bs-toggle="modal"
@@ -154,14 +148,41 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p>Bienvenido a The Chamber, un juego psicometrico para probar tus habilidades
+                    <p>Bienvenido a The Chamber WEB
                         <br>Si deseas aplicar para trabajar para minsait, por favor revisa el botón <b>"Aplicar a Minsait"</b> para ser redirigido al portal correspondiente y subir tu solicitud</p>
                     Si eres...
-                    <ul>
-                        <li>Empleado de Minsait -- Puedes entrar con tus credenciales correspondientes, y serás redirigido al panel de control</li>
-                        <li>Un candidato con un gamerID asignado sin registrar -- Puedes entrar al portal con tu GamerID y la contraseña asignada en tu correo de confirmacion</li>
-                        <li>Un candidato con un gamerID asignado y que se ha registrado -- Puedes entrar con tu gamerID asignado y contrasena</li>
-                    </ul>
+                    <table class="table table-dark table-striped">
+                        <thead>
+                        <tr>
+                            <td>Tipo de usuario</td>
+                            <td>Como acceder:</td>
+                        </tr>
+                        </thead>
+                        <tr>
+                            <td>Empleado de Minsait</td>
+                            <td>Usuario en formato ABC123<br>
+                                Contrase&ntilde;a: Contrase&ntilde;a asignada o propia</td>
+                        </tr>
+                        <tr>
+                            <td>Candidato registrado</td>
+                            <td>Usuario: GamerID en formato ABC123<br>
+                                Contrase&ntilde;a: Contrase&ntilde;a asignada</td>
+                        </tr>
+                        <tr>
+                            <td>Jugador</td>
+                            <td>Usuario: GamerID en formato ABC123<br>
+                                Contrase&ntilde;a: Contrase&ntilde;a que ingresaste en el formato de registro de candidatos</td>
+                        </tr>
+                        <tr>
+                            <td>Alguien que quiera aplicar a minsait</td>
+                            <td>Clic al siguiente botón:<br>
+                                <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                        onclick="javascript:window.location.href='${pageContext.request.contextPath}/apply';">
+                                    <i class="fas fa-arrow-circle-up"></i>
+                                    Aplicar a Minsait
+                                </button></td>
+                        </tr>
+                    </table>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-warning" data-bs-toggle="modal"

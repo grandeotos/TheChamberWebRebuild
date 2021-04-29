@@ -1,12 +1,9 @@
 package mx.itesm.TheChamberWebRebuild.controller;
 
-import com.sun.javafx.collections.MappingChange;
 import mx.itesm.TheChamberWebRebuild.DAO.AccountTablesDAO;
 import mx.itesm.TheChamberWebRebuild.model.Account;
 import mx.itesm.TheChamberWebRebuild.util.MySQLConnection;
-import net.sf.jasperreports.engine.JRParameter;
 import net.sf.jasperreports.engine.JasperRunManager;
-import net.sf.jasperreports.engine.util.SimpleFileResolver;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -33,10 +30,6 @@ public class AdvancedViewController extends HttpServlet {
         System.out.println(session.getAttributeNames());
         Enumeration<String> attributes = request.getSession().getAttributeNames();
         String Player = request.getParameter("username");
-        while (attributes.hasMoreElements()) {
-            String attribute = (String) attributes.nextElement();
-            System.out.println(attribute+" : "+request.getSession().getAttribute(attribute));
-        }
         try{
             if(session.getAttribute("administrador") != null || session.getAttribute("superAdministrador") != null){
                 Account accountId = accountTablesDAO.getAccountByUsername(Player);

@@ -45,11 +45,12 @@ $(document).ready(function() {
                     case 0:
                         $("#dAaccept").prop( "disabled", false );
                         $("#dAReject").prop( "disabled", false );
-                        $("#dAasNotViewed").prop( "disabled", false );
-                        $("#dAasViewed").prop( "disabled", false );
+                        $("#dAasNotViewed").prop( "disabled", true );
+                        $("#dAasViewed").prop( "disabled",  false);
 
                         break;
                     case 1:
+                    case 3:
                         $("#dAaccept").prop( "disabled", true );
                         $("#dAReject").prop( "disabled", true );
                         $("#dAasNotViewed").prop( "disabled", true );
@@ -61,12 +62,6 @@ $(document).ready(function() {
                         $("#dAasNotViewed").prop( "disabled", false );
                         $("#dAasViewed").prop( "disabled", true );
 
-                        break;
-                    case 3:
-                        $("#dAaccept").prop( "disabled", true );
-                        $("#dAReject").prop( "disabled", true );
-                        $("#dAasNotViewed").prop( "disabled", true );
-                        $("#dAasViewed").prop( "disabled", true );
                         break;
                     case 4:
                         $("#dAaccept").prop( "disabled", false );

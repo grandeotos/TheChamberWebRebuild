@@ -60,6 +60,11 @@ public class GamerIdRegCtrller extends HttpServlet {
                         request.setAttribute("email", cuenta.getEmail());
                         request.getRequestDispatcher("WEB-INF/register.jsp").forward(request, response);
                         break;
+                    case 3:
+                        request.setAttribute("message", "Tu registro ha fallado, Te olvidaste de llenar algún campo.");
+                        request.setAttribute("messageType", "WarningError");
+                        request.getRequestDispatcher("WEB-INF/register.jsp").forward(request, response);
+                        break;
                     default:
                         request.setAttribute("message", "Tu registro ha fallado, Revisa tus campos y verificalos correctamente.");
                         request.setAttribute("messageType", "FatalError");
@@ -73,6 +78,8 @@ public class GamerIdRegCtrller extends HttpServlet {
             }
         }else{
             try{
+                request.setAttribute("username", gamerID);
+                request.setAttribute("email", email);
                 request.setAttribute("messageType", "WarningError");
                 request.setAttribute("message", "ERROR: Las contraseñas no coinciden. Imposible registrar.");
                 request.getRequestDispatcher("WEB-INF/register.jsp").forward(request, response);

@@ -56,6 +56,14 @@ public class AdminRegistrationController extends HttpServlet {
                         request.setAttribute("roleName", cuenta.getRoleName());
                         request.getRequestDispatcher("WEB-INF/registerAdmin.jsp").forward(request, response);
                         break;
+                    case 3:
+                        request.setAttribute("message", "Tu registro ha fallado, Te olvidaste de llenar algún campo.");
+                        request.setAttribute("messageType", "WarningError");
+                        request.setAttribute("username", cuenta.getUsername());
+                        request.setAttribute("email", cuenta.getEmail());
+                        request.setAttribute("roleName", cuenta.getRoleName());
+                        request.getRequestDispatcher("WEB-INF/registerAdmin.jsp").forward(request, response);
+                        break;
                     default:
                         request.setAttribute("message", "Tu registro ha fallado, Revisa tus campos y verificalos correctamente.");
                         request.setAttribute("messageType", "FatalError");

@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="TheChamberWebRebuild" target="1.8" />
+      <module name="TheChamberWebRebuild" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>

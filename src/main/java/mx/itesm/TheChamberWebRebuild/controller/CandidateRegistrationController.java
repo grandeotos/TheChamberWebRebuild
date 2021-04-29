@@ -50,6 +50,11 @@ public class CandidateRegistrationController extends HttpServlet {
                     request.setAttribute("messageType", "WarningError");
                     request.getRequestDispatcher("WEB-INF/apply.jsp").forward(request, response);
                     break;
+                case 3:
+                    request.setAttribute("message", "Tu registro ha fallado, Te olvidaste de llenar algún campo.");
+                    request.setAttribute("messageType", "WarningError");
+                    request.getRequestDispatcher("WEB-INF/apply.jsp").forward(request, response);
+                    break;
                 default:
                     request.setAttribute("message", "Tu registro ha fallado, favor de contactar a Chayomix Studios (A01751038@itesm.mx) para reportar este incidente.");
                     request.setAttribute("messageType", "FatalError");
