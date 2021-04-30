@@ -217,7 +217,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form role="form" action="gidCMake" method="POST">
+        <form role="form" >
           <div class="mb-3">
             <h3>Mensaje del servidor:</h3>
             <h4 id="serverMessage">Ninguno por el momento</h4>
@@ -230,7 +230,7 @@
             <input type="checkbox" class="form-check-input" id="exampleCheck1">
             <label class="form-check-label" for="exampleCheck1">Enviar copia a correo Minsait</label>
           </div>
-          <button type="submit" name="submitCreateNew" class="btn btn-success">Enviar</button>
+          <button type="button" name="submitCreateNew" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#Actualizado">Enviar</button>
         </form>
       </div>
     </div>

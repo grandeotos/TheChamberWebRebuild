@@ -2,17 +2,19 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="TheChamberWebRebuild:war exploded" />
+      <artifact name="TheChamberWebRebuild:war" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="900f9c02-b93f-456b-8bf7-22bea56a88d2" name="Default Changelist" comment="El proyecto ahora corre en Java 11!&#10;Solucionado bug donde podías subir aplicantes vacios">
+    <list default="true" id="900f9c02-b93f-456b-8bf7-22bea56a88d2" name="Default Changelist" comment="Solucionado posible Bug NullPointerException cuando se hace ParseInt">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mx/itesm/TheChamberWebRebuild/controller/CandidateRegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/itesm/TheChamberWebRebuild/controller/CandidateRegistrationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mx/itesm/TheChamberWebRebuild/controller/getApplicantInternal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/itesm/TheChamberWebRebuild/controller/getApplicantInternal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/OnQueue.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/OnQueue.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/reports/account.jasper" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/reports/account.jasper" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/reports/checkpoints.jasper" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/reports/checkpoints.jasper" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/reports/scores.jasper" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/reports/scores.jasper" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,7 +162,7 @@
       <option name="presentableId" value="Default" />
       <updated>1619738493075</updated>
       <workItem from="1619738496200" duration="410000" />
-      <workItem from="1619738914326" duration="2377000" />
+      <workItem from="1619738914326" duration="6595000" />
     </task>
     <task id="LOCAL-00001" summary="El proyecto ahora corre en Java 11!&#10;Solucionado bug donde podías subir aplicantes vacios">
       <created>1619740527516</created>
@@ -169,7 +171,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619740527516</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Solucionado posible Bug NullPointerException cuando se hace ParseInt">
+      <created>1619741387531</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1619741387531</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -189,6 +198,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="El proyecto ahora corre en Java 11!&#10;Solucionado bug donde podías subir aplicantes vacios" />
-    <option name="LAST_COMMIT_MESSAGE" value="El proyecto ahora corre en Java 11!&#10;Solucionado bug donde podías subir aplicantes vacios" />
+    <MESSAGE value="Solucionado posible Bug NullPointerException cuando se hace ParseInt" />
+    <option name="LAST_COMMIT_MESSAGE" value="Solucionado posible Bug NullPointerException cuando se hace ParseInt" />
   </component>
 </project>
