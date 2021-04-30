@@ -9,55 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="900f9c02-b93f-456b-8bf7-22bea56a88d2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_servlet_javax_servlet_api_4_0_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apiguardian_apiguardian_api_1_1_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jfree_jcommon_1_0_23.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_engine_5_7_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_7_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_7_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_opentest4j_opentest4j_1_2_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/game.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/6e5a8313-d86f-4276-8efd-6ee877dbbfeb.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/6e5a8313-d86f-4276-8efd-6ee877dbbfeb/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/6e5a8313-d86f-4276-8efd-6ee877dbbfeb/storage_v2/_src_/schema/mysql.osA4Bg.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/6e5a8313-d86f-4276-8efd-6ee877dbbfeb/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_gson_gson_2_8_62.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_servlet_javax_servlet_api_4_0_12.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apiguardian_apiguardian_api_1_1_02.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_bouncycastle_bcprov_jdk15on_1_642.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jfree_jcommon_1_0_232.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_7_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_7_0.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_7_02.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_engine_5_7_02.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_7_02.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_7_02.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_opentest4j_opentest4j_1_2_02.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/javax_servlet_jstl_1_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TheChamberWebRebuild.iml" beforeDir="false" afterPath="$PROJECT_DIR$/TheChamberWebRebuild.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mx/itesm/TheChamberWebRebuild/DAO/AccountDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/itesm/TheChamberWebRebuild/DAO/AccountDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mx/itesm/TheChamberWebRebuild/controller/AdminRegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/itesm/TheChamberWebRebuild/controller/AdminRegistrationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mx/itesm/TheChamberWebRebuild/controller/AdvancedViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/itesm/TheChamberWebRebuild/controller/AdvancedViewController.java" afterDir="false" />
+    <list default="true" id="900f9c02-b93f-456b-8bf7-22bea56a88d2" name="Default Changelist" comment="El proyecto ahora corre en Java 11!&#10;Solucionado bug donde podías subir aplicantes vacios">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mx/itesm/TheChamberWebRebuild/controller/CandidateRegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/itesm/TheChamberWebRebuild/controller/CandidateRegistrationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mx/itesm/TheChamberWebRebuild/controller/GamerIdRegCtrller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/itesm/TheChamberWebRebuild/controller/GamerIdRegCtrller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mx/itesm/TheChamberWebRebuild/controller/updateCandidateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/itesm/TheChamberWebRebuild/controller/updateCandidateController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/SuperAdminPanel.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/SuperAdminPanel.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/adminPanel.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/adminPanel.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/advancedView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/advancedView.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/apply.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/apply.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/register.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/OnQueue.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/OnQueue.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/adminPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/adminPanel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/superAdminPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/superAdminPanel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mx/itesm/TheChamberWebRebuild/controller/getApplicantInternal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/itesm/TheChamberWebRebuild/controller/getApplicantInternal.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,6 +62,8 @@
       </method>
     </configuration>
     <configuration name="Tomcat 8.5.64" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.64" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="11" nameIsGenerated="true">
+      <option name="BROWSER_ID" value="b2a9dca7-9d0b-4e1e-98a8-afb19c1328d2" />
+      <option name="START_JAVASCRIPT_DEBUGGER" value="true" />
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="TheChamberWebRebuild:war exploded">
@@ -203,8 +160,16 @@
       <option name="presentableId" value="Default" />
       <updated>1619738493075</updated>
       <workItem from="1619738496200" duration="410000" />
-      <workItem from="1619738914326" duration="1322000" />
+      <workItem from="1619738914326" duration="2377000" />
     </task>
+    <task id="LOCAL-00001" summary="El proyecto ahora corre en Java 11!&#10;Solucionado bug donde podías subir aplicantes vacios">
+      <created>1619740527516</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1619740527516</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -221,5 +186,9 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="El proyecto ahora corre en Java 11!&#10;Solucionado bug donde podías subir aplicantes vacios" />
+    <option name="LAST_COMMIT_MESSAGE" value="El proyecto ahora corre en Java 11!&#10;Solucionado bug donde podías subir aplicantes vacios" />
   </component>
 </project>

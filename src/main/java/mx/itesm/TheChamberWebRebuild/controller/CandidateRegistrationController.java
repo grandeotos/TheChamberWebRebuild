@@ -34,8 +34,20 @@ public class CandidateRegistrationController extends HttpServlet {
         String lastName = request.getParameter("lastName");
         String email = request.getParameter("email");
         String telp = request.getParameter("telep");
-        int exper = Integer.parseInt(request.getParameter("exper"));
-        int profix = Integer.parseInt(request.getParameter("profix"));
+        int exper;
+        try {
+            exper = Integer.parseInt(request.getParameter("exper"));
+        } catch(Exception e) {
+            // Log exception.
+            exper = 0;
+        }
+        int profix;
+        try {
+            profix = Integer.parseInt(request.getParameter("profix"));
+        } catch(Exception e) {
+            // Log exception.
+            profix = 0;
+        }
         AccountDAO accountDao = new AccountDAO();
         int isRegistered = accountDao.registerApplicant(firstName,  lastName,  email,  telp,  exper,  profix);
         try {

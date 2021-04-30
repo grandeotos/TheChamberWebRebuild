@@ -29,7 +29,13 @@ public class getApplicantInternal extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println(request.getParameter("appId"));
-        int appId = Integer.parseInt(request.getParameter("appId"));
+        int appId;
+        try {
+            appId = Integer.parseInt(request.getParameter("appId"));
+        } catch(Exception e) {
+            // Log exception.
+            appId = 0;
+        }
         System.out.println(appId);
         AccountTablesDAO accountTablesDAO = new AccountTablesDAO();
         Applicant applicant = accountTablesDAO.getApplicantById(appId);
