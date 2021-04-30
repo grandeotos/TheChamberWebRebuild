@@ -9,12 +9,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="900f9c02-b93f-456b-8bf7-22bea56a88d2" name="Default Changelist" comment="Solucionado posible Bug NullPointerException cuando se hace ParseInt">
+    <list default="true" id="900f9c02-b93f-456b-8bf7-22bea56a88d2" name="Default Changelist" comment="Solucionado problema al generar scores en scores.jasper">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/OnQueue.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/OnQueue.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/reports/account.jasper" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/reports/account.jasper" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/reports/checkpoints.jasper" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/reports/checkpoints.jasper" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/reports/scores.jasper" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/reports/scores.jasper" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -162,7 +158,7 @@
       <option name="presentableId" value="Default" />
       <updated>1619738493075</updated>
       <workItem from="1619738496200" duration="410000" />
-      <workItem from="1619738914326" duration="6595000" />
+      <workItem from="1619738914326" duration="7676000" />
     </task>
     <task id="LOCAL-00001" summary="El proyecto ahora corre en Java 11!&#10;Solucionado bug donde podías subir aplicantes vacios">
       <created>1619740527516</created>
@@ -178,7 +174,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619741387531</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Solucionado problema al generar scores en scores.jasper">
+      <created>1619751244796</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1619751244796</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -199,6 +202,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="El proyecto ahora corre en Java 11!&#10;Solucionado bug donde podías subir aplicantes vacios" />
     <MESSAGE value="Solucionado posible Bug NullPointerException cuando se hace ParseInt" />
-    <option name="LAST_COMMIT_MESSAGE" value="Solucionado posible Bug NullPointerException cuando se hace ParseInt" />
+    <MESSAGE value="Solucionado problema al generar scores en scores.jasper" />
+    <option name="LAST_COMMIT_MESSAGE" value="Solucionado problema al generar scores en scores.jasper" />
   </component>
 </project>
