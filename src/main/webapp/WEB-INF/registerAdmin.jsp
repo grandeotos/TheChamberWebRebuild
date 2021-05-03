@@ -125,8 +125,7 @@
                                     </div>
                                 </div>
                                 <center>
-                                    <button type="submit" class="btn btn-primary" data-bs-toggle="modal"
-                                        data-bs-target="#registSuccessModal"><i class="fas fa-sign-in-alt"></i>
+                                    <button type="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i>
                                         Registrar cuenta
                                     </button>
                                 </center>

@@ -63,6 +63,8 @@ public class GamerIdRegCtrller extends HttpServlet {
                     case 3:
                         request.setAttribute("message", "Tu registro ha fallado, Te olvidaste de llenar algún campo.");
                         request.setAttribute("messageType", "WarningError");
+                        request.setAttribute("username",  cuenta.getUsername());
+                        request.setAttribute("email", cuenta.getEmail());
                         request.getRequestDispatcher("WEB-INF/register.jsp").forward(request, response);
                         break;
                     default:

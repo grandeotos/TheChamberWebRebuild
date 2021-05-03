@@ -42,14 +42,6 @@ $(document).ready(function() {
                 $("#testIdTwo").html(data.testList[(data.testList.length)-1].scores[1].test_testId);
                 $("#softSkillTwo").html(data.testList[(data.testList.length)-1].scores[1].softSkillName);
                 $("#scoreTwo").html(data.testList[(data.testList.length)-1].scores[1].softSkillScore);
-                $("#scoreIdThree").html(data.testList[(data.testList.length)-1].scores[2].scoreId);
-                $("#testIdThree").html(data.testList[(data.testList.length)-1].scores[2].test_testId);
-                $("#softSkillThree").html(data.testList[(data.testList.length)-1].scores[2].softSkillName);
-                $("#scoreThree").html(data.testList[(data.testList.length)-1].scores[2].softSkillScore);
-                $("#scoreIdFour").html(data.testList[(data.testList.length)-1].scores[3].scoreId);
-                $("#testId1Four").html(data.testList[(data.testList.length)-1].scores[3].test_testId);
-                $("#softSkillFour").html(data.testList[(data.testList.length)-1].scores[3].softSkillName);
-                $("#scoreFour").html(data.testList[(data.testList.length)-1].scores[3].softSkillScore);
                 //data.testlist[pos_x].scores[posy]
                 oldUsername = data.username;
                 console.log(oldUsername);

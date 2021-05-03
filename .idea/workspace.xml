@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="TheChamberWebRebuild:war" />
+      <artifact name="TheChamberWebRebuild:war exploded" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
@@ -10,7 +10,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="900f9c02-b93f-456b-8bf7-22bea56a88d2" name="Default Changelist" comment="Solucionado problema al generar scores en scores.jasper">
+      <change afterPath="$PROJECT_DIR$/src/main/java/mx/itesm/TheChamberWebRebuild/controller/UnityController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mx/itesm/TheChamberWebRebuild/DAO/AccountDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/itesm/TheChamberWebRebuild/DAO/AccountDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mx/itesm/TheChamberWebRebuild/controller/AdminRegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/itesm/TheChamberWebRebuild/controller/AdminRegistrationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mx/itesm/TheChamberWebRebuild/controller/GamerIdRegCtrller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/itesm/TheChamberWebRebuild/controller/GamerIdRegCtrller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/OlderAdminPanel.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/OlderAdminPanel.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/SuperAdminPanel.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/SuperAdminPanel.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/adminPanel.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/adminPanel.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/game.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/play.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/play.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/registerAdmin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/registerAdmin.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/registerMinsait.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/registerMinsait.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/adminPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/adminPanel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/play.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/play.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/superAdminPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/superAdminPanel.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,21 +61,13 @@
     <property name="project.structure.side.proportion" value="0.29102167" />
     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="mx.itesm.TheChamberWebRebuild.controller" />
+    </key>
+  </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Tomcat 8.5.64" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.64" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="11" nameIsGenerated="true">
-      <option name="BROWSER_ID" value="b2a9dca7-9d0b-4e1e-98a8-afb19c1328d2" />
-      <option name="START_JAVASCRIPT_DEBUGGER" value="true" />
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="TheChamberWebRebuild:war exploded">
@@ -158,7 +164,13 @@
       <option name="presentableId" value="Default" />
       <updated>1619738493075</updated>
       <workItem from="1619738496200" duration="410000" />
-      <workItem from="1619738914326" duration="7676000" />
+      <workItem from="1619738914326" duration="12507000" />
+      <workItem from="1619766676862" duration="7732000" />
+      <workItem from="1619811046805" duration="800000" />
+      <workItem from="1619851562976" duration="189000" />
+      <workItem from="1619967607742" duration="1511000" />
+      <workItem from="1619999789547" duration="653000" />
+      <workItem from="1620056169920" duration="682000" />
     </task>
     <task id="LOCAL-00001" summary="El proyecto ahora corre en Java 11!&#10;Solucionado bug donde podías subir aplicantes vacios">
       <created>1619740527516</created>
@@ -181,7 +193,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619751244796</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Solucionado problema al generar scores en scores.jasper">
+      <created>1619755393409</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1619755393409</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

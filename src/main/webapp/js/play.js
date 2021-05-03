@@ -13,4 +13,8 @@ $(document).ready(function ()
     else {
         $('#bienvenido').modal('hide');
     }
+
+
+
+
 });

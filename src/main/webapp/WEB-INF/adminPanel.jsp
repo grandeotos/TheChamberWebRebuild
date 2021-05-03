@@ -208,18 +208,6 @@
             <td id="softSkillTwo"></td>
             <td id="scoreTwo"></td>
           </tr>
-          <tr>
-            <td id="scoreIdThree"></td>
-            <td id="testIdThree"></td>
-            <td id="softSkillThree"></td>
-            <td id="scoreThree"></td>
-          </tr>
-          <tr>
-            <td id="scoreIdFour"></td>
-            <td id="testId1Four"></td>
-            <td id="softSkillFour"></td>
-            <td id="scoreFour"></td>
-          </tr>
           </tbody>
         </table>
       </div>

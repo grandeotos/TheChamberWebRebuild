@@ -22,6 +22,7 @@
   <div class="holamundo">
     <div class="container">
       <div class="ind-login-box">
+        <p class="redirection" id="${pageContext.request.contextPath}"></p>
         <div class="ind-login-text">
           <img src="../img/indra2.png " class="img-fluid" alt="Logo Indra">
           <h2>Admin Panel</h2>

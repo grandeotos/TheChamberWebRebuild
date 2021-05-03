@@ -273,51 +273,56 @@ public class AccountDAO implements IAccountDAO {
         System.out.println("ADMIIIN");
         String sql = "INSERT INTO `account` (`accountId`, `rolid`, `firstName`, `lastName`, `username`, `email`, `password`, `curp`, `create_time`) VALUES (NULL, ?, NULL, NULL, ?, ?, sha2(?,224), NULL, current_timestamp())";
         String sql2 = "SELECT COUNT(username) AS cuentas FROM account WHERE username = ?";
-        try{
-            Connection conexion = MySQLConnection.getConnection();
-            PreparedStatement preparedStatement = conexion.prepareStatement(sql);
-            PreparedStatement userdet = conexion.prepareStatement(sql2);
-            userdet.setString(1, username);
-            int rolid = (role.equals("super")) ? 5 : 4;
-            System.out.println(rolid);
-            preparedStatement.setInt(1,rolid);
-            preparedStatement.setString(2, username);
-            preparedStatement.setString(3, email);
-            preparedStatement.setString(4, email);
-            System.out.println("Preparados: ");
-            System.out.println(userdet);
-            System.out.println(preparedStatement);
-            int sameAccount = 0;
+        if(username.isBlank() || email.isBlank() || role.isBlank() || email.isBlank()){
+            return 3;
+        }else {
             try{
-                System.out.println("Se ejecuta cuentas");
-                ResultSet cuentas =  userdet.executeQuery();
-                if(cuentas.next()){
-                    sameAccount = cuentas.getInt("cuentas");
-                }
-                if(sameAccount > 0){
-                    conexion.close();
-                    System.out.println("Duplicado");
-                    return 2;
-                } else {
-                    int isRegistered  =  preparedStatement.executeUpdate();
-                    if(isRegistered == 1){
-                        System.out.println("registrado");
-                        conexion.close();
-                        return 1;
+                Connection conexion = MySQLConnection.getConnection();
+                PreparedStatement preparedStatement = conexion.prepareStatement(sql);
+                PreparedStatement userdet = conexion.prepareStatement(sql2);
+                userdet.setString(1, username);
+                int rolid = (role.equals("super")) ? 5 : 4;
+                System.out.println(rolid);
+                preparedStatement.setInt(1,rolid);
+                preparedStatement.setString(2, username);
+                preparedStatement.setString(3, email);
+                preparedStatement.setString(4, email);
+                System.out.println("Preparados: ");
+                System.out.println(userdet);
+                System.out.println(preparedStatement);
+                int sameAccount = 0;
+                try{
+                    System.out.println("Se ejecuta cuentas");
+                    ResultSet cuentas =  userdet.executeQuery();
+                    if(cuentas.next()){
+                        sameAccount = cuentas.getInt("cuentas");
                     }
-                    else{
+                    if(sameAccount > 0){
                         conexion.close();
-                        System.out.println("No registrado");
-                        return 0;
+                        System.out.println("Duplicado");
+                        return 2;
+                    } else {
+                        int isRegistered  =  preparedStatement.executeUpdate();
+                        if(isRegistered == 1){
+                            System.out.println("registrado");
+                            conexion.close();
+                            return 1;
+                        }
+                        else{
+                            conexion.close();
+                            System.out.println("No registrado");
+                            return 0;
+                        }
                     }
-                }
 
+                }catch(Exception ex){
+                    System.out.println(ex.getMessage());
+                }
             }catch(Exception ex){
                 System.out.println(ex.getMessage());
             }
-        }catch(Exception ex){
-            System.out.println(ex.getMessage());
         }
+
         return 0;
     }
 
